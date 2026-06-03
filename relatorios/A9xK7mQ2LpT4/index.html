@@ -48,43 +48,29 @@ body {
 .hero { background: var(--brand); color: white; padding: 0; }
 .hero::before { content: ''; display: block; height: 3px; background: linear-gradient(90deg, var(--brand-mid) 0%, var(--accent) 100%); }
 
-.hero-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 1rem; padding: 1rem 1.5rem 0.9rem; flex-wrap: wrap;
-}
-.logo-wrap {
-  background: white; border-radius: 8px; padding: 6px 12px;
-  display: inline-flex; align-items: center; flex-shrink: 0;
-}
-.logo-wrap img { height: 27px; display: block; }
-.hero-tag {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: linear-gradient(135deg, var(--accent) 0%, #e8b040 100%);
-  color: #1a0800; font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
-  text-transform: uppercase; padding: 4px 12px; border-radius: 30px; white-space: nowrap;
-}
-.hero-code {
-  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
-  color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.07);
-  padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12);
-  white-space: nowrap;
-}
-.hero-date { font-size: 11px; color: rgba(255,255,255,0.35); white-space: nowrap; }
-
-.hero-title-row { padding: 0.6rem 1.5rem 0.8rem; border-top: 1px solid rgba(255,255,255,0.07); }
+.hero-title-row { padding: 1.1rem 1.5rem 0.95rem; text-align: center; }
 .hero-title-row h1 { font-size: 1.55rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.3px; }
-.hero-title-row h1 .recipient { color: var(--accent-light); }
-.hero-title-row .hero-sub { font-size: 0.78rem; color: rgba(255,255,255,0.42); margin-top: 3px; font-weight: 300; }
+.hero-title-accent,
+.hero-address-highlight { color: var(--accent-light); }
+.hero-address-wrap {
+  padding: 0.8rem 1.5rem 1rem;
+  text-align: center;
+}
+.hero-address {
+  width: 100%; max-width: 760px; margin: 0 auto;
+  font-size: 0.72rem; line-height: 1.45; color: rgba(255,255,255,0.9); font-weight: 400;
+}
 
 .hero-prop-strip {
-  display: flex; align-items: stretch; background: rgba(31,73,159,0.2);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; background: rgba(31,73,159,0.2);
   border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap;
 }
 .hero-prop-cell {
-  padding: 10px 16px; border-right: 1px solid rgba(255,255,255,0.08);
-  display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 130px;
+  padding: 10px 16px; border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; flex-direction: column; gap: 2px; min-width: 0;
 }
-.hero-prop-cell:last-child { border-right: none; }
+.hero-prop-cell:nth-child(2n) { border-right: none; }
+.hero-prop-cell:nth-last-child(-n+2) { border-bottom: none; }
 .hpc-label { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.35); }
 .hpc-value { font-size: 0.83rem; font-weight: 600; color: white; }
 .hpc-value.red { color: #ff8a80; }
@@ -93,17 +79,28 @@ body {
 
 /* ===== LAYOUT ===== */
 .page-wrap { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+.report-date {
+  text-align: center; margin: -0.95rem 0 -1.1rem;
+  font-size: 0.72rem; color: var(--text-light); font-weight: 500;
+}
 
 @media (min-width: 700px) {
-  .hero-inner { padding: 1rem 2.5rem 0.9rem; }
-  .hero-title-row { padding: 0.6rem 2.5rem 0.8rem; }
+  .hero-title-row { padding: 1.25rem 2.5rem 1rem; }
   .hero-title-row h1 { font-size: 1.9rem; }
-  .hero-prop-strip { flex-wrap: nowrap; }
+  .hero-address-wrap { padding: 0.85rem 2.5rem 1rem; }
+  .hero-prop-strip { display: flex; flex-wrap: nowrap; }
+  .hero-prop-cell { flex: 1; border-bottom: none; }
+  .hero-prop-cell:nth-child(2n) { border-right: 1px solid rgba(255,255,255,0.08); }
+  .hero-prop-cell:last-child { border-right: none; }
   .page-wrap { padding: 2rem 2rem 3rem; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .listing-table { font-size: 0.84rem; }
 }
 @media (max-width: 699px) {
+  .hero-title-row h1 { max-width: 320px; margin: 0 auto; }
+  .hero-address-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .hero-prop-cell { padding: 10px 12px; }
+  .hpc-value { font-size: 0.76rem; line-height: 1.35; }
   .two-col { display: flex; flex-direction: column; gap: 0.75rem; }
 }
 
@@ -445,19 +442,9 @@ footer .contact {
 
 <!-- ===== HERO ===== -->
 <div class="hero">
-  <div class="hero-inner">
-    <div class="logo-wrap">
-      <img src="https://static.arboimoveis.com.br/white-label-assets/CJ7700_MERI/01__logo_horizontal_americas_imoveis1639580907524.svg" alt="Américas Imóveis" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <span style="display:none;font-size:1rem;font-weight:700;color:#0e183f;">Américas Imóveis</span>
-    </div>
-    <div class="hero-tag">✦ Plano de Venda Personalizado</div>
-    <span class="hero-code">AP0144_MERI</span>
-    <span class="hero-date">18/05/2026</span>
-  </div>
-
   <div class="hero-title-row">
-    <h1>Análise do seu imóvel — <span class="recipient">Praia Posto 10</span></h1>
-    <p class="hero-sub">Rua José Américo de Almeida, 1375 · Und. 204 · 2º Andar · Recreio dos Bandeirantes</p>
+    <h1>Análise e Plano de Venda <span class="hero-title-accent">Personalizado</span></h1>
+    
   </div>
 
   <div class="hero-prop-strip">
@@ -478,23 +465,21 @@ footer .contact {
       <span class="hpc-value green">R$ 870k – R$ 905k</span>
     </div>
   </div>
+  <div class="hero-address-wrap">
+    <p class="hero-address">Rua José Américo de Almeida, 1375 · Und. 204 · 2º Andar · Recreio dos Bandeirantes - <span class="hero-address-highlight">Praia Posto 10</span> - AP0144_MERI</p>
+  </div>
 </div>
 
 <!-- ===== MAIN ===== -->
 <div class="page-wrap">
+  
+  <div class="report-date">Relatório 03/06/2026</div>
+  
 
   <!-- SECTION 1: VIZINHO -->
   <div class="section-label" style="margin-top:1.5rem;">
     <div class="num">1</div>
-    <h2>O vizinho do seu andar está concorrendo com você</h2>
-  </div>
-
-  <div class="alert-banner red">
-    <div class="alert-icon">🏢</div>
-    <div>
-      <h3>Apartamento idêntico ao lado, no mesmo andar, por R$ 895.000</h3>
-      <p>O imóvel vizinho — mesma planta, mesmo prédio, mesmo andar, também de frente — está anunciado por <strong>R$ 85.000 a menos</strong> que o seu. Este é o maior obstáculo para a sua venda hoje.</p>
-    </div>
+    <h2>O vizinho do seu andar está concorrendo com você - R$ 895.000</h2>
   </div>
 
   <div class="neighbor-card">
@@ -521,6 +506,14 @@ footer .contact {
         <strong>Problema real:</strong> todo comprador que pesquisar o seu prédio vai encontrar esse apartamento primeiro — R$ 85.000 mais barato, com as mesmas características. Na comparação direta, é difícil justificar o seu preço sem uma estratégia diferenciada.
       </div>
       <a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2761530450/" target="_blank" class="comp-link">↗ Ver anúncio do vizinho no ZAP Imóveis</a>
+    </div>
+  </div>
+
+  <div class="alert-banner red">
+    <div class="alert-icon">🏢</div>
+    <div>
+      <h3>Apartamento idêntico ao lado</h3>
+      <p>Está anunciado por <strong>R$ 85.000 a menos</strong> que o seu. Este é o maior obstáculo para a sua venda hoje.</p>
     </div>
   </div>
 
