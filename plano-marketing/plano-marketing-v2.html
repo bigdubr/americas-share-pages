@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano de Marketing Imobiliário com Vídeo & Tráfego Pago — Américas Imóveis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --brand: #0e183f;
+      --brand-mid: #1f499f;
+      --brand-light: #3a6cc8;
+      --brand-faint: #e8edf8;
+      --accent: #c8962e;
+      --accent-light: #f5d68a;
+      --accent-faint: #fdf3dc;
+      --danger: #c0392b;
+      --danger-mid: #e74c3c;
+      --danger-light: #fdecea;
+      --danger-border: #f5a89f;
+      --success: #1a6b47;
+      --success-light: #e4f5ed;
+      --text: #0e183f;
+      --text-muted: #5a6580;
+      --text-light: #8a96b0;
+      --border: #d8e0f0;
+      --border-light: #eaf0fb;
+      --bg: #eef2fa;
+      --bg-section: #f4f7fd;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 4px rgba(14, 24, 63, 0.07);
+      --shadow-md: 0 4px 16px rgba(14, 24, 63, 0.10);
+      --shadow-lg: 0 8px 32px rgba(14, 24, 63, 0.14);
+    }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--brand);
+      color: white;
+      padding: 0;
+    }
+
+    .hero::before {
+      content: '';
+      display: block;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand-mid) 0%, var(--accent) 60%, var(--accent-light) 100%);
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1.75rem 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-logo {
+      margin-bottom: 1rem;
+    }
+
+    .hero-logo img {
+      height: 60px;
+      display: block;
+      margin: 0 auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .hero-logo-fallback {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.3px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.52rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 0.75rem;
+      opacity: 0.85;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.18;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.6rem;
+      color: white;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent-light);
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 2rem;
+      max-width: 540px;
+    }
+
+    /* Price strip inside hero */
+    .hero-price-strip {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      background: rgba(31, 73, 159, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 540px;
+    }
+
+    .hps-cell {
+      flex: 1;
+      padding: 1.1rem 1.2rem;
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hps-cell:last-child {
+      border-right: none;
+    }
+
+    .hps-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.38);
+    }
+
+    .hps-value {
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent-light);
+    }
+
+    .hps-value.white {
+      color: white;
+    }
+
+    .hps-sub {
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.35;
+    }
+
+    @media (min-width: 700px) {
+      .hero h1 {
+        font-size: 2.9rem;
+      }
+
+      .hero-inner {
+        padding: 2rem 2.5rem 2rem;
+      }
+
+      .hero-logo img {
+        height: 60px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .hps-value {
+        font-size: 1.15rem;
+      }
+
+      .hps-label {
+        font-size: 0.55rem;
+      }
+
+      .hps-sub {
+        font-size: 0.58rem;
+      }
+
+      .hps-cell {
+        padding: 0.75rem 0.7rem;
+      }
+    }
+
+    /* ===== LAYOUT ===== */
+    .page-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0rem 1rem 3rem;
+    }
+
+    @media (min-width: 700px) {
+      .page-wrap {
+        padding: 0rem 1rem 3rem;
+      }
+    }
+
+    /* ===== SECTION LABEL ===== */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.1rem;
+      margin-top: 2.5rem;
+    }
+
+    .section-label .num {
+      width: 32px;
+      height: 32px;
+      background: var(--brand-mid);
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(31, 73, 159, 0.3);
+    }
+
+    .section-label h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brand);
+      letter-spacing: -0.2px;
+    }
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-divider {
+      border: none;
+      border-top: 2px dashed var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ===== BODY TEXT ===== */
+    .body-text {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 0.85rem;
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.35rem 1.4rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-light);
+    }
+
+    .card.danger-card {
+      border-left: 4px solid var(--danger);
+      background: var(--danger-light);
+      border-color: var(--danger-border);
+    }
+
+    .card.warn-card {
+      border-left: 4px solid var(--accent);
+      background: var(--accent-faint);
+      border-color: #e8c878;
+    }
+
+    .card.brand-card {
+      border-left: 4px solid var(--brand-mid);
+      background: var(--brand-faint);
+      border-color: #b0c4e8;
+    }
+
+    .card.success-card {
+      border-left: 4px solid var(--success);
+      background: var(--success-light);
+      border-color: #a3d9c0;
+    }
+
+    /* ===== TAGS ===== */
+    .tag {
+      display: inline-block;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .tag.red {
+      background: var(--danger-light);
+      color: var(--danger);
+      border: 1px solid var(--danger-border);
+    }
+
+    .tag.gold {
+      background: var(--accent-faint);
+      color: #7a5200;
+      border: 1px solid #e8c878;
+    }
+
+    .tag.green {
+      background: var(--success-light);
+      color: var(--success);
+      border: 1px solid #a3d9c0;
+    }
+
+    .tag.blue {
+      background: var(--brand-faint);
+      color: var(--brand-mid);
+      border: 1px solid #b0c4e8;
+    }
+
+    /* ===== EXP ITEMS ===== */
+    .exp-item {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .exp-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .exp-item:first-child {
+      padding-top: 0;
+    }
+
+    .exp-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .exp-icon.red {
+      background: var(--danger-light);
+    }
+
+    .exp-icon.gold {
+      background: var(--accent-faint);
+    }
+
+    .exp-icon.blue {
+      background: var(--brand-faint);
+    }
+
+    .exp-icon.green {
+      background: var(--success-light);
+    }
+
+    .exp-icon.dark {
+      background: rgba(14, 24, 63, 0.08);
+    }
+
+    .exp-item h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 4px;
+    }
+
+    .exp-item p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ===== INVEST HIGHLIGHT ===== */
+    .invest-highlight {
+      background: var(--brand);
+      color: white;
+      border-radius: 20px;
+      padding: 2rem 1.75rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .invest-highlight::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: rgba(31, 73, 159, 0.35);
+      pointer-events: none;
+    }
+
+    .invest-highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(200, 150, 46, 0.12);
+      pointer-events: none;
+    }
+
+    .ih-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.45;
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+
+    .ih-amount {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      position: relative;
+    }
+
+    .ih-sub {
+      font-size: 0.8rem;
+      opacity: 0.6;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+
+    .ih-divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      margin: 1.1rem 0;
+    }
+
+    .ih-return {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .ih-return .label {
+      opacity: 0.6;
+    }
+
+    .ih-return .val {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent-light);
+    }
+
+    /* ===== PROPOSAL ITEMS ===== */
+    .proposal-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .proposal-item:last-child {
+      border-bottom: none;
+    }
+
+    .check-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--brand-mid);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .check-circle.gold {
+      background: var(--accent);
+    }
+
+    .proposal-item h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 3px;
+    }
+
+    .proposal-item p {
+      font-size: 0.81rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ===== VIDEO GRID ===== */
+    .video-grid {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.5rem;
+      /* Hide scrollbar visually but keep functional */
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .video-grid::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .video-grid::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .video-grid::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    @media (min-width: 700px) {
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        padding-bottom: 0;
+      }
+    }
+
+    .video-card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      /* Mobile carousel: fixed width so 1.x cards are visible */
+      flex: 0 0 72vw;
+      max-width: 280px;
+      scroll-snap-align: start;
+    }
+
+    @media (min-width: 700px) {
+      .video-card {
+        flex: unset;
+        max-width: unset;
+        scroll-snap-align: unset;
+      }
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .video-card.featured {
+      border: 2px solid var(--accent);
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: #111;
+      overflow: hidden;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-card-body {
+      padding: 0.95rem 1.05rem;
+    }
+
+    .vc-featured-badge {
+      display: block;
+      text-align: center;
+      background: var(--accent);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px;
+    }
+
+    .vc-featured-badge.navy {
+      background: var(--brand-mid);
+    }
+
+    .vc-featured-badge.success {
+      background: var(--success);
+    }
+
+    .vc-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 5px;
+    }
+
+    .vc-title {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 7px;
+      line-height: 1.3;
+    }
+
+    .vc-prices {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .vc-price-old {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .vc-price-sold {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--success);
+    }
+
+    .vc-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: var(--success-light);
+      color: var(--success);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid #a3d9c0;
+      margin-top: 5px;
+    }
+
+    /* ===== HIGHLIGHT ROW ===== */
+    .highlight-row {
+      background: var(--accent-faint);
+      border: 1px solid #e8c878;
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: #7a5200;
+      line-height: 1.6;
+    }
+
+    .highlight-row .hr-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ===== INSIGHT BOX ===== */
+    .insight-box {
+      background: linear-gradient(135deg, #0a1228 0%, #1a2e5a 100%);
+      border-radius: 16px;
+      padding: 1.5rem 1.6rem;
+      color: white;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(31, 73, 159, 0.4);
+    }
+
+    .insight-box .ib-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 10px;
+    }
+
+    .insight-box h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 9px;
+    }
+
+    .insight-box p {
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.7;
+    }
+
+    .insight-box p+p {
+      margin-top: 9px;
+    }
+
+    .insight-box strong {
+      color: var(--accent-light);
+    }
+
+    /* ===== TRUTH BOX (verdade incômoda) ===== */
+    .truth-box {
+      background: #fff8ee;
+      border: 1px solid #f0c87a;
+      border-left: 5px solid var(--accent);
+      border-radius: 14px;
+      padding: 1.35rem 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .truth-box .tb-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #7a5200;
+      margin-bottom: 10px;
+    }
+
+    .truth-box h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .truth-box p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .truth-box p+p {
+      margin-top: 9px;
+    }
+
+    .truth-box strong {
+      color: #7a5200;
+    }
+
+    /* ===== DANGER HIGHLIGHT ===== */
+    .danger-highlight-box {
+      background: #fff5f5;
+      border: 1px solid var(--danger-border);
+      border-left: 5px solid var(--danger);
+      border-radius: 14px;
+      padding: 1.3rem 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .danger-highlight-box .dh-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--danger);
+      margin-bottom: 10px;
+    }
+
+    .danger-highlight-box h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #5a1010;
+      margin-bottom: 8px;
+    }
+
+    .danger-highlight-box p {
+      font-size: 0.84rem;
+      color: #5a1010;
+      line-height: 1.7;
+    }
+
+    .danger-highlight-box p+p {
+      margin-top: 9px;
+    }
+
+    .danger-highlight-box strong {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    /* ===== TWO COL ===== */
+    @media (min-width: 700px) {
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 699px) {
+      .two-col {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+
+    /* ===== STAT BOX ===== */
+    .stat-box {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .stat-box .big {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--brand);
+      line-height: 1;
+    }
+
+    .stat-box .big.gold {
+      color: var(--accent);
+    }
+
+    .stat-box .big.green {
+      color: var(--success);
+    }
+
+    .stat-box .desc {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: var(--brand);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin-top: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -70px;
+      right: -70px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(31, 73, 159, 0.4);
+      pointer-events: none;
+    }
+
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: -50px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(200, 150, 46, 0.1);
+      pointer-events: none;
+    }
+
+    .cta-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 0.7rem;
+      position: relative;
+    }
+
+    .cta-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+
+    .cta-section h2 em {
+      font-style: normal;
+      color: var(--accent-light);
+    }
+
+    .cta-section p {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1.75rem;
+      position: relative;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section p:last-of-type {
+      margin-bottom: 1.75rem;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: white;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+      position: relative;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1fb957;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.45);
+    }
+
+    .btn-whatsapp svg {
+      flex-shrink: 0;
+    }
+
+    .cta-fine {
+      margin-top: 1rem !important;
+      font-size: 0.72rem !important;
+      color: rgba(255, 255, 255, 0.3) !important;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--brand);
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 2rem;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    footer .logo-wrap-footer {
+      flex-shrink: 0;
+    }
+
+    footer .logo-wrap-footer img {
+      height: 80px;
+      display: block;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    footer .footer-brand {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 0.15rem;
+    }
+
+    @media (max-width: 700px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      footer .logo-wrap-footer img {
+        height: 65px;
+      }
+    }
+
+    /* ===== PRICE TRUTH VISUAL ===== */
+    .price-truth {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .pt-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 0.85rem 1.1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pt-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .pt-text {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .pt-text strong {
+      color: var(--brand);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+    <div class="hero-inner">
+
+      <!-- Logo -->
+      <div class="hero-logo">
+        <img src="logo-vertical-americas.svg" alt="Américas Imóveis"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="hero-logo-fallback" style="display:none;">Américas Imóveis</span>
+      </div>
+
+      <!-- Eyebrow + Headline -->
+      <div class="hero-eyebrow">Plano de Marketing Imobiliário com Vídeo &amp; Tráfego Pago</div>
+      <h1>Venda seu imóvel<br><em>em até 30 dias</em></h1>
+
+      <!-- Price Strip -->
+      <div class="hero-price-strip">
+        <div class="hps-cell">
+          <span class="hps-label">Seu investimento</span>
+          <span class="hps-value">R$ 700</span>
+          <span class="hps-sub">Campanha de 30 dias no Meta Ads</span>
+        </div>
+        <div class="hps-cell">
+          <span class="hps-label">Devolvemos em dobro,</span>
+          <span class="hps-value">R$ 1.400</span>
+          <span class="hps-sub">se a Américas vender</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <div class="page-wrap">
+
+    <!-- ============================
+       SEÇÃO 1: CASOS DE SUCESSO
+       ============================ -->
+    <div class="section-label" style="margin-top:1.75rem;">
+      <div class="num">▶</div>
+      <h2>Veja como vendemos — casos de reais
+      </h2>
+    </div>
+
+    <p class="body-text">Estes são vídeos reais que produzimos e veiculamos no Instagram para proprietários como você.
+    </p>
+
+    <div class="video-grid">
+
+      <!-- CARD 1: Criativo 16 — Casa Riviera (posição de destaque) -->
+      <div class="video-card featured">
+        <div class="vc-featured-badge">⭐ Destaque</div>
+        <div class="video-wrapper">
+          <video autoplay muted loop playsinline preload="auto">
+            <source
+              src="https://media.americasimoveis.com.br/Criativos/Criativo%2016%20-%20Casa%20Riviera%20del%20Sol_1.mp4"
+              type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card-body">
+          <div class="vc-label">Criativo 16</div>
+          <div class="vc-title">Casa — Condomínio Riviera del Sol</div>
+          <div class="vc-prices">
+            <span class="vc-price-old">Anunciado: R$ 2,2 milhões</span>
+            <span class="vc-price-sold">Vendido: R$ 1,9 milhão</span>
+          </div>
+          <span class="vc-badge">✓ Vendido</span>
+        </div>
+      </div>
+
+      <!-- CARD 2: Criativo 21 -->
+      <div class="video-card">
+        <div class="vc-featured-badge navy">🏙️ Médio Padrão</div>
+        <div class="video-wrapper">
+          <video autoplay muted loop playsinline preload="auto">
+            <source
+              src="https://media.americasimoveis.com.br/Criativos/Criativo%2021%20-%20Ocean%20BL%204%20UND%20304%20570%20Mil%20-%20AP0113_MERI_1.mp4"
+              type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card-body">
+          <div class="vc-label">Criativo 21</div>
+          <div class="vc-title">Apto 3 quartos — Condomínio Ocean</div>
+          <div class="vc-prices">
+            <span class="vc-price-old">Anunciado: R$ 570.000</span>
+            <span class="vc-price-sold">Vendido: R$ 549.000</span>
+          </div>
+          <span class="vc-badge">✓ Vendido</span>
+        </div>
+      </div>
+
+      <!-- CARD 3: Criativo 11 -->
+      <div class="video-card">
+        <div class="vc-featured-badge success">🌊 Frente ao Mar</div>
+        <div class="video-wrapper">
+          <video autoplay muted loop playsinline preload="auto">
+            <source
+              src="https://media.americasimoveis.com.br/Criativos/Criativo%2011%20-%20La%20Plage%202%20Qts%20850%20Mil.mp4"
+              type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card-body">
+          <div class="vc-label">Criativo 11</div>
+          <div class="vc-title">Apto 2 quartos — La Plage</div>
+          <div class="vc-prices">
+            <span class="vc-price-old">Anunciado: R$ 850.000</span>
+            <span class="vc-price-sold">Vendido: R$ 750.000</span>
+          </div>
+          <span class="vc-badge">✓ Vendido</span>
+        </div>
+      </div>
+
+      <!-- CARD 4: Criativo 23 -->
+      <div class="video-card">
+        <div class="vc-featured-badge navy">Ary Rongel</div>
+        <div class="video-wrapper">
+          <video autoplay muted loop playsinline preload="auto">
+            <source
+              src="https://media.americasimoveis.com.br/Criativos/Criativo%2023%20-%20Ary%20Rongel%20740%20APT%20204%20-%20AP0701_MERI-h265.mp4"
+              type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card-body">
+          <div class="vc-label">Criativo 23</div>
+          <div class="vc-title">Apto 2 quartos — Ary Rongel</div>
+          <div class="vc-prices">
+            <span class="vc-price-old">Anunciado: R$ 560.000</span>
+            <span class="vc-price-sold">Vendido: R$ 540.000</span>
+          </div>
+          <span class="vc-badge">✓ Vendido</span>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- ============================
+       SEÇÃO 2: O QUE ESTÁ INCLUÍDO
+       ============================ -->
+    <div class="section-label">
+      <div class="num">1</div>
+      <h2>O que está incluído no plano</h2>
+    </div>
+
+    <div class="invest-highlight">
+      <div class="ih-eyebrow">Plano de Marketing Imobiliário com Vídeo &amp; Tráfego Pago</div>
+      <div class="ih-amount">R$ 700</div>
+      <div class="ih-sub">Investimento único — campanha de 30 dias no Meta Ads</div>
+      <hr class="ih-divider">
+      <div class="ih-return">
+        <span class="label">Se a Américas Imóveis realizar a venda:</span>
+        <span class="val">R$ 1.400 de volta ✦</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="tag green">Tudo que você recebe</span>
+      <div class="proposal-item">
+        <div class="check-circle gold">🎬</div>
+        <div>
+          <h4>Vídeo profissional exclusivo — produzido pela Américas Imóveis</h4>
+          <p>Criamos o vídeo do seu imóvel com locução profissional, trilha e edição pensada para reter atenção no feed
+            do Instagram.</p>
+        </div>
+      </div>
+      <div class="proposal-item">
+        <div class="check-circle">✓</div>
+        <div>
+          <h4>Campanha ativa no Instagram e Facebook por 30 dias</h4>
+          <p>Os R$ 700 são investidos integralmente em Meta Ads. O vídeo é exibido para compradores com perfil real de
+            compra — faixa de renda, região e comportamento de busca compatíveis com o valor do seu imóvel.</p>
+        </div>
+      </div>
+      <div class="proposal-item">
+        <div class="check-circle">✓</div>
+        <div>
+          <h4>Gestão centralizada da venda — sem caos de intermediários</h4>
+          <p>A Américas Imóveis conduz a negociação de ponta a ponta. Um preço, uma estratégia, uma equipe. O comprador
+            não tem com quem especular.</p>
+        </div>
+      </div>
+      <div class="proposal-item">
+        <div class="check-circle">✓</div>
+        <div>
+          <h4>Feedback real de compradores interessados </h4>
+          <p>Saiba os feedbacks de compradores reais que visualizaram o anúncio e demonstraram interesse. Sem
+            achismo, sem <strong>"historinha"</strong> de corretor</p>
+
+        </div>
+      </div>
+      <div class="proposal-item">
+        <div class="check-circle gold">✦</div>
+        <div>
+          <h4>Garantia de resultado — vendemos, R$ 1.400 de volta</h4>
+          <p>Você investe R$ 700 na campanha. Se a Américas Imóveis fechar a venda do seu imóvel, devolvemos R$ 1.400 —
+            o dobro do que você investiu. É o nosso compromisso com o resultado, não com a promessa.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- ============================
+       SEÇÃO 3: POR QUE VÍDEO
+       ============================ -->
+    <div class="section-label">
+      <div class="num">2</div>
+      <h2>Por que o vídeo no Instagram vende mais que portal</h2>
+    </div>
+
+    <p class="body-text">O mercado imobiliário mudou. O comprador não está navegando no ZAP esperando achar o seu
+      imóvel. Ele está no celular, no Instagram, e o vídeo certo — para a pessoa certa — é o que fecha o negócio.</p>
+
+    <div class="card brand-card">
+      <span class="tag blue">A lógica do tráfego pago aplicada ao imóvel</span>
+      <div class="exp-item">
+        <div class="exp-icon red">📋</div>
+        <div>
+          <h4>No portal, o comprador procura — no Instagram, o imóvel encontra o comprador</h4>
+          <p>Quem entra no ZAP já tem milhares de opções na tela e vai comparar preço friamente. No Instagram, o seu
+            imóvel aparece antes da pesquisa começar — criando desejo antes da concorrência existir.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon blue">📱</div>
+        <div>
+          <h4>O comprador do seu imóvel está no celular agora</h4>
+          <p>Seja qual for o valor do seu imóvel, o comprador ideal está nas redes. Um vídeo bem produzido, direcionado
+            para o perfil certo de comprador, na hora certa, gera o contato que fecha o negócio. Portal não consegue
+            fazer isso.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon gold">🎬</div>
+        <div>
+          <h4>Vídeo gera conexão emocional — foto não vende, vídeo decide</h4>
+          <p>O comprador que assiste ao vídeo do seu imóvel já chega à visita com intenção de comprar. A decisão
+            acontece antes mesmo de tocar a campainha. Foto é catálogo; vídeo é experiência.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon green">🎯</div>
+        <div>
+          <h4>Segmentação precisa — zero desperdício de verba</h4>
+          <p>O Meta Ads permite mostrar o vídeo apenas para quem tem renda compatível, mora na região certa e demonstra
+            comportamento de busca imobiliária. Cada real investido vai para quem tem chance real de comprar.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- ============================
+       SEÇÃO 4: NÃO QUEREMOS SER MAIS UMA
+       ============================ -->
+    <div class="section-label">
+      <div class="num">3</div>
+      <h2>Por que a Américas Imóveis é diferente</h2>
+    </div>
+
+    <div class="highlight-row">
+      <span class="hr-icon">🚀</span>
+      <span>A Américas Imóveis não quer ser mais uma imobiliária no seu contrato. Queremos ser a única que realmente
+        vende — com estratégia, vídeo profissional e tráfego pago direcionado para compradores reais.</span>
+    </div>
+
+    <div class="insight-box">
+      <div class="ib-eyebrow">💡 Por que somos diferentes</div>
+      <h3>Imobiliária que realmente vende não precisa de volume — precisa de método</h3>
+      <p>A maioria das imobiliárias assina qualquer contrato, anuncia no mesmo portal, espera o telefone tocar e divide
+        a comissão com outras 20 imobiliárias. O resultado é previsível: o imóvel fica meses sem sair.</p>
+      <p>A Américas Imóveis trabalha com <strong>vídeo profissional + tráfego pago segmentado</strong> — levamos o
+        imóvel até o comprador certo, no momento certo, antes que ele sequer abra um portal. O resultado é uma venda
+        mais rápida, com menos barganha e com o preço que o mercado sustenta.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- ============================
+       SEÇÃO 5: MOTIVOS QUE TRAVAM A VENDA
+       ============================ -->
+    <div class="section-label">
+      <div class="num">4</div>
+      <h2>Os motivos que travam a venda de qualquer imóvel</h2>
+    </div>
+
+    <p class="body-text">Antes de investir em marketing, é importante entender o que realmente impede a venda. Esses são
+      os três bloqueios mais comuns — e o que fazer com cada um.</p>
+
+    <div class="card">
+      <span class="tag red">Os bloqueios mais comuns</span>
+      <div class="exp-item">
+        <div class="exp-icon red">📋</div>
+        <div>
+          <h4>Portal de anúncio parou de funcionar</h4>
+          <p>Existem centenas de milhares de imóveis anunciados no ZAP, Quinto Andar e similares. O comprador se perde
+            no volume, compara só pelo preço e nunca chega ao seu imóvel. Visibilidade zero, resultado zero.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon red">🎯</div>
+        <div>
+          <h4>Muitas imobiliárias = o comprador faz leilão</h4>
+          <p>Quando o mesmo imóvel aparece em 15 ou 20 imobiliárias diferentes, o comprador faz de propósito: entra em
+            contato com todas, compara preço e força para baixo. Você perde o controle da negociação antes mesmo de
+            começar.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon gold">💸</div>
+        <div>
+          <h4>O preço fora do mercado</h4>
+          <p>Marketing não vende imóvel com preço errado. Ele apenas acelera a descoberta. Se o preço não está dentro do
+            que o mercado sustenta, a campanha gera visitas e não gera proposta.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verdade do preço -->
+    <div class="truth-box">
+      <div class="tb-eyebrow">📊 A verdade sobre preço que ninguém fala</div>
+      <h3>O marketing só funciona quando o preço está dentro do mercado</h3>
+      <p>O anúncio perfeito, o vídeo profissional e a campanha segmentada fazem o comprador chegar até o seu imóvel —
+        mas quem decide se ele faz proposta é o preço. Se estiver fora, ele agradece e passa para o próximo.</p>
+      <p><strong>A melhor avaliação de preço não é a tabela do corretor — é a procura real dos interessados do
+          anúncio.</strong> Mercado é simples: quanto maior a procura, maior o valor que ele sustenta. Se a campanha
+        gera muitos contatos e nenhuma proposta, o sinal é claro: o preço precisa ser revisado.</p>
+      <p>A Américas Imóveis vai te mostrar, com dados reais da campanha, onde o mercado está posicionando o seu imóvel.
+        Transparência total — sem achismo.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- ============================
+       SEÇÃO 6: A VERDADE DAS MÚLTIPLAS IMOBILIÁRIAS
+       ============================ -->
+    <div class="section-label">
+      <div class="num">5</div>
+      <h2>A verdade que ninguém te conta sobre múltiplas imobiliárias</h2>
+    </div>
+
+    <div class="danger-highlight-box">
+      <div class="dh-eyebrow">⚠️ Atenção — mito muito difundido no mercado</div>
+      <h3>Anunciar em mais imobiliárias não acelera a venda — atrapalha</h3>
+      <p>O proprietário acredita que, quanto mais imobiliárias, maior o alcance. Na prática, o efeito é exatamente o
+        contrário: <strong>o comprador usa isso para especular o preço</strong>, os corretores competem entre si gerando
+        caos na negociação, e o imóvel perde credibilidade quando aparece por preços diferentes em múltiplos anúncios.
+      </p>
+      <p>O resultado? O imóvel fica meses sem sair, o comprador tem poder total de barganha e você acaba vendendo por
+        muito menos do que poderia — ou não vende.</p>
+    </div>
+
+
+
+    <div class="price-truth">
+      <div class="two-col">
+        <div class="stat-box">
+          <div class="big gold">≥ 15</div>
+          <div class="desc">Imobiliárias anunciando o mesmo imóvel em média nos casos que analisamos</div>
+        </div>
+        <div class="stat-box">
+          <div class="big green">30 dias</div>
+          <div class="desc">Prazo médio de venda com vídeo + tráfego pago para o comprador certo</div>
+        </div>
+      </div>
+      <div class="pt-row">
+        <span class="pt-icon">🔁</span>
+        <p class="pt-text"><strong>Um imóvel, uma estratégia, uma equipe.</strong> Quando a Américas Imóveis conduz a
+          negociação com exclusividade, o preço não vira ponto de especulação — ele é defendido por quem tem interesse
+          real em vender bem.</p>
+      </div>
+      <div class="pt-row">
+        <span class="pt-icon">📉</span>
+        <p class="pt-text"><strong>Múltiplas imobiliárias criam concorrência entre corretores, não entre
+            compradores.</strong> O resultado é sempre o mesmo: quem perde é o proprietário.</p>
+      </div>
+      <div class="pt-row">
+        <span class="pt-icon">🎯</span>
+        <p class="pt-text"><strong>O jogo mudou.</strong> Quem vende imóvel hoje é quem aparece no feed do comprador
+          certo — com vídeo profissional, no Instagram, direcionado para quem tem perfil real de compra. Portal de
+          anúncio virou vitrine de fundo de loja.</p>
+      </div>
+    </div>
+
+    <!-- ============================
+       CTA — CHAMADA PARA AÇÃO
+       (modular — fácil de trocar por formulário depois)
+       ============================ -->
+    <div class="cta-section">
+      <div class="cta-eyebrow">Próximo passo</div>
+      <h2>Pronto para vender<br><em>o seu imóvel em até 30 dias?</em></h2>
+      <p>Entre em contato com a Américas Imóveis agora. Vamos analisar o seu imóvel, criar o vídeo e lançar a campanha —
+        sem burocracia e sem enrolação.</p>
+
+      <a href="https://wa.me/5521964016363?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Plano%20de%20Marketing%20Imobili%C3%A1rio%20da%20Am%C3%A9ricas%20Im%C3%B3veis.%20Quero%20vender%20meu%20im%C3%B3vel%20em%20at%C3%A9%2030%20dias."
+        target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="white">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        Falar com a Américas Imóveis no WhatsApp
+      </a>
+
+      <p class="cta-fine">Análise gratuita do seu imóvel</p>
+    </div>
+
+  </div><!-- end page-wrap -->
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-content">
+      <div class="logo-wrap-footer">
+        <img
+          src="https://static.arboimoveis.com.br/white-label-assets/CJ7700_MERI/01__logo_horizontal_americas_imoveis1639581395784.svg"
+          alt="Américas Imóveis" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span style="display:none;font-size:1rem;font-weight:700;color:white;">Américas Imóveis</span>
+      </div>
+      <div class="footer-info">
+        <div class="footer-brand">Américas Imóveis</div>
+        <div>Plano de Marketing Imobiliário com Vídeo &amp; Tráfego Pago</div>
+        <div>Venda seu imóvel em até 30 dias — com método, vídeo e tráfego pago</div>
+        <div style="margin-top:0.25rem;">📲 (21) 96401-6363</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
