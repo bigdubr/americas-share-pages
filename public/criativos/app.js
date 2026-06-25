@@ -80,18 +80,24 @@ function render(list) {
 
 // ── Construção do card ────────────────────────────────────────
 function buildCard(video) {
-    const thumbUrl = extractThumbUrl(video.instagram);
-    const hasThumb = Boolean(thumbUrl);
+    const hasThumb = Boolean(video.thumb);
+    const thumbUrl = hasThumb ? extractThumbUrl(video) : "";
 
-    const thumbContent = hasThumb
+    const imgTag = hasThumb
         ? `<img
           class="card__thumb-img"
           src="${thumbUrl}"
           alt="Thumb ${escapeHtml(video.titulo)}"
           loading="lazy"
           onerror="this.closest('.card__thumb').classList.add('card__thumb--error')"
-       />`
-        : `<div class="card__thumb-placeholder">
+        />`
+        : "";
+
+    return `
+    <article class="card" data-instagram="${escapeHtml(video.instagram)}">
+      <div class="card__thumb">
+        ${imgTag}
+        <div class="card__thumb-placeholder">
           <svg class="placeholder-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="4" y="4" width="40" height="40" rx="6" stroke="currentColor" stroke-width="2.5"/>
             <path d="M4 32 l10-10 8 8 8-8 14 14" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
@@ -99,12 +105,7 @@ function buildCard(video) {
             <polygon points="22,20 36,27 22,34" fill="currentColor" opacity="0.35"/>
           </svg>
           <span>Sem prévia</span>
-       </div>`;
-
-    return `
-    <article class="card" data-instagram="${escapeHtml(video.instagram)}">
-      <div class="card__thumb ${hasThumb ? "" : "card__thumb--placeholder"}">
-        ${thumbContent}
+        </div>
         <span class="card__ref">${escapeHtml(video.referencia)}</span>
       </div>
 
@@ -204,20 +205,10 @@ function showCopyFeedback(btn, success) {
 // ── Helpers ───────────────────────────────────────────────────
 
 /**
- * Tenta extrair a thumbnail pública de um Reel do Instagram.
- * O Instagram bloqueia thumbnails diretas por CORS em produção,
- * mas o padrão abaixo funciona em alguns contextos locais/internos.
- * Se falhar, o card usa o placeholder automaticamente (via onerror).
- *
- * Para usar thumbnails reais, popule o campo `thumb` no objeto
- * de vídeo em videos.js com a URL direta (Cloudflare, etc.).
- * Ex: thumb: "https://media.americasimoveis.com.br/videos/AP0756.jpg"
+ * Retorna o caminho da thumbnail local baseada na referência.
  */
-function extractThumbUrl(instagramUrl) {
-    // Se o objeto tiver thumb explícito (campo opcional), usa esse
-    // Essa lógica é chamada em buildCard, mas o campo thumb não existe
-    // no schema base — é apenas para uso futuro. Retorna null por ora.
-    return null;
+function extractThumbUrl(video) {
+    return `thumbs/${video.referencia}.webp`;
 }
 
 function escapeHtml(str) {
