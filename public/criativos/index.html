@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criativos · Américas Imóveis</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ── Header ────────────────────────────────────────────── -->
+    <header class="header">
+        <div class="header__inner">
+
+            <!-- Marca -->
+            <div class="header__brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M15 10l4.553-2.369A1 1 0 0121 8.535v6.93a1 1 0 01-1.447.904L15 14" />
+                        <rect x="1" y="6" width="14" height="12" rx="2" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="header__title">Criativos</span>
+                    <span class="header__subtitle">Américas Imóveis</span>
+                </div>
+            </div>
+
+            <!-- Busca -->
+            <div class="header__search">
+                <input id="search-input" type="search" placeholder="Buscar por título, código, bairro, valor…"
+                    autocomplete="off" spellcheck="false" />
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+            </div>
+
+            <!-- Contador -->
+            <div class="header__counter">
+                <span id="video-counter">— vídeos</span>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ── Conteúdo principal ─────────────────────────────────── -->
+    <main class="main">
+        <div id="video-grid">
+
+            <!-- Estado vazio (mostrado quando busca não encontra resultados) -->
+            <div id="empty-state" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    <line x1="8" y1="11" x2="14" y2="11" />
+                </svg>
+                <p>Nenhum vídeo encontrado</p>
+                <small>Tente buscar por outro termo ou limpe a pesquisa (Esc)</small>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Scripts: dados primeiro, depois a lógica -->
+    <script src="videos.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

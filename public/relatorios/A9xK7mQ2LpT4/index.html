@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Venda Personalizado — AP0144 — Américas Imóveis</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --brand: #0e183f;
+  --brand-mid: #1f499f;
+  --brand-light: #3a6cc8;
+  --brand-faint: #e8edf8;
+  --accent: #c8962e;
+  --accent-light: #f5d68a;
+  --accent-faint: #fdf3dc;
+  --danger: #c0392b;
+  --danger-mid: #e74c3c;
+  --danger-light: #fdecea;
+  --danger-border: #f5a89f;
+  --success: #1a6b47;
+  --success-light: #e4f5ed;
+  --text: #0e183f;
+  --text-muted: #5a6580;
+  --text-light: #8a96b0;
+  --border: #d8e0f0;
+  --border-light: #eaf0fb;
+  --bg: #eef2fa;
+  --bg-section: #f4f7fd;
+  --white: #ffffff;
+  --shadow-sm: 0 1px 4px rgba(14,24,63,0.07);
+  --shadow-md: 0 4px 16px rgba(14,24,63,0.10);
+  --shadow-lg: 0 8px 32px rgba(14,24,63,0.14);
+}
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+
+/* ===== HERO ===== */
+.hero { background: var(--brand); color: white; padding: 0; }
+.hero::before { content: ''; display: block; height: 3px; background: linear-gradient(90deg, var(--brand-mid) 0%, var(--accent) 100%); }
+
+.hero-title-row { padding: 1.1rem 1.5rem 0.95rem; text-align: center; }
+.hero-title-row h1 { font-size: 1.55rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.3px; }
+.hero-title-accent,
+.hero-address-highlight { color: var(--accent-light); }
+.hero-address-wrap {
+  padding: 0.8rem 1.5rem 1rem;
+  text-align: center;
+}
+.hero-address {
+  width: 100%; max-width: 760px; margin: 0 auto;
+  font-size: 0.72rem; line-height: 1.45; color: rgba(255,255,255,0.9); font-weight: 400;
+}
+
+.hero-prop-strip {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; background: rgba(31,73,159,0.2);
+  border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap;
+}
+.hero-prop-cell {
+  padding: 10px 16px; border-right: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; flex-direction: column; gap: 2px; min-width: 0;
+}
+.hero-prop-cell:nth-child(2n) { border-right: none; }
+.hero-prop-cell:nth-last-child(-n+2) { border-bottom: none; }
+.hpc-label { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+.hpc-value { font-size: 0.83rem; font-weight: 600; color: white; }
+.hpc-value.red { color: #ff8a80; }
+.hpc-value.gold { color: var(--accent-light); }
+.hpc-value.green { color: #7affc4; }
+
+/* ===== LAYOUT ===== */
+.page-wrap { max-width: 760px; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+.report-date {
+  text-align: center; margin: -0.95rem 0 -1.1rem;
+  font-size: 0.72rem; color: var(--text-light); font-weight: 500;
+}
+
+@media (min-width: 700px) {
+  .hero-title-row { padding: 1.25rem 2.5rem 1rem; }
+  .hero-title-row h1 { font-size: 1.9rem; }
+  .hero-address-wrap { padding: 0.85rem 2.5rem 1rem; }
+  .hero-prop-strip { display: flex; flex-wrap: nowrap; }
+  .hero-prop-cell { flex: 1; border-bottom: none; }
+  .hero-prop-cell:nth-child(2n) { border-right: 1px solid rgba(255,255,255,0.08); }
+  .hero-prop-cell:last-child { border-right: none; }
+  .page-wrap { padding: 2rem 2rem 3rem; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .listing-table { font-size: 0.84rem; }
+}
+@media (max-width: 699px) {
+  .hero-title-row h1 { max-width: 320px; margin: 0 auto; }
+  .hero-address-wrap { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .hero-prop-cell { padding: 10px 12px; }
+  .hpc-value { font-size: 0.76rem; line-height: 1.35; }
+  .two-col { display: flex; flex-direction: column; gap: 0.75rem; }
+}
+
+/* ===== SECTION LABEL ===== */
+.section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; margin-top: 2.25rem; }
+.section-label .num {
+  width: 30px; height: 30px; background: var(--brand-mid); color: white;
+  border-radius: 50%; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(31,73,159,0.3);
+}
+.section-label h2 { font-size: 1.1rem; font-weight: 700; color: var(--brand); letter-spacing: -0.2px; }
+
+/* ===== CARDS ===== */
+.card { background: var(--white); border-radius: 16px; padding: 1.25rem; box-shadow: var(--shadow-sm); margin-bottom: 1rem; border: 1px solid var(--border-light); }
+.card.danger-card { border-left: 4px solid var(--danger); background: var(--danger-light); border-color: var(--danger-border); }
+.card.warn-card { border-left: 4px solid var(--accent); background: var(--accent-faint); border-color: #e8c878; }
+.card.brand-card { border-left: 4px solid var(--brand-mid); background: var(--brand-faint); border-color: #b0c4e8; }
+.card.success-card { border-left: 4px solid var(--success); background: var(--success-light); border-color: #a3d9c0; }
+
+/* ===== ALERT BANNER ===== */
+.alert-banner { border-radius: 14px; padding: 1rem 1.25rem; margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 12px; }
+.alert-banner.red { background: var(--danger); color: white; }
+.alert-banner.amber { background: #7c3a00; color: white; }
+.alert-banner.navy { background: var(--brand); color: white; }
+.alert-banner.green-alert { background: var(--success); color: white; }
+.alert-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+.alert-banner h3 { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; }
+.alert-banner p { font-size: 0.83rem; opacity: 0.88; line-height: 1.55; }
+
+/* ===== STAT BOXES ===== */
+.stat-box { background: var(--white); border-radius: 14px; padding: 1rem 1.1rem; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); }
+.stat-box .big { font-size: 1.9rem; font-weight: 700; color: var(--brand); line-height: 1; }
+.stat-box .big.red { color: var(--danger); }
+.stat-box .big.gold { color: var(--accent); }
+.stat-box .big.green { color: var(--success); }
+.stat-box .desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 5px; line-height: 1.35; }
+
+/* ===== TABLE ===== */
+.table-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.listing-table { width: 100%; border-collapse: collapse; font-size: 0.77rem; }
+.listing-table th { background: var(--brand); color: white; padding: 9px 12px; text-align: left; font-weight: 600; font-size: 0.68rem; letter-spacing: 0.5px; text-transform: uppercase; }
+.listing-table th:last-child { text-align: right; }
+.listing-table td { padding: 9px 12px; border-bottom: 1px solid var(--border-light); vertical-align: middle; color: var(--text); }
+.listing-table tr:last-child td { border-bottom: none; }
+.listing-table td:last-child { text-align: right; font-weight: 700; color: var(--brand-mid); }
+.listing-table tr:nth-child(even) td { background: var(--bg-section); }
+.listing-table td a { color: var(--brand-mid); text-decoration: none; font-size: 0.72rem; font-weight: 500; }
+.badge-low { display: inline-block; background: var(--danger-light); color: var(--danger); font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 4px; border: 1px solid var(--danger-border); }
+.badge-own { display: inline-block; background: var(--brand-faint); color: var(--brand-mid); font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 4px; border: 1px solid #b0c4e8; }
+
+/* EXPANDABLE */
+.expand-btn { width: 100%; background: var(--brand-faint); border: 1px solid var(--border); border-top: none; border-radius: 0 0 12px 12px; padding: 10px 16px; font-family: 'Sora', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--brand-mid); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.2s; }
+.expand-btn:hover { background: var(--border-light); }
+.expand-btn .arrow { transition: transform 0.25s; display: inline-block; font-style: normal; }
+.expand-btn.open .arrow { transform: rotate(180deg); }
+.extra-rows { display: none; }
+.extra-rows.visible { display: table-row-group; }
+
+/* ===== EXP ITEMS ===== */
+.exp-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border-light); }
+.exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+.exp-item:first-child { padding-top: 0; }
+.exp-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.exp-icon.red { background: var(--danger-light); }
+.exp-icon.gold { background: var(--accent-faint); }
+.exp-icon.blue { background: var(--brand-faint); }
+.exp-icon.green { background: var(--success-light); }
+.exp-item h4 { font-size: 0.9rem; font-weight: 700; color: var(--brand); margin-bottom: 3px; }
+.exp-item p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+/* ===== NEIGHBOR CARD ===== */
+.neighbor-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--danger-mid);
+  margin-bottom: 1rem;
+}
+.neighbor-badge {
+  background: var(--danger);
+  color: white;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 7px 12px;
+}
+.neighbor-img-wrap,
+.img-carousel { position: relative; width: 100%; height: 200px; overflow: hidden; background: #111; }
+.neighbor-img-wrap img,
+.img-carousel .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.img-carousel .slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 0.8s ease-in-out;
+  pointer-events: none;
+}
+.img-carousel .slide.active { opacity: 1; pointer-events: auto; }
+.neighbor-img-label {
+  position: absolute; bottom: 10px; left: 10px; z-index: 2;
+  background: rgba(0,0,0,0.65); color: white;
+  font-size: 10px; font-weight: 600; padding: 4px 10px;
+  border-radius: 6px; backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+@media (min-width: 700px) { .neighbor-img-wrap, .img-carousel { height: 260px; } }
+.occ-img-wrap { border-bottom: 1px solid var(--border-light); }
+.neighbor-body { padding: 1.1rem 1.25rem; }
+.neighbor-price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.neighbor-price { font-size: 1.9rem; font-weight: 700; color: var(--danger); letter-spacing: -0.5px; }
+.neighbor-price-label { font-size: 0.76rem; color: var(--text-muted); }
+.neighbor-specs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.n-pill { font-size: 11px; background: var(--bg-section); color: var(--text-muted); border: 1px solid var(--border); padding: 3px 10px; border-radius: 20px; }
+.n-pill.match { background: var(--danger-light); color: var(--danger); border-color: var(--danger-border); font-weight: 600; }
+.neighbor-warning { background: var(--danger-light); border: 1px solid var(--danger-border); border-radius: 10px; padding: 10px 12px; font-size: 0.8rem; color: #5a1010; font-weight: 500; line-height: 1.55; margin-bottom: 12px; }
+.neighbor-warning strong { color: var(--danger); }
+.comp-link { display: block; background: var(--brand); color: white; text-align: center; padding: 10px; border-radius: 10px; font-size: 0.78rem; font-weight: 600; text-decoration: none; }
+
+/* ===== COMPETITOR CARD (other street) ===== */
+.other-comp-card { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-md); border: 1.5px solid var(--border); margin-bottom: 1rem; }
+.occ-top { padding: 7px 12px; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: white; }
+.occ-top.amber { background: #7c4a00; }
+.occ-body { padding: 1rem 1.1rem; }
+.occ-price { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+.occ-price.cheaper { color: var(--success); }
+.occ-specs { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.occ-pill { font-size: 11px; background: var(--bg-section); color: var(--text-muted); border: 1px solid var(--border); padding: 3px 9px; border-radius: 20px; }
+.occ-pill.good { background: var(--success-light); color: var(--success); border-color: #a3d9c0; }
+.occ-note { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 10px; }
+.occ-note strong { color: var(--success); }
+
+/* ===== TAGS ===== */
+.tag { display: inline-block; font-size: 0.67rem; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 9px; border-radius: 6px; margin-bottom: 10px; }
+.tag.red { background: var(--danger-light); color: var(--danger); border: 1px solid var(--danger-border); }
+.tag.gold { background: var(--accent-faint); color: #7a5200; border: 1px solid #e8c878; }
+.tag.green { background: var(--success-light); color: var(--success); border: 1px solid #a3d9c0; }
+.tag.blue { background: var(--brand-faint); color: var(--brand-mid); border: 1px solid #b0c4e8; }
+
+/* ===== PRICE STRATEGY ===== */
+.price-strategy-box {
+  background: var(--brand);
+  border-radius: 16px;
+  padding: 1.4rem 1.5rem;
+  color: white;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.price-strategy-box::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  background: rgba(31,73,159,0.4);
+  pointer-events: none;
+}
+.psb-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.45; margin-bottom: 10px; position: relative; }
+.psb-row { display: flex; align-items: stretch; gap: 0; position: relative; flex-wrap: wrap; }
+.psb-item { flex: 1; min-width: 100px; padding: 10px 14px; border-right: 1px solid rgba(255,255,255,0.1); }
+.psb-item:last-child { border-right: none; }
+.psb-item-label { font-size: 9px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; opacity: 0.45; margin-bottom: 4px; }
+.psb-item-val { font-size: 1.15rem; font-weight: 700; }
+.psb-item-val.strike { text-decoration: line-through; opacity: 0.4; font-size: 0.9rem; }
+.psb-item-val.gold-v { color: var(--accent-light); }
+.psb-item-val.green-v { color: #7affc4; }
+.psb-item-val.red-v { color: #ff8a80; }
+.psb-item-sub { font-size: 0.68rem; opacity: 0.55; margin-top: 2px; }
+.psb-divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0; }
+.psb-note { font-size: 0.8rem; opacity: 0.7; line-height: 1.6; position: relative; }
+
+/* ===== INVEST HIGHLIGHT ===== */
+.invest-highlight { background: var(--brand); color: white; border-radius: 18px; padding: 1.75rem 1.5rem; text-align: center; margin-bottom: 1rem; position: relative; overflow: hidden; }
+.invest-highlight::before { content: ''; position: absolute; top: -50px; right: -50px; width: 160px; height: 160px; border-radius: 50%; background: rgba(31,73,159,0.4); pointer-events: none; }
+.invest-highlight .small-label { font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.5rem; position: relative; }
+.invest-highlight .amount { font-size: 3rem; font-weight: 700; color: var(--accent-light); line-height: 1; margin-bottom: 0.25rem; position: relative; }
+.invest-highlight .sub { font-size: 0.78rem; opacity: 0.65; margin-bottom: 1rem; position: relative; }
+.invest-divider { border: none; border-top: 1px solid rgba(255,255,255,0.15); margin: 1rem 0; }
+.invest-return { display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.82rem; position: relative; }
+.invest-return .label { opacity: 0.6; }
+.invest-return .val { font-weight: 700; font-size: 1.1rem; color: var(--accent-light); }
+
+/* ===== PROPOSAL ITEMS ===== */
+.proposal-item { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border-light); }
+.proposal-item:last-child { border-bottom: none; }
+.check-circle { width: 26px; height: 26px; border-radius: 50%; background: var(--brand-mid); color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.check-circle.gold { background: var(--accent); }
+.proposal-item h4 { font-size: 0.88rem; font-weight: 700; color: var(--brand); margin-bottom: 3px; }
+.proposal-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; }
+
+/* ===== DANGER HIGHLIGHT ===== */
+.danger-highlight-box { background: #fff5f5; border: 1px solid var(--danger-border); border-left: 5px solid var(--danger); border-radius: 12px; padding: 1.2rem 1.35rem; margin-bottom: 1rem; }
+.danger-highlight-box .dh-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--danger); margin-bottom: 10px; }
+.danger-highlight-box p { font-size: 0.86rem; color: #5a1010; line-height: 1.7; }
+.danger-highlight-box p + p { margin-top: 10px; }
+.danger-highlight-box strong { color: var(--danger); font-weight: 700; }
+
+/* ===== VIDEO CARDS ===== */
+.video-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+@media (min-width: 700px) {
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+.video-card {
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  background: #111;
+  overflow: hidden;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.video-card-body { padding: 0.9rem 1rem; }
+.video-card-body .vc-label { font-size: 9px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-light); margin-bottom: 5px; }
+.video-card-body .vc-title { font-size: 0.82rem; font-weight: 700; color: var(--brand); margin-bottom: 6px; line-height: 1.3; }
+.vc-prices { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.vc-price-old { font-size: 0.75rem; color: var(--text-muted); text-decoration: line-through; }
+.vc-price-sold { font-size: 0.9rem; font-weight: 700; color: var(--success); }
+.vc-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; background: var(--success-light); color: var(--success); padding: 2px 7px; border-radius: 4px; border: 1px solid #a3d9c0; margin-top: 4px; }
+
+/* ===== TIMELINE ===== */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 1.25rem; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot { position: absolute; left: -2rem; top: 4px; width: 20px; height: 20px; background: var(--brand-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: white; }
+.timeline-item h4 { font-size: 0.88rem; font-weight: 700; color: var(--brand); margin-bottom: 3px; }
+.timeline-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; }
+
+/* ===== HIGHLIGHT ROW ===== */
+.highlight-row { background: var(--accent-faint); border: 1px solid #e8c878; border-radius: 12px; padding: 0.9rem 1.1rem; display: flex; align-items: flex-start; gap: 10px; margin-bottom: 1rem; font-size: 0.84rem; color: #7a5200; line-height: 1.55; }
+.highlight-row .hr-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+
+/* ===== STRATEGY INSIGHT ===== */
+.insight-box { background: linear-gradient(135deg, #0a1228 0%, #1a2e5a 100%); border-radius: 16px; padding: 1.4rem 1.5rem; color: white; margin-bottom: 1rem; border: 1px solid rgba(31,73,159,0.4); }
+.insight-box .ib-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent-light); margin-bottom: 10px; }
+.insight-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+.insight-box p { font-size: 0.83rem; color: rgba(255,255,255,0.72); line-height: 1.65; }
+.insight-box p + p { margin-top: 8px; }
+.insight-box strong { color: var(--accent-light); }
+
+/* ===== ALT CARD ===== */
+.alt-card { background: var(--brand-faint); border-radius: 14px; padding: 1.25rem; border: 1px dashed #a0b8e0; margin-bottom: 1rem; }
+.alt-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--brand); margin-bottom: 0.5rem; }
+.alt-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+.rent-val { font-size: 1.5rem; font-weight: 700; color: var(--brand); display: block; margin-top: 0.75rem; }
+
+/* ===== FOOTER ===== */
+
+footer {
+  background: var(--brand);
+  color: rgba(255,255,255,0.75);
+  margin-top: 1rem;
+  padding: 2rem 1.5rem;
+}
+
+.footer-content {
+  max-width: 900px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+footer .logo-wrap-footer {
+  flex-shrink: 0;
+}
+
+footer .logo-wrap-footer img {
+  height: 95px;
+  display: block;
+
+  filter: brightness(0) invert(1);
+}
+
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+footer .contact {
+  margin-top: 0.35rem;
+  color: var(--accent-light);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  footer .logo-wrap-footer img {
+    height: 75px;
+  }
+}
+/* ===== MISC ===== */
+.section-divider { border: none; border-top: 2px dashed var(--border); margin: 2.25rem 0; }
+.body-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 0.75rem; }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-title-row">
+    <h1>Análise e Plano de Venda <span class="hero-title-accent">Personalizado</span></h1>
+    
+  </div>
+
+  <div class="hero-prop-strip">
+    <div class="hero-prop-cell">
+      <span class="hpc-label">Tipologia</span>
+      <span class="hpc-value">2 quartos (1 suíte) · 112m² · 2 vagas · Frente</span>
+    </div>
+    <div class="hero-prop-cell">
+      <span class="hpc-label">Valor pretendido</span>
+      <span class="hpc-value gold">R$ 980.000</span>
+    </div>
+    <div class="hero-prop-cell">
+      <span class="hpc-label">Vizinho anunciando</span>
+      <span class="hpc-value red">R$ 895.000</span>
+    </div>
+    <div class="hero-prop-cell">
+      <span class="hpc-label">Avaliação Américas</span>
+      <span class="hpc-value green">R$ 870k – R$ 905k</span>
+    </div>
+  </div>
+  <div class="hero-address-wrap">
+    <p class="hero-address">Rua José Américo de Almeida, 1375 · Und. 204 · 2º Andar · Recreio dos Bandeirantes - <span class="hero-address-highlight">Praia Posto 10</span> - AP0144_MERI</p>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="page-wrap">
+  
+  <div class="report-date">Relatório 03/06/2026</div>
+  
+
+  <!-- SECTION 1: VIZINHO -->
+  <div class="section-label" style="margin-top:1.5rem;">
+    <div class="num">1</div>
+    <h2>O vizinho do seu andar está concorrendo com você - R$ 895.000</h2>
+  </div>
+
+  <div class="neighbor-card">
+    <div class="neighbor-badge">⚠ Concorrência direta — mesmo andar, mesma posição frente</div>
+    <div class="neighbor-img-wrap img-carousel" data-carousel>
+      <div class="slide"><img src="foto01.webp" alt="Apartamento vizinho — foto 1"></div>
+      <div class="slide"><img src="foto02.webp" alt="Apartamento vizinho — foto 2"></div>
+      <div class="slide"><img src="foto03.webp" alt="Apartamento vizinho — foto 3"></div>
+      <div class="neighbor-img-label">📍 Mesmo prédio · Mesmo andar · Frente</div>
+    </div>
+    <div class="neighbor-body">
+      <div class="neighbor-price-row">
+        <span class="neighbor-price">R$ 895.000</span>
+        <span class="neighbor-price-label">anunciado pelo vizinho</span>
+      </div>
+      <div class="neighbor-specs">
+        <span class="n-pill match">2 quartos</span>
+        <span class="n-pill match">112 m²</span>
+        <span class="n-pill match">2 vagas</span>
+        <span class="n-pill match">Frente</span>
+        <span class="n-pill match">Mesmo andar</span>
+      </div>
+      <div class="neighbor-warning">
+        <strong>Problema real:</strong> todo comprador que pesquisar o seu prédio vai encontrar esse apartamento primeiro — R$ 85.000 mais barato, com as mesmas características. Na comparação direta, é difícil justificar o seu preço sem uma estratégia diferenciada.
+      </div>
+      <a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-elevador-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2761530450/" target="_blank" class="comp-link">↗ Ver anúncio do vizinho no ZAP Imóveis</a>
+    </div>
+  </div>
+
+  <div class="alert-banner red">
+    <div class="alert-icon">🏢</div>
+    <div>
+      <h3>Apartamento idêntico ao lado</h3>
+      <p>Está anunciado por <strong>R$ 85.000 a menos</strong> que o seu. Este é o maior obstáculo para a sua venda hoje.</p>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 2: ANÚNCIOS DUPLICADOS -->
+  <div class="section-label">
+    <div class="num">2</div>
+    <h2>Anúncios duplicados do seu imóvel</h2>
+  </div>
+
+  <div class="two-col">
+    <div class="stat-box">
+      <div class="big red">8+</div>
+      <div class="desc">Imobiliárias anunciando o seu imóvel simultaneamente</div>
+    </div>
+    <div class="stat-box">
+      <div class="big gold">R$ 11k</div>
+      <div class="desc">Diferença entre o seu preço e o menor anúncio identificado</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag red">Por que tantas imobiliárias prejudicam a venda</span>
+    <div class="exp-item">
+      <div class="exp-icon red">🎯</div>
+      <div>
+        <h4>O comprador especula entre as imobiliárias</h4>
+        <p>Com múltiplos anúncios do mesmo imóvel, o comprador entra em contato com todas e promove um leilão silencioso — forçando o preço para baixo sem que você saiba.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon red">💔</div>
+      <div>
+        <h4>Leads captados são "atravessados"</h4>
+        <p>A Américas Imóveis capta e qualifica um comprador — ele pesquisa no ZAP, encontra o mesmo imóvel mais barato em outra imobiliária, e a negociação vai por outro caminho.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon gold">💸</div>
+      <div>
+        <h4>Preços conflitantes destroem credibilidade</h4>
+        <p>Quando a <b>Vitória Imóveis</b> anuncia por R$ 969 mil, a <b>Sampaio Broker</b> por R$ 978 mil e outras por R$ 980 mil, o comprador fica confuso passa a consultar várias imobiliárias especulando o preço buscando o menor preço.
+                     </p>
+      </div>
+    </div>
+  </div>
+
+  <span class="tag red">Anúncios duplicados identificados do seu imóvel</span>
+  <div class="table-wrap">
+    <table class="listing-table">
+      <thead>
+        <tr>
+          <th>Imobiliária</th>
+          <th>Link</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
+      <tbody id="main-rows">
+        <tr>
+          <td>Vitória Imóveis <span class="badge-low">↓ mais barato</span></td>
+          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2863618376/" target="_blank">↗ abrir</a></td>
+          <td>R$ 969.000</td>
+        </tr>
+        <tr>
+          <td>Sampaio Broker Consultoria</td>
+          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2864598958/" target="_blank">↗ abrir</a></td>
+          <td>R$ 978.000</td>
+        </tr>
+        <tr>
+          <td>Block Imóveis</td>
+          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-varanda-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2875057041/" target="_blank">↗ abrir</a></td>
+          <td>R$ 980.000</td>
+        </tr>
+        <tr>
+          <td>Block Imóveis (2º anúncio)</td>
+          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2875101439/" target="_blank">↗ abrir</a></td>
+          <td>R$ 980.000</td>
+        </tr>
+        <tr>
+          <td>Block Imóveis (3º anúncio)</td>
+          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-ar-condicionado-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2875105925/" target="_blank">↗ abrir</a></td>
+          <td>R$ 980.000</td>
+        </tr>
+        <tr>
+          <td>Privilégio Jardim Oceânico</td>
+          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-cozinha-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2888358687/" target="_blank">↗ abrir</a></td>
+          <td>R$ 980.000</td>
+        </tr>
+        <tr>
+          <td>Lopes Enjoy VF</td>
+          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-churrasqueira-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2888139577/" target="_blank">↗ abrir</a></td>
+          <td>R$ 980.000</td>
+        </tr>
+        <tr>
+          <td>Américas Imóveis <span class="badge-own">nosso anúncio</span></td>
+          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-112m2-id-2867860463/" target="_blank">↗ abrir</a></td>
+          <td>R$ 980.000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card warn-card" style="margin-top:1rem;">
+    <strong style="font-size:0.84rem;color:#7a5200;">📌 Recomendação</strong>
+    <p class="body-text" style="margin-top:0.5rem;margin-bottom:0;">Para a estratégia funcionar, o ideal é anunciar com no máximo 2 ou 3 imobiliárias. Muitas empresas anunciando o mesmo imóvel com preços diferentes enfraquecem a venda. A Américas Imóveis quer fazer um marketing forte para realmente vender, e não ser apenas mais um anúncio no mercado.</p>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 3: CONCORRENTE NA RUA DA FRENTE -->
+  <div class="section-label">
+    <div class="num">3</div>
+    <h2>Concorrente na rua da frente — mais barato e mais perto da praia</h2>
+  </div>
+
+  <div class="other-comp-card">
+    <div class="occ-top amber">🌊 Rua Joaquim Cardoso — mais próximo da praia · Mesmo perfil</div>
+    <div class="neighbor-img-wrap img-carousel occ-img-wrap" data-carousel>
+      <div class="slide"><img src="foto04.webp" alt="Concorrente na rua da frente — foto 1"></div>
+      <div class="slide"><img src="foto05.webp" alt="Concorrente na rua da frente — foto 2"></div>
+      <div class="slide"><img src="foto06.webp" alt="Concorrente na rua da frente — foto 3"></div>
+      <div class="neighbor-img-label">🌊 Rua Joaquim Cardoso · Mais perto da praia</div>
+    </div>
+    <div class="occ-body">
+      <div class="occ-price cheaper">R$ 920.000</div>
+      <div class="occ-specs">
+        <span class="occ-pill good">2 quartos</span>
+        <span class="occ-pill good">103 m²</span>
+        <span class="occ-pill good">2 vagas</span>
+        <span class="occ-pill good">Frente</span>
+        <span class="occ-pill good">Mais próximo da praia</span>
+      </div>
+      <p class="occ-note">
+        <strong>R$ 60.000 mais barato que o seu</strong>, com 2 quartos, 2 vagas, posição frente — e ainda localizado na Rua Joaquim Cardoso, que fica mais próxima da orla. Para o comprador que pesquisa a região, essa é uma opção mais atrativa a um preço menor.
+      </p>
+      <a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-com-area-de-servico-recreio-dos-bandeirantes-zona-oeste-rio-de-janeiro-rj-103m2-id-2882275501/" target="_blank" class="comp-link">↗ Ver anúncio no ZAP Imóveis</a>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 4: ANÁLISE DE PREÇO + ESTRATÉGIA -->
+  <div class="section-label">
+    <div class="num">4</div>
+    <h2>Análise de preço e estratégia de posicionamento</h2>
+  </div>
+
+  <div class="danger-highlight-box">
+    <div class="dh-eyebrow">📊 Avaliação de mercado — AP0144</div>
+    <p>Com base na análise dos imóveis comparáveis na região — incluindo o vizinho no mesmo andar, o concorrente na rua da frente e os demais da área — avaliamos o seu imóvel entre <strong>R$ 870.000 e R$ 905.000</strong>.</p>
+    <p>O preço de R$ 980.000 está <strong>acima do que o mercado atual sustenta</strong> para esse perfil de imóvel. O vizinho com a mesma planta por R$ 895.000 cria um teto psicológico para qualquer comprador que pesquisar o prédio. Nesse cenário, o seu imóvel fica parado enquanto o vizinho avança nas negociações.</p>
+    <p>A boa notícia é que, com a estratégia certa de marketing e um posicionamento de preço inteligente, é possível gerar interesse real e propostas concretas — mesmo com a concorrência do vizinho.</p>
+  </div>
+
+  <div class="price-strategy-box">
+    <div class="psb-label">Estratégia de posicionamento de preço — Américas Imóveis</div>
+    <div class="psb-row">
+      <div class="psb-item">
+        <div class="psb-item-label">Anúncio público</div>
+        <div class="psb-item-val gold-v">R$ 980.000</div>
+        <div class="psb-item-sub">Valor de tabela no portal</div>
+      </div>
+      <div class="psb-item">
+        <div class="psb-item-label">Oferta via tráfego pago</div>
+        <div class="psb-item-val green-v">R$ 920.000</div>
+        <div class="psb-item-sub">Valor "promocional" para leads do vídeo</div>
+      </div>
+      <div class="psb-item">
+        <div class="psb-item-label">Faixa de fechamento</div>
+        <div class="psb-item-val">R$ 870k–R$ 920k</div>
+        <div class="psb-item-sub">Com margem para negociação</div>
+      </div>
+    </div>
+    <hr class="psb-divider">
+    <p class="psb-note">A estratégia é publicar o anúncio no portal por R$ 980.000 — mantendo o valor percebido alto. Nos leads captados via vídeo no Instagram, apresentamos um valor exclusivo e promocional de R$ 920.000, criando senso de oportunidade. Isso funciona muito bem porque o comprador sente que obteve uma vantagem — e o negócio fecha mais rápido.</p>
+  </div>
+
+  <div class="insight-box">
+    <div class="ib-eyebrow">💡 Insight de mercado</div>
+    <h3>Por que o valor "promocional para leads" funciona</h3>
+    <p>O comprador vê o imóvel no vídeo por R$ 920 mil e depois encontra o anúncio no portal por R$ 980 mil. Isso gera a sensação de estar recebendo um <strong>negócio exclusivo</strong> antes mesmo da visita, aumentando o interesse e acelerando a decisão de compra.</p>
+    <p>Combinado com um <strong>vídeo profissional que cria conexão emocional</strong> com o imóvel antes da visita, o comprador já chega motivado — e a negociação parte de uma base mais favorável para você.</p>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 5: PLANO DE MARKETING -->
+  <div class="section-label">
+    <div class="num">5</div>
+    <h2>Plano de Ação — Venda em até 30 dias</h2>
+  </div>
+
+  <div class="highlight-row">
+    <span class="hr-icon">🚀</span>
+    <span>A Américas Imóveis quer realmente vender o seu imóvel — com estratégia, vídeo profissional e tráfego pago direcionado para compradores reais no Instagram e Facebook.</span>
+  </div>
+
+  <div class="invest-highlight">
+    <div class="small-label">Plano de Marketing Imobiliário com Vídeo & Tráfego Pago</div>
+    <div class="amount">R$ 700</div>
+    <div class="sub">Investimento único em campanha de 30 dias no Meta Ads</div>
+    <hr class="invest-divider">
+    <div class="invest-return">
+      <span class="label">Se a Américas Imóveis vender, você recebe:</span>
+      <span class="val">R$ 1.400 de volta ✦</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="tag green">O que está incluído no plano</span>
+    <div class="proposal-item">
+      <div class="check-circle gold">🎬</div>
+      <div>
+        <h4>Vídeo profissional exclusivo do seu imóvel — grátis</h4>
+        <p>Produzimos o vídeo com locução, valorização dos diferenciais do imóvel (frente, 112m², suíte, 2 vagas) e edição de alta qualidade. Você aprova antes da publicação.</p>
+      </div>
+    </div>
+    <div class="proposal-item">
+      <div class="check-circle">✓</div>
+      <div>
+        <h4>Campanhas segmentadas no Instagram e Facebook</h4>
+        <p>Os R$ 700 são investidos integralmente em Meta Ads — direcionando o vídeo para compradores com capacidade de compra na faixa de R$ 850k–R$ 1M no Recreio dos Bandeirantes.</p>
+      </div>
+    </div>
+    <div class="proposal-item">
+      <div class="check-circle">✓</div>
+      <div>
+        <h4>Estratégia de preço duplo (portal + oferta exclusiva)</h4>
+        <p>Anúncio público a R$ 980.000 e oferta estratégica de R$ 920.000 para leads qualificados — gerando senso de oportunidade e acelerando o fechamento.</p>
+      </div>
+    </div>
+    <div class="proposal-item">
+      <div class="check-circle">✓</div>
+      <div>
+        <h4>Controle do processo e relatório de leads</h4>
+        <p>Total transparência: você acompanha todos os interessados captados. Nós qualificamos, filtramos e apresentamos apenas compradores sérios e com capacidade financeira confirmada.</p>
+      </div>
+    </div>
+    <div class="proposal-item">
+      <div class="check-circle gold">✦</div>
+      <div>
+        <h4>Garantia: vendeu, R$ 1.400 de volta</h4>
+        <p>Você investe R$ 700 e a Américas Imóveis realiza a venda? Devolvemos R$ 1.400 — o dobro. É o nosso compromisso com o resultado.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card brand-card">
+    <span class="tag blue">Como o mercado mudou</span>
+    <div class="exp-item">
+      <div class="exp-icon red">📋</div>
+      <div>
+        <h4>Portal não basta — o imóvel se perde na listagem</h4>
+        <p>Existem centenas de imóveis anunciados no Recreio dos Bandeirantes. Mesmo sendo excelente, o seu imóvel fica invisível sem uma ação ativa de distribuição.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon blue">📱</div>
+      <div>
+        <h4>O comprador está no Instagram</h4>
+        <p>Quem tem capacidade de compra acima de R$ 800k consome muito conteúdo imobiliário nas redes sociais. Vídeo + segmentação precisa é o canal mais eficaz para esse perfil.</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-icon gold">🎬</div>
+      <div>
+        <h4>Vídeo cria conexão emocional — portal não</h4>
+        <p>Um vídeo bem produzido de um apartamento de 112m² frente ao mar do Recreio transforma visualizações em visitas agendadas. O comprador já chega apaixonado pelo imóvel.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 6: CASOS DE SUCESSO -->
+  <div class="section-label">
+    <div class="num">6</div>
+    <h2>Casos de sucesso — imóveis vendidos com este método</h2>
+  </div>
+
+  <p class="body-text">Imóveis que vendemos utilizando vídeo profissional + tráfego pago no Instagram — veja os criativos que exibimos para os compradores:</p>
+
+  <div class="video-grid">
+
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="https://media.americasimoveis.com.br/Criativos/Criativo%2021%20-%20Ocean%20BL%204%20UND%20304%20570%20Mil%20-%20AP0113_MERI_1.mp4" type="video/mp4">
+        </video>
+      </div>
+  
+      <div class="video-card-body">
+        <div class="vc-label">Criativo 21</div>
+  
+        <div class="vc-title">
+          Apto 3 quartos — Condomínio Ocean
+        </div>
+  
+        <div class="vc-prices">
+          <span class="vc-price-old">Anunciado: R$ 570.000</span>
+          <span class="vc-price-sold">Vendido: R$ 549.000</span>
+        </div>
+  
+        <span class="vc-badge">✓ Vendido</span>
+      </div>
+    </div>
+  
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="https://media.americasimoveis.com.br/Criativos/Criativo%2011%20-%20La%20Plage%202%20Qts%20850%20Mil.mp4" type="video/mp4">
+        </video>
+      </div>
+  
+      <div class="video-card-body">
+        <div class="vc-label">Criativo 11</div>
+  
+        <div class="vc-title">
+          Apto 2 quartos frente mar — La Plage
+        </div>
+  
+        <div class="vc-prices">
+          <span class="vc-price-old">Anunciado: R$ 850.000</span>
+          <span class="vc-price-sold">Vendido: R$ 750.000</span>
+        </div>
+  
+        <span class="vc-badge">✓ Vendido</span>
+      </div>
+    </div>
+  
+    <div class="video-card">
+      <div class="video-wrapper">
+        <video autoplay muted loop playsinline preload="auto">
+          <source src="https://media.americasimoveis.com.br/Criativos/Criativo%2016%20-%20Casa%20Riviera%20del%20Sol_1.mp4" type="video/mp4">
+        </video>
+      </div>
+  
+      <div class="video-card-body">
+        <div class="vc-label">Criativo 16</div>
+  
+        <div class="vc-title">
+          Casa — Condomínio Riviera del Sol
+        </div>
+  
+        <div class="vc-prices">
+          <span class="vc-price-old">Anunciado: R$ 2,2 milhões</span>
+          <span class="vc-price-sold">Vendido: R$ 1,9 milhão</span>
+        </div>
+  
+        <span class="vc-badge">✓ Vendido</span>
+      </div>
+    </div>
+  
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- SECTION 7: ALTERNATIVA ALUGUEL -->
+  <div class="section-label">
+    <div class="num">7</div>
+    <h2>Alternativa: colocar o imóvel para alugar</h2>
+  </div>
+
+  <div class="alt-card">
+    <h3>Se a venda não fizer sentido agora</h3>
+    <p>Caso as condições de mercado ou de preço não sejam favoráveis no momento, a Américas Imóveis também administra o seu imóvel para locação — com <strong>garantia de repasse e sem risco de inadimplência</strong> para você.</p>
+    <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--text-muted);">Um apartamento de 112m², 2 quartos com suíte, 2 vagas, frente, no Recreio dos Bandeirantes tem alto potencial de locação — especialmente para perfis executivos e famílias que buscam a região.</p>
+    <span class="rent-val">R$ 4.500/mês</span>
+    <p style="font-size:0.78rem;color:var(--text-muted);margin-top:6px;">Estimativa do valor de aluguel. Consulte as taxas de administração da Américas Imóveis.</p>
+  </div>
+
+</div><!-- end page-wrap -->
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-content">
+
+    <div class="logo-wrap-footer">
+      <img 
+        src="https://static.arboimoveis.com.br/white-label-assets/CJ7700_MERI/02__logo_verticaol_americas_imoveis1639581413015.svg" 
+        alt="Américas Imóveis"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+      >
+
+      <span style="display:none;font-size:1.1rem;font-weight:700;color:white;">
+        Américas Imóveis
+      </span>
+    </div>
+
+    <div class="footer-info">
+      <div>Plano de venda exclusivo — Cód. AP0144_MERI</div>
+
+      <div>
+        Rua José Américo de Almeida, 1375 · Und. 204 · Recreio dos Bandeirantes
+      </div>
+
+      <div class="contact">
+        Fale conosco e vamos vender em até 30 dias
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+(function () {
+  var interval = 4000;
+  document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+    var slides = carousel.querySelectorAll('.slide');
+    if (slides.length < 2) {
+      if (slides.length === 1) slides[0].classList.add('active');
+      return;
+    }
+    var i = 0;
+    slides[0].classList.add('active');
+    setInterval(function () {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, interval);
+  });
+})();
+</script>
+
+</body>
+</html>
