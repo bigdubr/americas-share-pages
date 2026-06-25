@@ -72,7 +72,7 @@ function render(list) {
     }
 
     empty.hidden = true;
-    grid.innerHTML = list.map(buildCard).join("");
+    grid.innerHTML = [...list].reverse().map(buildCard).join("");
 
     // Bind de ações após injetar HTML
     bindCardActions();
