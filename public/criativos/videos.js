@@ -195,4 +195,13 @@ const VIDEOS = [
         instagram: "https://www.instagram.com/reels/DZnGfp4OCZ0",
         thumb: true,
     },
+    {
+        referencia: "Criativo 27",
+        titulo: "Wings UND 103",
+        codigo: "AP0655_MERI",
+        bairro: "Recreio",
+        valor: "4.100",
+        instagram: "https://media.americasimoveis.com.br/Criativos/Criativo%2027-%20Wings%20UND%20103%20-%204100%20-%20AP0655_MERI%20h2655.mp4",
+        thumb: true,
+    },
 ];

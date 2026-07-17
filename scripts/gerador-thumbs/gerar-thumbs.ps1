@@ -16,7 +16,7 @@ $videos = @(
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2012%20-%20Cozumel%20Cobertura.mp4",
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2013%20-%20Hermes%20de%20Lima%20Nomad%20Locacao%20Alta_2.mp4",
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2014%20-%20Copacabana%20Cobertura.mp4",
-    "https://media.americasimoveis.com.br/Criativos/Criativo%2015%20-%20Contemporeneo%203Qts%20570%20mil.mp4"
+    #"https://media.americasimoveis.com.br/Criativos/Criativo%2015%20-%20Contemporeneo%203Qts%20570%20mil.mp4"
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2016%20-%20Casa%20Riviera%20del%20Sol_1.mp4",
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2017%20-%20A5%20150%20Mil%20Mobiliada_1.mp4",
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2018%20-%20Ocean%20BL%204%20UND%20509%20650%20Mil%20-%20AP0108_MERI_1.mp4",
@@ -27,7 +27,8 @@ $videos = @(
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2023%20-%20Ary%20Rongel%20740%20APT%20204%20-%20AP0701_MERI-h265.mp4",
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2024%20-%20Crystal%20Mall%20Loja%20330%20-%20LO0073_MERI%20LOW.mp4",
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2025%20-%20Jose%20Americo%20UND%20204%20-%20930%20mil%20-AP0144_MERI_h265.mp4",
-    #"https://media.americasimoveis.com.br/Criativos/Criativo%2026%20-%20Le%20Jour%20BL%202%20UND%20108%20-%20620%20mil%20-%20AP0756_MERI_h265.mp4"
+    #"https://media.americasimoveis.com.br/Criativos/Criativo%2026%20-%20Le%20Jour%20BL%202%20UND%20108%20-%20620%20mil%20-%20AP0756_MERI_h265.mp4",
+    "https://media.americasimoveis.com.br/Criativos/Criativo%2027-%20Wings%20UND%20103%20-%204100%20-%20AP0655_MERI%20h2655.mp4"
 
 )
 
