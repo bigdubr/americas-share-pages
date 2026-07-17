@@ -1,0 +1,20 @@
+{
+  "name": "baixar-fotos-zap",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Baixa as fotos dos anuncios do ZAP Imoveis a partir de uma lista de links em CSV",
+  "main": "baixar-fotos.js",
+  "scripts": {
+    "start": "node baixar-fotos.js",
+    "server": "node servidor.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "puppeteer": "^23.11.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}

@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8" />
+<title>Baixar fotos - ZAP Imoveis</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f5f6f8;
+    --card: #ffffff;
+    --texto: #1a1a1a;
+    --texto-suave: #666;
+    --borda: #d9dce1;
+    --azul: #2563eb;
+    --azul-hover: #1d4ed8;
+    --log-bg: #0f172a;
+    --log-texto: #d1e7ff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111318;
+      --card: #1a1d24;
+      --texto: #e8e8e8;
+      --texto-suave: #9aa1ab;
+      --borda: #2c3038;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 2rem 1rem;
+    background: var(--bg);
+    color: var(--texto);
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+  main {
+    width: 100%;
+    max-width: 720px;
+  }
+  h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+  }
+  p.subtitulo {
+    color: var(--texto-suave);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+  textarea {
+    width: 100%;
+    min-height: 160px;
+    resize: vertical;
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--borda);
+    background: transparent;
+    color: var(--texto);
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.85rem;
+  }
+  .linha-opcoes {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .linha-opcoes input[type="number"] {
+    width: 70px;
+    padding: 0.4rem;
+    border-radius: 6px;
+    border: 1px solid var(--borda);
+    background: transparent;
+    color: var(--texto);
+  }
+  .linha-opcoes span {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+  }
+  button {
+    margin-top: 1.25rem;
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--azul);
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:hover:not(:disabled) { background: var(--azul-hover); }
+  button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  #log {
+    background: var(--log-bg);
+    color: var(--log-texto);
+    border-radius: 8px;
+    padding: 0.9rem;
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.8rem;
+    white-space: pre-wrap;
+    max-height: 360px;
+    overflow-y: auto;
+    display: none;
+  }
+  .aviso {
+    font-size: 0.8rem;
+    color: var(--texto-suave);
+    margin-top: 0.5rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Baixar fotos de anuncios (ZAP Imoveis)</h1>
+  <p class="subtitulo">Cole os links (uma coluna do Google Sheets, um link por linha) e clique em baixar. Cada anuncio vira uma subpasta separada dentro de <code>output/</code>.</p>
+
+  <div class="card">
+    <label for="links">Links dos anuncios</label>
+    <textarea id="links" placeholder="https://www.zapimoveis.com.br/imovel/.../id-2885702373/&#10;https://www.zapimoveis.com.br/imovel/.../id-1234567890/"></textarea>
+
+    <div class="linha-opcoes">
+      <label for="maxFotos" style="margin:0;">Fotos por anuncio</label>
+      <input type="number" id="maxFotos" value="5" min="1" max="30" />
+      <span>(maximo 50 links por execucao)</span>
+    </div>
+
+    <button id="botaoBaixar">Baixar fotos</button>
+    <p class="aviso" id="aviso"></p>
+  </div>
+
+  <pre id="log"></pre>
+</main>
+
+<script>
+  const botao = document.getElementById("botaoBaixar");
+  const textarea = document.getElementById("links");
+  const inputMaxFotos = document.getElementById("maxFotos");
+  const log = document.getElementById("log");
+  const aviso = document.getElementById("aviso");
+
+  function adicionarLog(texto) {
+    log.style.display = "block";
+    log.textContent += texto;
+    log.scrollTop = log.scrollHeight;
+  }
+
+  botao.addEventListener("click", async () => {
+    const links = textarea.value.trim();
+    if (!links) {
+      aviso.textContent = "Cole ao menos um link antes de baixar.";
+      return;
+    }
+
+    aviso.textContent = "";
+    log.textContent = "";
+    log.style.display = "block";
+    botao.disabled = true;
+    botao.textContent = "Baixando...";
+
+    try {
+      const resposta = await fetch("/api/baixar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          links,
+          maxFotos: Number(inputMaxFotos.value) || 5,
+        }),
+      });
+
+      if (!resposta.ok) {
+        const erro = await resposta.json().catch(() => ({}));
+        adicionarLog(`Erro: ${erro.erro || resposta.statusText}`);
+        return;
+      }
+
+      const leitor = resposta.body.getReader();
+      const decodificador = new TextDecoder("utf-8");
+
+      while (true) {
+        const { value, done } = await leitor.read();
+        if (done) break;
+        adicionarLog(decodificador.decode(value, { stream: true }));
+      }
+    } catch (erro) {
+      adicionarLog(`\nErro de conexao: ${erro.message}`);
+    } finally {
+      botao.disabled = false;
+      botao.textContent = "Baixar fotos";
+    }
+  });
+</script>
+</body>
+</html>
