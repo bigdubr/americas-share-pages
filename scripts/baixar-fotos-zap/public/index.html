@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="utf-8" />
-<title>Baixar fotos - ZAP Imoveis</title>
+<title>ZAP Imoveis - Ferramentas</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <style>
   :root {
@@ -14,8 +14,13 @@
     --borda: #d9dce1;
     --azul: #2563eb;
     --azul-hover: #1d4ed8;
+    --verde: #15803d;
+    --verde-hover: #116530;
+    --vermelho: #b91c1c;
+    --vermelho-hover: #941414;
     --log-bg: #0f172a;
     --log-texto: #d1e7ff;
+    --tabela-head-bg: #eef1f6;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -24,6 +29,7 @@
       --texto: #e8e8e8;
       --texto-suave: #9aa1ab;
       --borda: #2c3038;
+      --tabela-head-bg: #22262e;
     }
   }
   * { box-sizing: border-box; }
@@ -38,7 +44,7 @@
   }
   main {
     width: 100%;
-    max-width: 720px;
+    max-width: 1180px;
   }
   h1 {
     font-size: 1.4rem;
@@ -47,8 +53,38 @@
   p.subtitulo {
     color: var(--texto-suave);
     margin-top: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     font-size: 0.9rem;
+  }
+  .abas {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--borda);
+  }
+  .aba-botao {
+    all: unset;
+    cursor: pointer;
+    padding: 0.6rem 1rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--texto-suave);
+    border-bottom: 2px solid transparent;
+  }
+  .aba-botao.ativa {
+    color: var(--azul);
+    border-bottom-color: var(--azul);
+  }
+  .painel { display: none; }
+  .painel.ativa { display: block; }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
   }
   .card {
     background: var(--card);
@@ -63,18 +99,83 @@
     font-size: 0.85rem;
     margin-bottom: 0.4rem;
   }
-  textarea {
-    width: 100%;
-    min-height: 160px;
-    resize: vertical;
-    padding: 0.6rem;
-    border-radius: 8px;
+
+  /* grade estilo planilha */
+  .grade-wrap {
     border: 1px solid var(--borda);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  table.grade-links {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table.grade-links thead th {
+    background: var(--tabela-head-bg);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--texto-suave);
+    text-align: left;
+    padding: 6px 8px;
+  }
+  table.grade-links th.grade-num, table.grade-links td.grade-num {
+    width: 34px;
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 0.75rem;
+  }
+  table.grade-links tbody {
+    display: block;
+    max-height: 260px;
+    overflow-y: auto;
+  }
+  table.grade-links thead, table.grade-links tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  table.grade-links td {
+    border-top: 1px solid var(--borda);
+    padding: 0;
+  }
+  table.grade-links td.grade-num { padding: 0 4px; }
+  .grade-input {
+    width: 100%;
+    border: none;
     background: transparent;
     color: var(--texto);
+    padding: 6px 8px;
     font-family: ui-monospace, Consolas, monospace;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
+  .grade-input:focus { outline: 2px solid var(--azul); outline-offset: -2px; }
+  .grade-remove {
+    all: unset;
+    cursor: pointer;
+    color: var(--texto-suave);
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+  .grade-remove:hover { color: var(--vermelho); }
+  .grade-add {
+    all: unset;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 7px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--azul);
+    background: var(--tabela-head-bg);
+  }
+  .grade-dica {
+    font-size: 0.75rem;
+    color: var(--texto-suave);
+    margin-top: 0.5rem;
+  }
+
   .linha-opcoes {
     display: flex;
     align-items: center;
@@ -93,9 +194,12 @@
     font-size: 0.85rem;
     color: var(--texto-suave);
   }
-  button {
+  .linha-botoes {
+    display: flex;
+    gap: 0.6rem;
     margin-top: 1.25rem;
-    width: 100%;
+  }
+  button {
     padding: 0.75rem;
     border: none;
     border-radius: 8px;
@@ -110,104 +214,1266 @@
     opacity: 0.6;
     cursor: not-allowed;
   }
-  #log {
+  .botao-principal { flex: 1; }
+  .botao-cancelar {
+    display: none;
+    background: var(--vermelho);
+    flex: 0 0 auto;
+  }
+  .botao-cancelar:hover:not(:disabled) { background: var(--vermelho-hover); }
+  .botao-cancelar.visivel { display: block; }
+  button.secundario {
+    flex: 1;
+    background: var(--verde);
+    font-size: 0.8rem;
+    padding: 0.55rem 0.8rem;
+  }
+  button.secundario:hover:not(:disabled) { background: var(--verde-hover); }
+  button.pequeno {
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    background: var(--tabela-head-bg);
+    color: var(--texto);
+  }
+  button.pequeno:hover:not(:disabled) { background: var(--borda); }
+
+  .log {
     background: var(--log-bg);
     color: var(--log-texto);
     border-radius: 8px;
     padding: 0.9rem;
     font-family: ui-monospace, Consolas, monospace;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     white-space: pre-wrap;
-    max-height: 360px;
+    max-height: 280px;
     overflow-y: auto;
     display: none;
   }
+
+  .resultados-wrap { display: none; margin-top: 1rem; }
+  .tabela-resultados {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+  }
+  .tabela-resultados th {
+    background: var(--tabela-head-bg);
+    text-align: left;
+    padding: 7px 9px;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--texto-suave);
+  }
+  .tabela-resultados td {
+    padding: 7px 9px;
+    border-top: 1px solid var(--borda);
+    vertical-align: middle;
+  }
+  .tabela-resultados td.erro-linha { color: var(--vermelho); }
+  .tabela-resultados a { color: var(--azul); text-decoration: none; }
+  .tabela-resultados a:hover { text-decoration: underline; }
+
+  .json-resultado { display: none; margin-top: 1rem; }
+  .json-resultado pre {
+    background: var(--log-bg);
+    color: var(--log-texto);
+    border-radius: 8px;
+    padding: 0.9rem;
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.75rem;
+    white-space: pre-wrap;
+    max-height: 240px;
+    overflow-y: auto;
+    margin-bottom: 0.6rem;
+  }
+  .json-botoes { display: flex; gap: 0.5rem; }
+
   .aviso {
     font-size: 0.8rem;
     color: var(--texto-suave);
     margin-top: 0.5rem;
   }
+  .coluna-titulo {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--texto-suave);
+    margin-bottom: 0.5rem;
+  }
+
+  .input-texto {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--borda);
+    background: transparent;
+    color: var(--texto);
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.82rem;
+  }
+
+  button.pequeno.ativo {
+    background: var(--azul);
+    color: white;
+  }
+
+  .resultados-busca-wrap { display: none; margin-top: 1rem; }
+
+  .busca-barra-acoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .busca-barra-esquerda, .busca-barra-direita {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  #contador-selecionados { margin: 0 0 0 0.4rem; }
+
+  .imoveis-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 0.9rem;
+  }
+  .imovel-card {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .imovel-card.selecionado { outline: 2px solid var(--azul); }
+  .imovel-card-check {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 20px;
+    height: 20px;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .imovel-card-img {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: var(--tabela-head-bg);
+    overflow: hidden;
+    position: relative;
+  }
+  .imovel-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .carrossel-seta {
+    all: unset;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.45);
+    color: white;
+    font-size: 0.85rem;
+    text-align: center;
+    line-height: 26px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 2;
+  }
+  .imovel-card-img:hover .carrossel-seta { opacity: 1; }
+  .carrossel-seta.prev { left: 6px; }
+  .carrossel-seta.next { right: 6px; }
+  .carrossel-contador {
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 0.62rem;
+    padding: 1px 6px;
+    border-radius: 8px;
+    z-index: 2;
+  }
+  .imovel-card-anunciante {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--texto);
+  }
+  .imovel-card-anunciante.faltando {
+    font-weight: 400;
+    font-style: italic;
+    color: var(--texto-suave);
+  }
+  .badge-sem-nome {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--accent-faint, #fdf3dc);
+    color: #7a5200;
+    border: 1px solid #e8c878;
+  }
+  .imovel-card-corpo { padding: 0.65rem 0.75rem; display: flex; flex-direction: column; gap: 0.3rem; flex: 1; }
+  .imovel-card-preco { font-size: 1rem; font-weight: 700; color: var(--texto); }
+  .imovel-card-endereco { font-size: 0.78rem; color: var(--texto-suave); line-height: 1.35; }
+  .imovel-card-specs { font-size: 0.72rem; color: var(--texto-suave); }
+  .imovel-card-link {
+    margin-top: auto;
+    font-size: 0.72rem;
+    color: var(--azul);
+    text-decoration: none;
+  }
+  .imovel-card-link:hover { text-decoration: underline; }
+  .imovel-card-tipo {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--tabela-head-bg);
+    color: var(--texto-suave);
+    width: fit-content;
+  }
+
+  .imoveis-lista-thumb { width: 60px; height: 40px; object-fit: cover; border-radius: 4px; display: block; }
 </style>
 </head>
 <body>
 <main>
-  <h1>Baixar fotos de anuncios (ZAP Imoveis)</h1>
-  <p class="subtitulo">Cole os links (uma coluna do Google Sheets, um link por linha) e clique em baixar. Cada anuncio vira uma subpasta separada dentro de <code>output/</code>.</p>
+  <h1>ZAP Imoveis - Ferramentas</h1>
+  <p class="subtitulo">Cole os links (ex: uma coluna do Google Sheets, Ctrl+C / Ctrl+V) e escolha o que fazer com eles.</p>
 
-  <div class="card">
-    <label for="links">Links dos anuncios</label>
-    <textarea id="links" placeholder="https://www.zapimoveis.com.br/imovel/.../id-2885702373/&#10;https://www.zapimoveis.com.br/imovel/.../id-1234567890/"></textarea>
-
-    <div class="linha-opcoes">
-      <label for="maxFotos" style="margin:0;">Fotos por anuncio</label>
-      <input type="number" id="maxFotos" value="5" min="1" max="30" />
-      <span>(maximo 50 links por execucao)</span>
-    </div>
-
-    <button id="botaoBaixar">Baixar fotos</button>
-    <p class="aviso" id="aviso"></p>
+  <div class="abas">
+    <button class="aba-botao ativa" data-aba="fotos">Baixar fotos</button>
+    <button class="aba-botao" data-aba="dados">Extrair dados (JSON)</button>
+    <button class="aba-botao" data-aba="busca">Buscar imoveis (por URL de listagem)</button>
   </div>
 
-  <pre id="log"></pre>
+  <!-- ABA 1: BAIXAR FOTOS -->
+  <section class="painel ativa" id="painel-fotos">
+    <div class="layout">
+      <div>
+        <div class="coluna-titulo">Links dos anuncios</div>
+        <div class="card">
+          <div class="grade-wrap" id="grade-fotos">
+            <table class="grade-links">
+              <thead><tr><th class="grade-num">#</th><th>Link</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <button type="button" class="grade-add">+ Adicionar linha</button>
+          </div>
+          <p class="grade-dica">Cole uma coluna inteira do Google Sheets em qualquer celula (Ctrl+V) que ela se espalha automaticamente pelas linhas.</p>
+
+          <div class="linha-opcoes">
+            <label for="maxFotos" style="margin:0;">Fotos por anuncio</label>
+            <input type="number" id="maxFotos" value="5" min="1" max="30" />
+            <span>(maximo 50 links por execucao)</span>
+          </div>
+
+          <div class="linha-botoes">
+            <button class="botao-principal" id="botaoBaixar">Baixar fotos</button>
+            <button class="botao-cancelar" id="botaoCancelarFotos">Cancelar</button>
+          </div>
+          <p class="aviso" id="aviso-fotos"></p>
+        </div>
+      </div>
+
+      <div>
+        <div class="coluna-titulo">Progresso</div>
+        <pre class="log" id="log-fotos"></pre>
+
+        <div class="resultados-wrap" id="resultados-fotos-wrap">
+          <div class="coluna-titulo" style="margin-top:1rem;">Resultado por anuncio</div>
+          <div class="card" style="padding:0;overflow-x:auto;">
+            <table class="tabela-resultados">
+              <thead><tr><th>Link</th><th>Pasta</th><th>Fotos</th><th></th></tr></thead>
+              <tbody id="resultados-fotos-corpo"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABA 2: EXTRAIR DADOS -->
+  <section class="painel" id="painel-dados">
+    <div class="layout">
+      <div>
+        <div class="coluna-titulo">Links dos anuncios</div>
+        <div class="card">
+          <div class="grade-wrap" id="grade-dados">
+            <table class="grade-links">
+              <thead><tr><th class="grade-num">#</th><th>Link</th><th></th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <button type="button" class="grade-add">+ Adicionar linha</button>
+          </div>
+          <p class="grade-dica">Cole uma coluna inteira do Google Sheets em qualquer celula (Ctrl+V) que ela se espalha automaticamente pelas linhas.</p>
+          <p class="aviso">Maximo de 50 links por execucao.</p>
+
+          <div class="linha-botoes">
+            <button class="botao-principal" id="botaoExtrair">Extrair dados</button>
+            <button class="botao-cancelar" id="botaoCancelarDados">Cancelar</button>
+          </div>
+          <p class="aviso" id="aviso-dados"></p>
+        </div>
+      </div>
+
+      <div>
+        <div class="coluna-titulo">Progresso</div>
+        <pre class="log" id="log-dados"></pre>
+
+        <div class="resultados-wrap" id="resultados-dados-wrap">
+          <div class="coluna-titulo" style="margin-top:1rem;">Resultado por anuncio</div>
+          <div class="card" style="padding:0;overflow-x:auto;">
+            <table class="tabela-resultados">
+              <thead><tr><th>Imobiliaria</th><th>Link</th><th>Valor</th></tr></thead>
+              <tbody id="resultados-dados-corpo"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="json-resultado" id="json-resultado">
+          <div class="coluna-titulo" style="margin-top:1rem;">JSON</div>
+          <pre id="json-texto"></pre>
+          <div class="json-botoes">
+            <button class="secundario" id="botaoCopiar">Copiar JSON</button>
+            <button class="secundario" id="botaoBaixarJson">Baixar .json</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABA 3: BUSCAR IMOVEIS POR URL DE LISTAGEM -->
+  <section class="painel" id="painel-busca">
+    <div class="card">
+      <label for="url-busca">URL da pagina de busca/listagem do ZAP Imoveis</label>
+      <input type="text" id="url-busca" class="input-texto" placeholder="https://www.zapimoveis.com.br/aluguel/imoveis/rj+rio-de-janeiro/..." />
+      <p class="grade-dica">Cole a URL de uma pesquisa ja filtrada no ZAP (por rua, bairro, etc). O robo percorre as paginas de resultado automaticamente.</p>
+
+      <div class="linha-opcoes">
+        <label for="maxPaginas" style="margin:0;">Maximo de paginas</label>
+        <input type="number" id="maxPaginas" value="3" min="1" max="10" />
+        <span>(cada pagina tem ate ~30 imoveis)</span>
+      </div>
+
+      <div class="linha-botoes">
+        <button class="botao-principal" id="botaoBuscar">Buscar imoveis</button>
+        <button class="botao-cancelar" id="botaoCancelarBusca">Cancelar</button>
+      </div>
+      <p class="aviso" id="aviso-busca"></p>
+    </div>
+
+    <div class="layout">
+      <div>
+        <div class="coluna-titulo">Progresso</div>
+        <pre class="log" id="log-busca"></pre>
+      </div>
+      <div>
+        <div class="coluna-titulo" id="titulo-resultados-busca" style="display:none;">Resultado da busca</div>
+      </div>
+    </div>
+
+    <div class="resultados-busca-wrap" id="resultados-busca-wrap">
+      <div class="busca-barra-acoes">
+        <div class="busca-barra-esquerda">
+          <button type="button" class="pequeno" id="botaoVerCards">Cards</button>
+          <button type="button" class="pequeno" id="botaoVerLista">Lista</button>
+          <span class="aviso" id="contador-selecionados">0 selecionado(s)</span>
+        </div>
+        <div class="busca-barra-direita">
+          <button type="button" class="pequeno" id="botaoSelecionarTodos">Selecionar todos</button>
+          <button type="button" class="pequeno" id="botaoLimparSelecao">Limpar selecao</button>
+        </div>
+      </div>
+
+      <div class="imoveis-cards" id="imoveis-cards"></div>
+      <div class="card" id="imoveis-lista-wrap" style="display:none;padding:0;overflow-x:auto;">
+        <table class="tabela-resultados">
+          <thead><tr><th></th><th>Foto</th><th>Endereco</th><th>Specs</th><th>Valor</th><th>Link</th></tr></thead>
+          <tbody id="imoveis-lista-corpo"></tbody>
+        </table>
+      </div>
+
+      <div class="linha-botoes">
+        <button class="secundario" id="botaoBuscarAnunciantes">Buscar imobiliaria dos selecionados sem nome</button>
+      </div>
+      <p class="aviso" id="aviso-anunciantes"></p>
+
+      <div class="linha-botoes">
+        <button class="secundario" id="botaoGerarJsonBusca">Gerar JSON dos selecionados</button>
+      </div>
+
+      <div class="json-resultado" id="json-resultado-busca">
+        <div class="coluna-titulo" style="margin-top:1rem;">JSON</div>
+        <pre id="json-texto-busca"></pre>
+        <div class="json-botoes">
+          <button class="secundario" id="botaoCopiarBusca">Copiar JSON</button>
+          <button class="secundario" id="botaoBaixarJsonBusca">Baixar .json</button>
+        </div>
+      </div>
+
+      <div class="linha-botoes">
+        <button class="secundario" id="botaoEnviarParaDados">Enviar selecionados para "Extrair dados"</button>
+        <button class="secundario" id="botaoEnviarParaFotos">Enviar selecionados para "Baixar fotos"</button>
+      </div>
+    </div>
+  </section>
 </main>
 
 <script>
-  const botao = document.getElementById("botaoBaixar");
-  const textarea = document.getElementById("links");
-  const inputMaxFotos = document.getElementById("maxFotos");
-  const log = document.getElementById("log");
-  const aviso = document.getElementById("aviso");
+  // =========================================================================
+  // grade estilo planilha (cole uma coluna do Google Sheets e ela se espalha
+  // automaticamente pelas linhas, como um Ctrl+V numa planilha de verdade)
+  // =========================================================================
+  function criarGradeLinks(elementoWrap, linhasIniciais) {
+    const tbody = elementoWrap.querySelector("tbody");
+    const botaoAdd = elementoWrap.querySelector(".grade-add");
 
-  function adicionarLog(texto) {
-    log.style.display = "block";
-    log.textContent += texto;
-    log.scrollTop = log.scrollHeight;
-  }
-
-  botao.addEventListener("click", async () => {
-    const links = textarea.value.trim();
-    if (!links) {
-      aviso.textContent = "Cole ao menos um link antes de baixar.";
-      return;
+    function numerarLinhas() {
+      tbody.querySelectorAll("tr").forEach((tr, i) => {
+        tr.querySelector(".grade-num").textContent = i + 1;
+      });
     }
 
-    aviso.textContent = "";
-    log.textContent = "";
-    log.style.display = "block";
-    botao.disabled = true;
-    botao.textContent = "Baixando...";
+    function garantirLinhaVazia() {
+      const linhas = Array.from(tbody.querySelectorAll("tr"));
+      const ultima = linhas[linhas.length - 1];
+      if (!ultima || ultima.querySelector(".grade-input").value.trim() !== "") {
+        tbody.appendChild(criarLinha());
+        numerarLinhas();
+      }
+    }
+
+    function criarLinha(valorInicial) {
+      const tr = document.createElement("tr");
+      tr.innerHTML =
+        '<td class="grade-num"></td>' +
+        '<td><input type="text" class="grade-input" placeholder="Cole o link aqui..."></td>' +
+        '<td><button type="button" class="grade-remove" title="Remover linha">✕</button></td>';
+
+      const input = tr.querySelector(".grade-input");
+      const botaoRemover = tr.querySelector(".grade-remove");
+
+      if (valorInicial) input.value = valorInicial;
+
+      input.addEventListener("paste", (ev) => {
+        const texto = ev.clipboardData.getData("text");
+        if (!texto.includes("\n") && !texto.includes("\t")) return;
+
+        ev.preventDefault();
+        const linhasColadas = texto
+          .split(/\r?\n/)
+          .map((l) => l.split("\t")[0].trim())
+          .filter((l) => l.length > 0);
+
+        const linhasAtuais = Array.from(tbody.querySelectorAll("tr"));
+        const indiceAtual = linhasAtuais.indexOf(tr);
+
+        linhasColadas.forEach((valorLinha, offset) => {
+          const indiceAlvo = indiceAtual + offset;
+          let linhaAlvo = linhasAtuais[indiceAlvo];
+          if (!linhaAlvo) {
+            linhaAlvo = criarLinha();
+            tbody.appendChild(linhaAlvo);
+            linhasAtuais.push(linhaAlvo);
+          }
+          linhaAlvo.querySelector(".grade-input").value = valorLinha;
+        });
+
+        garantirLinhaVazia();
+        numerarLinhas();
+      });
+
+      input.addEventListener("input", garantirLinhaVazia);
+
+      input.addEventListener("keydown", (ev) => {
+        if (ev.key !== "Enter") return;
+        ev.preventDefault();
+        const linhas = Array.from(tbody.querySelectorAll("tr"));
+        const idx = linhas.indexOf(tr);
+        let proxima = linhas[idx + 1];
+        if (!proxima) {
+          proxima = criarLinha();
+          tbody.appendChild(proxima);
+          numerarLinhas();
+        }
+        proxima.querySelector(".grade-input").focus();
+      });
+
+      botaoRemover.addEventListener("click", () => {
+        if (tbody.querySelectorAll("tr").length <= 1) {
+          input.value = "";
+          return;
+        }
+        tr.remove();
+        numerarLinhas();
+      });
+
+      return tr;
+    }
+
+    for (let i = 0; i < linhasIniciais; i++) {
+      tbody.appendChild(criarLinha());
+    }
+    numerarLinhas();
+
+    botaoAdd.addEventListener("click", () => {
+      tbody.appendChild(criarLinha());
+      numerarLinhas();
+    });
+
+    return {
+      obterLinks() {
+        return Array.from(tbody.querySelectorAll(".grade-input"))
+          .map((input) => input.value.trim())
+          .filter(Boolean);
+      },
+      definirLinks(links) {
+        tbody.innerHTML = "";
+        links.forEach((valor) => tbody.appendChild(criarLinha(valor)));
+        tbody.appendChild(criarLinha());
+        numerarLinhas();
+      },
+    };
+  }
+
+  const gradeFotos = criarGradeLinks(document.getElementById("grade-fotos"), 8);
+  const gradeDados = criarGradeLinks(document.getElementById("grade-dados"), 8);
+
+  // =========================================================================
+  // abas
+  // =========================================================================
+  document.querySelectorAll(".aba-botao").forEach((botao) => {
+    botao.addEventListener("click", () => {
+      document.querySelectorAll(".aba-botao").forEach((b) => b.classList.remove("ativa"));
+      document.querySelectorAll(".painel").forEach((p) => p.classList.remove("ativa"));
+      botao.classList.add("ativa");
+      document.getElementById("painel-" + botao.dataset.aba).classList.add("ativa");
+    });
+  });
+
+  // =========================================================================
+  // utilitario: chama um endpoint que retorna um stream de texto, com suporte a cancelar
+  // =========================================================================
+  async function executarComStream(url, corpo, elementoLog, botaoCancelar) {
+    elementoLog.style.display = "block";
+    elementoLog.textContent = "";
+    botaoCancelar.classList.add("visivel");
 
     try {
-      const resposta = await fetch("/api/baixar", {
+      const resposta = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          links,
-          maxFotos: Number(inputMaxFotos.value) || 5,
-        }),
+        body: JSON.stringify(corpo),
       });
 
       if (!resposta.ok) {
         const erro = await resposta.json().catch(() => ({}));
-        adicionarLog(`Erro: ${erro.erro || resposta.statusText}`);
-        return;
+        elementoLog.textContent = `Erro: ${erro.erro || resposta.statusText}`;
+        return "";
       }
 
       const leitor = resposta.body.getReader();
       const decodificador = new TextDecoder("utf-8");
+      let textoCompleto = "";
 
       while (true) {
         const { value, done } = await leitor.read();
         if (done) break;
-        adicionarLog(decodificador.decode(value, { stream: true }));
+        const pedaco = decodificador.decode(value, { stream: true });
+        textoCompleto += pedaco;
+        elementoLog.textContent += pedaco;
+        elementoLog.scrollTop = elementoLog.scrollHeight;
+      }
+
+      return textoCompleto;
+    } finally {
+      botaoCancelar.classList.remove("visivel");
+    }
+  }
+
+  function extrairJsonDoLog(textoCompleto) {
+    const marcador = "===JSON===";
+    const posicao = textoCompleto.indexOf(marcador);
+    if (posicao === -1) return null;
+    try {
+      return JSON.parse(textoCompleto.slice(posicao + marcador.length).trim());
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function cancelarOperacao() {
+    await fetch("/api/cancelar", { method: "POST" }).catch(() => {});
+  }
+
+  // =========================================================================
+  // ABA 1: baixar fotos
+  // =========================================================================
+  const botaoBaixar = document.getElementById("botaoBaixar");
+  const botaoCancelarFotos = document.getElementById("botaoCancelarFotos");
+  const inputMaxFotos = document.getElementById("maxFotos");
+  const logFotos = document.getElementById("log-fotos");
+  const avisoFotos = document.getElementById("aviso-fotos");
+  const resultadosFotosWrap = document.getElementById("resultados-fotos-wrap");
+  const resultadosFotosCorpo = document.getElementById("resultados-fotos-corpo");
+
+  async function abrirPasta(idAnuncio, botao) {
+    botao.disabled = true;
+    try {
+      const resposta = await fetch("/api/abrir-pasta", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idAnuncio }),
+      });
+      if (!resposta.ok) {
+        const erro = await resposta.json().catch(() => ({}));
+        alert(erro.erro || "Nao foi possivel abrir a pasta.");
       }
     } catch (erro) {
-      adicionarLog(`\nErro de conexao: ${erro.message}`);
+      alert("Erro de conexao: " + erro.message);
     } finally {
       botao.disabled = false;
-      botao.textContent = "Baixar fotos";
+    }
+  }
+
+  function montarResultadosFotos(resultados) {
+    resultadosFotosCorpo.innerHTML = "";
+    if (!resultados || resultados.length === 0) {
+      resultadosFotosWrap.style.display = "none";
+      return;
+    }
+
+    resultados.forEach((r) => {
+      const tr = document.createElement("tr");
+
+      const tdLink = document.createElement("td");
+      const a = document.createElement("a");
+      a.href = r.url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = r.url.length > 46 ? r.url.slice(0, 46) + "..." : r.url;
+      a.title = r.url;
+      tdLink.appendChild(a);
+
+      const tdPasta = document.createElement("td");
+      tdPasta.textContent = r.idAnuncio || "-";
+
+      const tdFotos = document.createElement("td");
+      tdFotos.textContent = r.erro ? "erro" : `${r.baixadas} foto(s)`;
+      if (r.erro) tdFotos.classList.add("erro-linha");
+
+      const tdAcao = document.createElement("td");
+      const botaoAbrir = document.createElement("button");
+      botaoAbrir.className = "pequeno";
+      botaoAbrir.textContent = "Abrir pasta";
+      botaoAbrir.disabled = !r.baixadas;
+      botaoAbrir.addEventListener("click", () => abrirPasta(r.idAnuncio, botaoAbrir));
+      tdAcao.appendChild(botaoAbrir);
+
+      tr.append(tdLink, tdPasta, tdFotos, tdAcao);
+      resultadosFotosCorpo.appendChild(tr);
+    });
+
+    resultadosFotosWrap.style.display = "block";
+  }
+
+  botaoBaixar.addEventListener("click", async () => {
+    const links = gradeFotos.obterLinks();
+    if (links.length === 0) {
+      avisoFotos.textContent = "Cole ao menos um link antes de baixar.";
+      return;
+    }
+
+    avisoFotos.textContent = "";
+    resultadosFotosWrap.style.display = "none";
+    botaoBaixar.disabled = true;
+    botaoBaixar.textContent = "Baixando...";
+
+    try {
+      const textoCompleto = await executarComStream(
+        "/api/baixar",
+        { links, maxFotos: Number(inputMaxFotos.value) || 5 },
+        logFotos,
+        botaoCancelarFotos
+      );
+      montarResultadosFotos(extrairJsonDoLog(textoCompleto));
+    } catch (erro) {
+      logFotos.textContent += `\nErro de conexao: ${erro.message}`;
+    } finally {
+      botaoBaixar.disabled = false;
+      botaoBaixar.textContent = "Baixar fotos";
     }
   });
+
+  botaoCancelarFotos.addEventListener("click", cancelarOperacao);
+
+  // =========================================================================
+  // ABA 2: extrair dados
+  // =========================================================================
+  const botaoExtrair = document.getElementById("botaoExtrair");
+  const botaoCancelarDados = document.getElementById("botaoCancelarDados");
+  const logDados = document.getElementById("log-dados");
+  const avisoDados = document.getElementById("aviso-dados");
+  const resultadosDadosWrap = document.getElementById("resultados-dados-wrap");
+  const resultadosDadosCorpo = document.getElementById("resultados-dados-corpo");
+  const jsonResultado = document.getElementById("json-resultado");
+  const jsonTexto = document.getElementById("json-texto");
+  const botaoCopiar = document.getElementById("botaoCopiar");
+  const botaoBaixarJson = document.getElementById("botaoBaixarJson");
+
+  let ultimoJson = "";
+
+  function montarResultadosDados(resultados) {
+    resultadosDadosCorpo.innerHTML = "";
+    if (!resultados || resultados.length === 0) {
+      resultadosDadosWrap.style.display = "none";
+      return;
+    }
+
+    resultados.forEach((r) => {
+      const tr = document.createElement("tr");
+
+      const tdNome = document.createElement("td");
+      tdNome.textContent = r.imobiliaria || "-";
+      if (r.erro) tdNome.classList.add("erro-linha");
+
+      const tdLink = document.createElement("td");
+      const a = document.createElement("a");
+      a.href = r.link;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = r.link.length > 46 ? r.link.slice(0, 46) + "..." : r.link;
+      a.title = r.link;
+      tdLink.appendChild(a);
+
+      const tdValor = document.createElement("td");
+      tdValor.textContent = r.erro ? "erro" : r.valorFormatado || "-";
+      if (r.erro) tdValor.classList.add("erro-linha");
+
+      tr.append(tdNome, tdLink, tdValor);
+      resultadosDadosCorpo.appendChild(tr);
+    });
+
+    resultadosDadosWrap.style.display = "block";
+  }
+
+  botaoExtrair.addEventListener("click", async () => {
+    const links = gradeDados.obterLinks();
+    if (links.length === 0) {
+      avisoDados.textContent = "Cole ao menos um link antes de extrair.";
+      return;
+    }
+
+    avisoDados.textContent = "";
+    resultadosDadosWrap.style.display = "none";
+    jsonResultado.style.display = "none";
+    botaoExtrair.disabled = true;
+    botaoExtrair.textContent = "Extraindo...";
+
+    try {
+      const textoCompleto = await executarComStream(
+        "/api/extrair-dados",
+        { links },
+        logDados,
+        botaoCancelarDados
+      );
+
+      const resultados = extrairJsonDoLog(textoCompleto);
+      montarResultadosDados(resultados);
+
+      if (resultados) {
+        ultimoJson = JSON.stringify(resultados, null, 2);
+        jsonTexto.textContent = ultimoJson;
+        jsonResultado.style.display = "block";
+      }
+    } catch (erro) {
+      logDados.textContent += `\nErro de conexao: ${erro.message}`;
+    } finally {
+      botaoExtrair.disabled = false;
+      botaoExtrair.textContent = "Extrair dados";
+    }
+  });
+
+  botaoCancelarDados.addEventListener("click", cancelarOperacao);
+
+  botaoCopiar.addEventListener("click", async () => {
+    if (!ultimoJson) return;
+    await navigator.clipboard.writeText(ultimoJson);
+    botaoCopiar.textContent = "Copiado!";
+    setTimeout(() => (botaoCopiar.textContent = "Copiar JSON"), 1500);
+  });
+
+  botaoBaixarJson.addEventListener("click", () => {
+    if (!ultimoJson) return;
+    const blob = new Blob([ultimoJson], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "dados-anuncios.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // =========================================================================
+  // ABA 3: buscar imoveis por URL de listagem
+  // =========================================================================
+  const botaoBuscar = document.getElementById("botaoBuscar");
+  const botaoCancelarBusca = document.getElementById("botaoCancelarBusca");
+  const inputUrlBusca = document.getElementById("url-busca");
+  const inputMaxPaginas = document.getElementById("maxPaginas");
+  const logBusca = document.getElementById("log-busca");
+  const avisoBusca = document.getElementById("aviso-busca");
+  const resultadosBuscaWrap = document.getElementById("resultados-busca-wrap");
+  const tituloResultadosBusca = document.getElementById("titulo-resultados-busca");
+  const imoveisCards = document.getElementById("imoveis-cards");
+  const imoveisListaWrap = document.getElementById("imoveis-lista-wrap");
+  const imoveisListaCorpo = document.getElementById("imoveis-lista-corpo");
+  const botaoVerCards = document.getElementById("botaoVerCards");
+  const botaoVerLista = document.getElementById("botaoVerLista");
+  const contadorSelecionados = document.getElementById("contador-selecionados");
+  const botaoSelecionarTodos = document.getElementById("botaoSelecionarTodos");
+  const botaoLimparSelecao = document.getElementById("botaoLimparSelecao");
+  const botaoEnviarParaDados = document.getElementById("botaoEnviarParaDados");
+  const botaoEnviarParaFotos = document.getElementById("botaoEnviarParaFotos");
+  const botaoBuscarAnunciantes = document.getElementById("botaoBuscarAnunciantes");
+  const avisoAnunciantes = document.getElementById("aviso-anunciantes");
+  const botaoGerarJsonBusca = document.getElementById("botaoGerarJsonBusca");
+  const jsonResultadoBusca = document.getElementById("json-resultado-busca");
+  const jsonTextoBusca = document.getElementById("json-texto-busca");
+  const botaoCopiarBusca = document.getElementById("botaoCopiarBusca");
+  const botaoBaixarJsonBusca = document.getElementById("botaoBaixarJsonBusca");
+
+  let ultimosImoveis = [];
+  const selecionados = new Set();
+
+  function atualizarContador() {
+    contadorSelecionados.textContent = `${selecionados.size} selecionado(s)`;
+  }
+
+  function alternarSelecao(link) {
+    if (selecionados.has(link)) selecionados.delete(link);
+    else selecionados.add(link);
+    atualizarContador();
+    document.querySelectorAll(`[data-link="${CSS.escape(link)}"]`).forEach((el) => {
+      const marcado = selecionados.has(link);
+      el.querySelectorAll("input[type=checkbox]").forEach((cb) => (cb.checked = marcado));
+      el.classList.toggle("selecionado", marcado);
+    });
+  }
+
+  function specsTexto(imovel) {
+    const partes = [];
+    if (imovel.area) partes.push(imovel.area);
+    if (imovel.quartos) partes.push(`${imovel.quartos} qts`);
+    if (imovel.banheiros) partes.push(`${imovel.banheiros} banh.`);
+    if (imovel.vagas) partes.push(`${imovel.vagas} vagas`);
+    return partes.join(" · ");
+  }
+
+  function montarCard(imovel) {
+    const div = document.createElement("div");
+    div.className = "imovel-card";
+    div.dataset.link = imovel.link;
+
+    const check = document.createElement("input");
+    check.type = "checkbox";
+    check.className = "imovel-card-check";
+    check.addEventListener("click", (ev) => {
+      ev.stopPropagation();
+      alternarSelecao(imovel.link);
+    });
+
+    const imgWrap = document.createElement("div");
+    imgWrap.className = "imovel-card-img";
+    const fotos = (imovel.imagens && imovel.imagens.length ? imovel.imagens : [imovel.imagem]).filter(Boolean);
+    if (fotos.length > 0) {
+      const img = document.createElement("img");
+      img.src = fotos[0];
+      img.loading = "lazy";
+      // o CDN do ZAP retorna 403 quando o navegador envia o Referer da nossa
+      // pagina; sem referer a imagem carrega normalmente
+      img.referrerPolicy = "no-referrer";
+      img.alt = imovel.endereco || "";
+      imgWrap.appendChild(img);
+
+      if (fotos.length > 1) {
+        let indiceFoto = 0;
+        const contador = document.createElement("span");
+        contador.className = "carrossel-contador";
+        contador.textContent = `1/${fotos.length}`;
+
+        function mostrarFoto(novoIndice) {
+          indiceFoto = (novoIndice + fotos.length) % fotos.length;
+          img.src = fotos[indiceFoto];
+          contador.textContent = `${indiceFoto + 1}/${fotos.length}`;
+        }
+
+        const setaPrev = document.createElement("button");
+        setaPrev.type = "button";
+        setaPrev.className = "carrossel-seta prev";
+        setaPrev.textContent = "‹";
+        setaPrev.addEventListener("click", (ev) => {
+          ev.stopPropagation();
+          mostrarFoto(indiceFoto - 1);
+        });
+
+        const setaNext = document.createElement("button");
+        setaNext.type = "button";
+        setaNext.className = "carrossel-seta next";
+        setaNext.textContent = "›";
+        setaNext.addEventListener("click", (ev) => {
+          ev.stopPropagation();
+          mostrarFoto(indiceFoto + 1);
+        });
+
+        imgWrap.append(setaPrev, setaNext, contador);
+      }
+    }
+
+    const corpo = document.createElement("div");
+    corpo.className = "imovel-card-corpo";
+
+    const tipo = document.createElement("span");
+    tipo.className = "imovel-card-tipo";
+    tipo.textContent = imovel.tipo || "?";
+
+    const preco = document.createElement("div");
+    preco.className = "imovel-card-preco";
+    preco.textContent = imovel.valorFormatado || "Valor sob consulta";
+
+    const endereco = document.createElement("div");
+    endereco.className = "imovel-card-endereco";
+    endereco.textContent = [imovel.rua, imovel.endereco].filter(Boolean).join(" - ");
+
+    const specs = document.createElement("div");
+    specs.className = "imovel-card-specs";
+    specs.textContent = specsTexto(imovel);
+
+    const link = document.createElement("a");
+    link.className = "imovel-card-link";
+    link.href = imovel.link;
+    link.target = "_blank";
+    link.rel = "noopener";
+    link.textContent = "Ver no ZAP ->";
+
+    corpo.append(tipo, preco, endereco, specs);
+    const anunciante = document.createElement("div");
+    if (imovel.anunciante) {
+      anunciante.className = "imovel-card-anunciante";
+      anunciante.textContent = imovel.anunciante;
+    } else {
+      anunciante.className = "imovel-card-anunciante faltando";
+      anunciante.textContent = "imobiliaria nao identificada";
+    }
+    corpo.appendChild(anunciante);
+    corpo.appendChild(link);
+    div.append(check, imgWrap, corpo);
+
+    div.addEventListener("click", (ev) => {
+      if (ev.target === check || ev.target === link) return;
+      check.checked = !check.checked;
+      alternarSelecao(imovel.link);
+    });
+
+    return div;
+  }
+
+  function montarLinhaLista(imovel) {
+    const tr = document.createElement("tr");
+    tr.dataset.link = imovel.link;
+
+    const tdCheck = document.createElement("td");
+    const check = document.createElement("input");
+    check.type = "checkbox";
+    check.addEventListener("click", () => alternarSelecao(imovel.link));
+    tdCheck.appendChild(check);
+
+    const tdFoto = document.createElement("td");
+    if (imovel.imagem) {
+      const img = document.createElement("img");
+      img.src = imovel.imagem;
+      img.loading = "lazy";
+      img.referrerPolicy = "no-referrer";
+      img.className = "imoveis-lista-thumb";
+      tdFoto.appendChild(img);
+    }
+
+    const tdEndereco = document.createElement("td");
+    const partesEndereco = [imovel.rua, imovel.endereco].filter(Boolean).join(" - ");
+    tdEndereco.textContent = imovel.anunciante
+      ? `${partesEndereco} (${imovel.anunciante})`
+      : `${partesEndereco} (imobiliaria nao identificada)`;
+
+    const tdSpecs = document.createElement("td");
+    tdSpecs.textContent = specsTexto(imovel);
+
+    const tdValor = document.createElement("td");
+    tdValor.textContent = imovel.valorFormatado || "-";
+
+    const tdLink = document.createElement("td");
+    const a = document.createElement("a");
+    a.href = imovel.link;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "abrir";
+    tdLink.appendChild(a);
+
+    tr.append(tdCheck, tdFoto, tdEndereco, tdSpecs, tdValor, tdLink);
+    return tr;
+  }
+
+  function atualizarElementoImovel(imovel) {
+    const cardAntigo = imoveisCards.querySelector(`.imovel-card[data-link="${CSS.escape(imovel.link)}"]`);
+    if (cardAntigo) {
+      const novoCard = montarCard(imovel);
+      if (selecionados.has(imovel.link)) {
+        novoCard.classList.add("selecionado");
+        novoCard.querySelectorAll("input[type=checkbox]").forEach((cb) => (cb.checked = true));
+      }
+      cardAntigo.replaceWith(novoCard);
+    }
+
+    const linhaAntiga = imoveisListaCorpo.querySelector(`tr[data-link="${CSS.escape(imovel.link)}"]`);
+    if (linhaAntiga) {
+      const novaLinha = montarLinhaLista(imovel);
+      if (selecionados.has(imovel.link)) {
+        novaLinha.classList.add("selecionado");
+        novaLinha.querySelectorAll("input[type=checkbox]").forEach((cb) => (cb.checked = true));
+      }
+      linhaAntiga.replaceWith(novaLinha);
+    }
+  }
+
+  function montarResultadosBusca(imoveis) {
+    ultimosImoveis = imoveis || [];
+    selecionados.clear();
+    atualizarContador();
+
+    imoveisCards.innerHTML = "";
+    imoveisListaCorpo.innerHTML = "";
+
+    if (ultimosImoveis.length === 0) {
+      resultadosBuscaWrap.style.display = "none";
+      tituloResultadosBusca.style.display = "none";
+      return;
+    }
+
+    ultimosImoveis.forEach((imovel) => {
+      imoveisCards.appendChild(montarCard(imovel));
+      imoveisListaCorpo.appendChild(montarLinhaLista(imovel));
+    });
+
+    resultadosBuscaWrap.style.display = "block";
+    tituloResultadosBusca.style.display = "block";
+  }
+
+  botaoVerCards.addEventListener("click", () => {
+    botaoVerCards.classList.add("ativo");
+    botaoVerLista.classList.remove("ativo");
+    imoveisCards.style.display = "grid";
+    imoveisListaWrap.style.display = "none";
+  });
+
+  botaoVerLista.addEventListener("click", () => {
+    botaoVerLista.classList.add("ativo");
+    botaoVerCards.classList.remove("ativo");
+    imoveisCards.style.display = "none";
+    imoveisListaWrap.style.display = "block";
+  });
+  botaoVerCards.classList.add("ativo");
+
+  botaoSelecionarTodos.addEventListener("click", () => {
+    ultimosImoveis.forEach((imovel) => selecionados.add(imovel.link));
+    document.querySelectorAll(".imovel-card, #imoveis-lista-corpo tr").forEach((el) => {
+      el.classList.add("selecionado");
+      el.querySelectorAll("input[type=checkbox]").forEach((cb) => (cb.checked = true));
+    });
+    atualizarContador();
+  });
+
+  botaoLimparSelecao.addEventListener("click", () => {
+    selecionados.clear();
+    document.querySelectorAll(".imovel-card, #imoveis-lista-corpo tr").forEach((el) => {
+      el.classList.remove("selecionado");
+      el.querySelectorAll("input[type=checkbox]").forEach((cb) => (cb.checked = false));
+    });
+    atualizarContador();
+  });
+
+  function linksSelecionados() {
+    return ultimosImoveis.filter((i) => selecionados.has(i.link)).map((i) => i.link);
+  }
+
+  botaoEnviarParaDados.addEventListener("click", () => {
+    const links = linksSelecionados();
+    if (links.length === 0) {
+      avisoBusca.textContent = "Selecione ao menos um imovel antes de enviar.";
+      return;
+    }
+    avisoBusca.textContent = "";
+    gradeDados.definirLinks(links);
+    document.querySelector('.aba-botao[data-aba="dados"]').click();
+  });
+
+  botaoEnviarParaFotos.addEventListener("click", () => {
+    const links = linksSelecionados();
+    if (links.length === 0) {
+      avisoBusca.textContent = "Selecione ao menos um imovel antes de enviar.";
+      return;
+    }
+    avisoBusca.textContent = "";
+    gradeFotos.definirLinks(links);
+    document.querySelector('.aba-botao[data-aba="fotos"]').click();
+  });
+
+  let ultimoJsonBusca = "";
+
+  function idDoLink(url) {
+    const m = String(url || "").match(/id-(\d+)/i);
+    return m ? m[1] : url;
+  }
+
+  function itensSelecionadosSemAnunciante() {
+    return ultimosImoveis.filter((i) => selecionados.has(i.link) && !i.anunciante);
+  }
+
+  botaoBuscarAnunciantes.addEventListener("click", async () => {
+    const itens = itensSelecionadosSemAnunciante();
+    if (itens.length === 0) {
+      avisoAnunciantes.textContent = selecionados.size === 0
+        ? "Selecione ao menos um imovel antes."
+        : "Todos os selecionados ja tem nome de imobiliaria.";
+      return;
+    }
+
+    avisoAnunciantes.textContent = "";
+    botaoBuscarAnunciantes.disabled = true;
+    botaoBuscarAnunciantes.textContent = `Buscando imobiliaria de ${itens.length} imovel(is)...`;
+
+    try {
+      const links = itens.map((i) => i.link);
+      const textoCompleto = await executarComStream(
+        "/api/extrair-dados",
+        { links },
+        logBusca,
+        botaoCancelarBusca
+      );
+
+      const resultados = extrairJsonDoLog(textoCompleto);
+      if (resultados) {
+        // casa pelo ID numerico do anuncio, ja que o link "canonico" retornado
+        // pela pagina de detalhes pode ter um slug de texto diferente do link
+        // mostrado na listagem (mesmo imovel, mesmo ID)
+        const porId = new Map(resultados.map((r) => [idDoLink(r.link), r]));
+        let atualizados = 0;
+
+        ultimosImoveis.forEach((imovel) => {
+          const achado = porId.get(idDoLink(imovel.link));
+          if (achado && !achado.erro) {
+            if (achado.imobiliaria) imovel.anunciante = achado.imobiliaria;
+            if (achado.tipo) imovel.tipo = achado.tipo;
+            if (achado.valor != null) imovel.valor = achado.valor;
+            if (achado.valorFormatado) imovel.valorFormatado = achado.valorFormatado;
+            atualizarElementoImovel(imovel);
+            atualizados++;
+          }
+        });
+
+        avisoAnunciantes.textContent = `${atualizados} de ${itens.length} imobiliaria(s) encontrada(s).`;
+      }
+    } catch (erro) {
+      avisoAnunciantes.textContent = "Erro: " + erro.message;
+    } finally {
+      botaoBuscarAnunciantes.disabled = false;
+      botaoBuscarAnunciantes.textContent = "Buscar imobiliaria dos selecionados sem nome";
+    }
+  });
+
+  botaoGerarJsonBusca.addEventListener("click", () => {
+    const selecionadosImoveis = ultimosImoveis.filter((i) => selecionados.has(i.link));
+    if (selecionadosImoveis.length === 0) {
+      avisoBusca.textContent = "Selecione ao menos um imovel antes de gerar o JSON.";
+      return;
+    }
+
+    avisoBusca.textContent = "";
+    const dados = selecionadosImoveis.map((i) => ({
+      imobiliaria: i.anunciante || null,
+      link: i.link,
+      tipo: i.tipo || null,
+      valor: i.valor != null ? i.valor : null,
+      valorFormatado: i.valorFormatado || null,
+    }));
+
+    ultimoJsonBusca = JSON.stringify(dados, null, 2);
+    jsonTextoBusca.textContent = ultimoJsonBusca;
+    jsonResultadoBusca.style.display = "block";
+  });
+
+  botaoCopiarBusca.addEventListener("click", async () => {
+    if (!ultimoJsonBusca) return;
+    await navigator.clipboard.writeText(ultimoJsonBusca);
+    botaoCopiarBusca.textContent = "Copiado!";
+    setTimeout(() => (botaoCopiarBusca.textContent = "Copiar JSON"), 1500);
+  });
+
+  botaoBaixarJsonBusca.addEventListener("click", () => {
+    if (!ultimoJsonBusca) return;
+    const blob = new Blob([ultimoJsonBusca], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "dados-anuncios-busca.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  botaoBuscar.addEventListener("click", async () => {
+    const url = inputUrlBusca.value.trim();
+    if (!url) {
+      avisoBusca.textContent = "Cole a URL da pagina de busca antes de continuar.";
+      return;
+    }
+
+    avisoBusca.textContent = "";
+    avisoAnunciantes.textContent = "";
+    jsonResultadoBusca.style.display = "none";
+    ultimoJsonBusca = "";
+    resultadosBuscaWrap.style.display = "none";
+    tituloResultadosBusca.style.display = "none";
+    botaoBuscar.disabled = true;
+    botaoBuscar.textContent = "Buscando...";
+
+    try {
+      const textoCompleto = await executarComStream(
+        "/api/buscar-listagem",
+        { url, maxPaginas: Number(inputMaxPaginas.value) || 3 },
+        logBusca,
+        botaoCancelarBusca
+      );
+      montarResultadosBusca(extrairJsonDoLog(textoCompleto));
+    } catch (erro) {
+      logBusca.textContent += `\nErro de conexao: ${erro.message}`;
+    } finally {
+      botaoBuscar.disabled = false;
+      botaoBuscar.textContent = "Buscar imoveis";
+    }
+  });
+
+  botaoCancelarBusca.addEventListener("click", cancelarOperacao);
 </script>
 </body>
 </html>
