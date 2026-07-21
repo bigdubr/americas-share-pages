@@ -1,902 +1,2316 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plano de Locação Personalizado — PH0052 — Américas Imóveis</title>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano de Locação Personalizado — PH0052 — Américas Imóveis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-:root {
-  --brand:        #0e183f;
-  --brand-mid:    #1f499f;
-  --brand-faint:  #e8edf8;
-  --accent:       #c8962e;
-  --accent-light: #f5d68a;
-  --accent-faint: #fdf3dc;
-  --teal:         #0e6b6b;
-  --teal-light:   #e4f5f5;
-  --teal-border:  #a3d4d4;
-  --danger:       #c0392b;
-  --danger-light: #fdecea;
-  --danger-border:#f5a89f;
-  --success:      #1a6b47;
-  --success-light:#e4f5ed;
-  --text:         #0e183f;
-  --text-muted:   #5a6580;
-  --text-light:   #8a96b0;
-  --border:       #d8e0f0;
-  --border-light: #eaf0fb;
-  --bg:           #eef2fa;
-  --bg-section:   #f4f7fd;
-  --white:        #ffffff;
-  --shadow-sm:    0 1px 4px rgba(14,24,63,0.07);
-  --shadow-md:    0 4px 16px rgba(14,24,63,0.10);
-  --shadow-lg:    0 8px 32px rgba(14,24,63,0.14);
-}
+    :root {
+      --brand: #0e183f;
+      --brand-mid: #1f499f;
+      --brand-faint: #e8edf8;
+      --accent: #c8962e;
+      --accent-light: #f5d68a;
+      --accent-faint: #fdf3dc;
+      --teal: #0e6b6b;
+      --teal-light: #e4f5f5;
+      --teal-border: #a3d4d4;
+      --danger: #c0392b;
+      --danger-light: #fdecea;
+      --danger-border: #f5a89f;
+      --success: #1a6b47;
+      --success-light: #e4f5ed;
+      --text: #0e183f;
+      --text-muted: #5a6580;
+      --text-light: #8a96b0;
+      --border: #d8e0f0;
+      --border-light: #eaf0fb;
+      --bg: #eef2fa;
+      --bg-section: #f4f7fd;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 4px rgba(14, 24, 63, 0.07);
+      --shadow-md: 0 4px 16px rgba(14, 24, 63, 0.10);
+      --shadow-lg: 0 8px 32px rgba(14, 24, 63, 0.14);
+    }
 
-body { font-family:'Sora',sans-serif; background:var(--bg); color:var(--text); line-height:1.65; -webkit-font-smoothing:antialiased; font-size:16px; }
+    body {
+      font-family: 'Sora', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
 
-/* HERO */
-.hero { background:var(--brand); color:white; }
-.hero::before { content:''; display:block; height:3px; background:linear-gradient(90deg,var(--brand-mid) 0%,var(--teal) 50%,var(--accent) 100%); }
-.hero-title-row { padding:1.1rem 1.5rem 0.9rem; text-align:center; }
-.hero-title-row h1 { font-size:1.55rem; font-weight:700; line-height:1.2; letter-spacing:-0.3px; }
-.hero-title-accent { color:var(--accent-light); }
-.hero-address-wrap { padding:0.7rem 1.5rem 0.9rem; text-align:center; }
-.hero-address { max-width:760px; margin:0 auto; font-size:0.72rem; line-height:1.5; color:rgba(255,255,255,0.8); }
-.hero-address-highlight { color:var(--accent-light); }
-.hero-prop-strip { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); background:rgba(31,73,159,0.2); border-top:1px solid rgba(255,255,255,0.08); }
-.hero-prop-cell { padding:10px 14px; border-right:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); display:flex; flex-direction:column; gap:2px; }
-.hero-prop-cell:nth-child(2n) { border-right:none; }
-.hero-prop-cell:nth-last-child(-n+2) { border-bottom:none; }
-.hpc-label { font-size:9px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.35); }
-.hpc-value { font-size:0.82rem; font-weight:600; color:white; }
-.hpc-value.red   { color:#ff8a80; }
-.hpc-value.gold  { color:var(--accent-light); }
-.hpc-value.teal  { color:#7affd4; }
+    /* HERO */
+    .hero {
+      background: var(--brand);
+      color: white;
+    }
 
-/* LAYOUT */
-.page-wrap { max-width:760px; margin:0 auto; padding:1.5rem 1.25rem 3rem; }
-.report-date { text-align:center; margin:-0.75rem 0 -1rem; font-size:0.72rem; color:var(--text-light); }
-@media (min-width:700px) {
-  .hero-title-row  { padding:1.25rem 2.5rem 1rem; }
-  .hero-title-row h1 { font-size:1.9rem; }
-  .hero-address-wrap { padding:0.75rem 2.5rem 0.95rem; }
-  .hero-prop-strip { display:flex; flex-wrap:nowrap; }
-  .hero-prop-cell  { flex:1; border-bottom:none; }
-  .hero-prop-cell:nth-child(2n) { border-right:1px solid rgba(255,255,255,0.08); }
-  .hero-prop-cell:last-child  { border-right:none; }
-  .page-wrap { padding:2rem 2rem 3rem; }
-  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-  .listing-table { font-size:0.82rem; }
-}
-@media (max-width:699px) {
-  .two-col { display:flex; flex-direction:column; gap:0.75rem; }
-}
+    .hero::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand-mid) 0%, var(--teal) 50%, var(--accent) 100%);
+    }
 
-/* SECTION LABEL */
-.section-label { display:flex; align-items:center; gap:10px; margin-bottom:1rem; margin-top:2.25rem; }
-.section-label .num { width:30px; height:30px; background:var(--brand-mid); color:white; border-radius:50%; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 2px 8px rgba(31,73,159,0.3); }
-.section-label .num.teal-num { background:var(--teal); }
-.section-label .num.danger-num { background:var(--danger); }
-.section-label h2 { font-size:1.1rem; font-weight:700; color:var(--brand); letter-spacing:-0.2px; }
+    .hero-title-row {
+      padding: 1.1rem 1.5rem 0.9rem;
+      text-align: center;
+    }
 
-/* CARDS */
-.card { background:var(--white); border-radius:16px; padding:1.25rem; box-shadow:var(--shadow-sm); margin-bottom:1rem; border:1px solid var(--border-light); }
-.card.danger-card { border-left:4px solid var(--danger); background:var(--danger-light); border-color:var(--danger-border); }
-.card.warn-card   { border-left:4px solid var(--accent); background:var(--accent-faint); border-color:#e8c878; }
-.card.brand-card  { border-left:4px solid var(--brand-mid); background:var(--brand-faint); border-color:#b0c4e8; }
-.card.teal-card   { border-left:4px solid var(--teal); background:var(--teal-light); border-color:var(--teal-border); }
+    .hero-title-row h1 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+    }
 
-/* ALERT BANNER */
-.alert-banner { border-radius:14px; padding:1rem 1.25rem; margin-bottom:1rem; display:flex; align-items:flex-start; gap:12px; }
-.alert-banner.red   { background:var(--danger); color:white; }
-.alert-banner.teal  { background:var(--teal); color:white; }
-.alert-banner.navy  { background:var(--brand); color:white; }
-.alert-icon { font-size:1.4rem; flex-shrink:0; margin-top:2px; }
-.alert-banner h3 { font-size:0.92rem; font-weight:600; margin-bottom:4px; }
-.alert-banner p  { font-size:0.83rem; opacity:0.88; line-height:1.55; }
+    .hero-title-accent {
+      color: var(--accent-light);
+    }
 
-/* STAT BOXES */
-.stat-box { background:var(--white); border-radius:14px; padding:1rem 1.1rem; text-align:center; box-shadow:var(--shadow-sm); border:1px solid var(--border-light); }
-.stat-box .big { font-size:1.9rem; font-weight:700; color:var(--brand); line-height:1; }
-.stat-box .big.red  { color:var(--danger); }
-.stat-box .big.teal { color:var(--teal); }
-.stat-box .desc { font-size:0.75rem; color:var(--text-muted); margin-top:5px; line-height:1.35; }
+    .hero-address-wrap {
+      padding: 0.7rem 1.5rem 0.9rem;
+      text-align: center;
+    }
 
-/* TABLE — DUPLICATES */
-.table-wrap { border-radius:12px; overflow:hidden; border:1px solid var(--border); }
-.listing-table { width:100%; border-collapse:collapse; font-size:0.77rem; }
-.listing-table th { background:var(--brand); color:white; padding:9px 12px; text-align:left; font-weight:600; font-size:0.68rem; letter-spacing:0.5px; text-transform:uppercase; }
-.listing-table th:last-child { text-align:right; }
-.listing-table td { padding:9px 12px; border-bottom:1px solid var(--border-light); vertical-align:middle; }
-.listing-table tr:last-child td { border-bottom:none; }
-.listing-table td:last-child { text-align:right; font-weight:700; color:var(--brand-mid); }
-.listing-table tr:nth-child(even) td { background:var(--bg-section); }
-.listing-table td a { color:var(--brand-mid); text-decoration:none; font-size:0.72rem; font-weight:500; }
-.badge-low { display:inline-block; background:var(--danger-light); color:var(--danger); font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px; margin-left:4px; border:1px solid var(--danger-border); }
-.badge-own { display:inline-block; background:var(--brand-faint); color:var(--brand-mid); font-size:9px; font-weight:700; padding:2px 6px; border-radius:4px; margin-left:4px; border:1px solid #b0c4e8; }
+    .hero-address {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.8);
+    }
 
-/* EXPANDABLE */
-.expand-btn { width:100%; background:var(--brand-faint); border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px; padding:10px 16px; font-family:'Sora',sans-serif; font-size:0.78rem; font-weight:600; color:var(--brand-mid); cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; transition:background 0.2s; }
-.expand-btn:hover { background:var(--border-light); }
-.expand-btn .arrow { transition:transform 0.25s; display:inline-block; font-style:normal; }
-.expand-btn.open .arrow { transform:rotate(180deg); }
-.extra-rows { display:none; }
-.extra-rows.visible { display:table-row-group; }
+    .hero-address-highlight {
+      color: var(--accent-light);
+    }
 
-/* ===== FEATURED COMPETITOR CARDS ===== */
-.featured-comps {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:0.85rem;
-  margin-bottom:1.25rem;
-}
-@media (max-width:699px) {
-  .featured-comps { grid-template-columns:1fr; }
-}
-.feat-card {
-  background:var(--white);
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:var(--shadow-md);
-  border:2px solid var(--danger-border);
-  display:flex;
-  flex-direction:column;
-}
-.feat-card-img {
-  position:relative;
-  width:100%;
-  aspect-ratio:16/9;
-  overflow:hidden;
-  background:#0a1228;
-  flex-shrink:0;
-}
-.feat-card-img img {
-  width:100%; height:100%;
-  object-fit:cover;
-  display:block;
-}
-/* flag tag on image */
-.feat-flag {
-  position:absolute; top:8px; left:8px;
-  background:var(--teal);
-  color:white;
-  font-size:9px; font-weight:700;
-  letter-spacing:0.8px; text-transform:uppercase;
-  padding:3px 9px; border-radius:20px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.35);
-}
-.feat-flag.beach { background:#1a6b47; }
-.feat-card-body { padding:0.85rem 0.95rem; flex:1; display:flex; flex-direction:column; gap:0; }
-.feat-card-price { font-size:1.3rem; font-weight:700; color:var(--danger); letter-spacing:-0.3px; margin-bottom:2px; }
-.feat-card-label { font-size:0.72rem; color:var(--text-muted); margin-bottom:8px; line-height:1.4; }
-.feat-specs { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px; }
-.feat-pill { font-size:10px; background:var(--bg-section); color:var(--text-muted); border:1px solid var(--border); padding:2px 8px; border-radius:20px; }
-.feat-pill.good { background:var(--teal-light); color:var(--teal); border-color:var(--teal-border); font-weight:600; }
-.feat-total { font-size:0.7rem; color:var(--text-muted); margin-bottom:8px; }
-.feat-total strong { color:var(--brand); }
-.feat-link { display:block; background:var(--brand); color:white; text-align:center; padding:7px 10px; border-radius:8px; font-size:0.72rem; font-weight:600; text-decoration:none; margin-top:auto; }
+    .hero-prop-strip {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      background: rgba(31, 73, 159, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-/* COMP RENT TABLE */
-.comp-rent-table-wrap { border-radius:12px; overflow:hidden; border:1px solid var(--teal-border); }
-.comp-rent-table { width:100%; border-collapse:collapse; font-size:0.74rem; }
-.comp-rent-table th { background:var(--teal); color:white; padding:8px 10px; text-align:left; font-weight:600; font-size:0.65rem; letter-spacing:0.5px; text-transform:uppercase; }
-.comp-rent-table th:last-child, .comp-rent-table td:last-child { text-align:right; }
-.comp-rent-table td { padding:8px 10px; border-bottom:1px solid var(--teal-border); color:var(--text); vertical-align:middle; }
-.comp-rent-table tr:last-child td { border-bottom:none; }
-.comp-rent-table tr:nth-child(even) td { background:var(--teal-light); }
-.comp-rent-table td a { color:var(--teal); text-decoration:none; font-size:0.7rem; font-weight:500; }
-.comp-rent-table .price-cell { font-weight:700; color:var(--danger); }
-.comp-rent-table .total-cell { font-weight:700; color:var(--brand-mid); font-size:0.72rem; }
+    .hero-prop-cell {
+      padding: 10px 14px;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
 
-/* EXP ITEMS */
-.exp-item { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--border-light); }
-.exp-item:last-child { border-bottom:none; padding-bottom:0; }
-.exp-item:first-child { padding-top:0; }
-.exp-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
-.exp-icon.red  { background:var(--danger-light); }
-.exp-icon.gold { background:var(--accent-faint); }
-.exp-icon.blue { background:var(--brand-faint); }
-.exp-icon.teal { background:var(--teal-light); }
-.exp-item h4 { font-size:0.9rem; font-weight:700; color:var(--brand); margin-bottom:3px; }
-.exp-item p  { font-size:0.82rem; color:var(--text-muted); line-height:1.6; }
+    .hero-prop-cell:nth-child(2n) {
+      border-right: none;
+    }
 
-/* TAGS */
-.tag { display:inline-block; font-size:0.67rem; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; padding:3px 9px; border-radius:6px; margin-bottom:10px; }
-.tag.red  { background:var(--danger-light); color:var(--danger); border:1px solid var(--danger-border); }
-.tag.gold { background:var(--accent-faint); color:#7a5200; border:1px solid #e8c878; }
-.tag.green{ background:var(--success-light); color:var(--success); border:1px solid #a3d9c0; }
-.tag.blue { background:var(--brand-faint); color:var(--brand-mid); border:1px solid #b0c4e8; }
-.tag.teal { background:var(--teal-light); color:var(--teal); border:1px solid var(--teal-border); }
+    .hero-prop-cell:nth-last-child(-n+2) {
+      border-bottom: none;
+    }
 
-/* PRICE STRATEGY */
-.price-strategy-box { background:var(--brand); border-radius:16px; padding:1.4rem 1.5rem; color:white; margin-bottom:1rem; position:relative; overflow:hidden; }
-.price-strategy-box::before { content:''; position:absolute; top:-40px; right:-40px; width:150px; height:150px; border-radius:50%; background:rgba(31,73,159,0.4); pointer-events:none; }
-.psb-label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; opacity:0.45; margin-bottom:10px; position:relative; }
-.psb-row { display:flex; align-items:stretch; gap:0; position:relative; flex-wrap:wrap; }
-.psb-item { flex:1; min-width:100px; padding:10px 14px; border-right:1px solid rgba(255,255,255,0.1); }
-.psb-item:last-child { border-right:none; }
-.psb-item-label { font-size:9px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; opacity:0.45; margin-bottom:4px; }
-.psb-item-val { font-size:1.1rem; font-weight:700; }
-.psb-item-val.gold-v { color:var(--accent-light); }
-.psb-item-val.teal-v { color:#7affd4; }
-.psb-item-sub { font-size:0.68rem; opacity:0.55; margin-top:2px; }
-.psb-divider { border:none; border-top:1px solid rgba(255,255,255,0.1); margin:10px 0; }
-.psb-note { font-size:0.8rem; opacity:0.7; line-height:1.6; position:relative; }
+    .hpc-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+    }
 
-/* INVEST HIGHLIGHT */
-.invest-highlight { background:var(--brand); color:white; border-radius:18px; padding:1.75rem 1.5rem; text-align:center; margin-bottom:1rem; position:relative; overflow:hidden; }
-.invest-highlight::before { content:''; position:absolute; top:-50px; right:-50px; width:160px; height:160px; border-radius:50%; background:rgba(31,73,159,0.4); pointer-events:none; }
-.invest-highlight .small-label { font-size:0.68rem; letter-spacing:2px; text-transform:uppercase; opacity:0.5; margin-bottom:0.5rem; position:relative; }
-.invest-highlight .amount { font-size:3rem; font-weight:700; color:var(--accent-light); line-height:1; margin-bottom:0.25rem; position:relative; }
-.invest-highlight .sub { font-size:0.78rem; opacity:0.65; margin-bottom:1rem; position:relative; }
-.invest-divider { border:none; border-top:1px solid rgba(255,255,255,0.15); margin:1rem 0; }
-.invest-return { display:flex; justify-content:center; align-items:center; gap:8px; font-size:0.82rem; position:relative; }
-.invest-return .label { opacity:0.6; }
-.invest-return .val { font-weight:700; font-size:1.1rem; color:var(--accent-light); }
+    .hpc-value {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: white;
+    }
 
-/* PROPOSAL ITEMS */
-.proposal-item { display:flex; align-items:flex-start; gap:12px; padding:11px 0; border-bottom:1px solid var(--border-light); }
-.proposal-item:last-child { border-bottom:none; }
-.check-circle { width:26px; height:26px; border-radius:50%; background:var(--brand-mid); color:white; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
-.check-circle.gold { background:var(--accent); }
-.check-circle.teal { background:var(--teal); }
-.proposal-item h4 { font-size:0.88rem; font-weight:700; color:var(--brand); margin-bottom:3px; }
-.proposal-item p  { font-size:0.8rem; color:var(--text-muted); line-height:1.55; }
+    .hpc-value.red {
+      color: #ff8a80;
+    }
 
-/* DANGER HIGHLIGHT */
-.danger-highlight-box { background:#fff5f5; border:1px solid var(--danger-border); border-left:5px solid var(--danger); border-radius:12px; padding:1.2rem 1.35rem; margin-bottom:1rem; }
-.danger-highlight-box .dh-eyebrow { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--danger); margin-bottom:10px; }
-.danger-highlight-box p { font-size:0.86rem; color:#5a1010; line-height:1.7; }
-.danger-highlight-box p + p { margin-top:10px; }
-.danger-highlight-box strong { color:var(--danger); font-weight:700; }
+    .hpc-value.gold {
+      color: var(--accent-light);
+    }
 
-/* INSIGHT BOX */
-.insight-box { background:linear-gradient(135deg,#0a1228 0%,#1a2e5a 100%); border-radius:16px; padding:1.4rem 1.5rem; color:white; margin-bottom:1rem; border:1px solid rgba(31,73,159,0.4); }
-.insight-box .ib-eyebrow { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent-light); margin-bottom:10px; }
-.insight-box h3 { font-size:1rem; font-weight:700; margin-bottom:8px; }
-.insight-box p { font-size:0.83rem; color:rgba(255,255,255,0.72); line-height:1.65; }
-.insight-box p + p { margin-top:8px; }
-.insight-box strong { color:var(--accent-light); }
+    .hpc-value.teal {
+      color: #7affd4;
+    }
 
-/* HIGHLIGHT ROW */
-.highlight-row { background:var(--accent-faint); border:1px solid #e8c878; border-radius:12px; padding:0.9rem 1.1rem; display:flex; align-items:flex-start; gap:10px; margin-bottom:1rem; font-size:0.84rem; color:#7a5200; line-height:1.55; }
-.highlight-row .hr-icon { font-size:1.2rem; flex-shrink:0; margin-top:1px; }
+    /* LAYOUT */
+    .page-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
 
-/* VIDEO CAROUSEL */
-.video-scroll-wrapper { overflow-x:auto; -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory; display:flex; gap:1rem; padding-bottom:0.5rem; margin-bottom:1rem; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
-.video-scroll-wrapper::-webkit-scrollbar { height:4px; }
-.video-scroll-wrapper::-webkit-scrollbar-thumb { background:var(--border); border-radius:4px; }
-.video-card { background:var(--white); border-radius:14px; overflow:hidden; box-shadow:var(--shadow-md); border:1px solid var(--border-light); flex:0 0 260px; scroll-snap-align:start; }
-@media (min-width:700px) { .video-card { flex:0 0 calc(33.333% - 0.67rem); } }
-.video-wrapper { position:relative; width:100%; aspect-ratio:9/16; background:#111; overflow:hidden; }
-.video-wrapper video { width:100%; height:100%; object-fit:cover; display:block; }
-.video-card-body { padding:0.9rem 1rem; }
-.vc-label { font-size:9px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:var(--text-light); margin-bottom:5px; }
-.vc-title { font-size:0.82rem; font-weight:700; color:var(--brand); margin-bottom:6px; line-height:1.3; }
-.vc-price-val { font-size:0.9rem; font-weight:700; color:var(--teal); }
-.vc-badge { display:inline-block; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; background:var(--teal-light); color:var(--teal); padding:2px 7px; border-radius:4px; border:1px solid var(--teal-border); margin-top:4px; }
+    .report-date {
+      text-align: center;
+      margin: -0.75rem 0 -1rem;
+      font-size: 0.72rem;
+      color: var(--text-light);
+    }
 
-/* CTA */
-.cta-section { background:linear-gradient(135deg,#0e183f 0%,#1a2e5a 60%,#0e6b6b 100%); border-radius:20px; padding:2.5rem 1.5rem; text-align:center; color:white; margin-bottom:1rem; position:relative; overflow:hidden; }
-.cta-section::before { content:''; position:absolute; top:-50px; right:-50px; width:180px; height:180px; border-radius:50%; background:rgba(255,255,255,0.04); pointer-events:none; }
-.cta-eyebrow { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; opacity:0.5; margin-bottom:0.75rem; position:relative; }
-.cta-section h2 { font-size:1.5rem; font-weight:700; line-height:1.2; margin-bottom:0.5rem; position:relative; }
-.cta-section h2 span { color:var(--accent-light); }
-.cta-section p { font-size:0.85rem; opacity:0.7; margin-bottom:1.5rem; max-width:400px; margin-left:auto; margin-right:auto; position:relative; }
-.whatsapp-btn { display:inline-flex; align-items:center; gap:10px; background:#25D366; color:white; padding:1rem 2rem; border-radius:50px; font-family:'Sora',sans-serif; font-size:1rem; font-weight:700; text-decoration:none; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:transform 0.2s, box-shadow 0.2s; position:relative; }
-.whatsapp-btn:hover { transform:translateY(-2px); box-shadow:0 6px 28px rgba(37,211,102,0.55); }
-.whatsapp-btn svg { width:24px; height:24px; flex-shrink:0; }
-.cta-note { font-size:0.72rem; opacity:0.45; margin-top:1rem; position:relative; }
+    @media (min-width:700px) {
+      .hero-title-row {
+        padding: 1.25rem 2.5rem 1rem;
+      }
 
-/* FOOTER */
-footer { background:var(--brand); color:rgba(255,255,255,0.75); margin-top:1rem; padding:2rem 1.5rem; }
-.footer-content { max-width:900px; margin:0 auto; display:flex; align-items:center; justify-content:center; gap:2rem; flex-wrap:wrap; text-align:left; }
-footer .logo-wrap-footer img { height:80px; display:block; filter:brightness(0) invert(1); }
-.footer-info { display:flex; flex-direction:column; gap:0.45rem; font-size:0.82rem; line-height:1.6; }
-footer .contact { margin-top:0.35rem; color:var(--accent-light); font-weight:600; font-size:0.88rem; }
-@media (max-width:700px) { .footer-content { flex-direction:column; text-align:center; } footer .logo-wrap-footer img { height:60px; } }
+      .hero-title-row h1 {
+        font-size: 1.9rem;
+      }
 
-/* MISC */
-.section-divider { border:none; border-top:2px dashed var(--border); margin:2.25rem 0; }
-.body-text { font-size:0.85rem; color:var(--text-muted); line-height:1.65; margin-bottom:0.75rem; }
-</style>
+      .hero-address-wrap {
+        padding: 0.75rem 2.5rem 0.95rem;
+      }
+
+      .hero-prop-strip {
+        display: flex;
+        flex-wrap: nowrap;
+      }
+
+      .hero-prop-cell {
+        flex: 1;
+        border-bottom: none;
+      }
+
+      .hero-prop-cell:nth-child(2n) {
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-prop-cell:last-child {
+        border-right: none;
+      }
+
+      .page-wrap {
+        padding: 2rem 2rem 3rem;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .listing-table {
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width:699px) {
+      .two-col {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+
+    /* SECTION LABEL */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+      margin-top: 2.25rem;
+    }
+
+    .section-label .num {
+      width: 30px;
+      height: 30px;
+      background: var(--brand-mid);
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(31, 73, 159, 0.3);
+    }
+
+    .section-label .num.teal-num {
+      background: var(--teal);
+    }
+
+    .section-label .num.danger-num {
+      background: var(--danger);
+    }
+
+    .section-label h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brand);
+      letter-spacing: -0.2px;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-light);
+    }
+
+    .card.danger-card {
+      border-left: 4px solid var(--danger);
+      background: var(--danger-light);
+      border-color: var(--danger-border);
+    }
+
+    .card.warn-card {
+      border-left: 4px solid var(--accent);
+      background: var(--accent-faint);
+      border-color: #e8c878;
+    }
+
+    .card.brand-card {
+      border-left: 4px solid var(--brand-mid);
+      background: var(--brand-faint);
+      border-color: #b0c4e8;
+    }
+
+    .card.teal-card {
+      border-left: 4px solid var(--teal);
+      background: var(--teal-light);
+      border-color: var(--teal-border);
+    }
+
+    /* ALERT BANNER */
+    .alert-banner {
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .alert-banner.red {
+      background: var(--danger);
+      color: white;
+    }
+
+    .alert-banner.teal {
+      background: var(--teal);
+      color: white;
+    }
+
+    .alert-banner.navy {
+      background: var(--brand);
+      color: white;
+    }
+
+    .alert-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .alert-banner h3 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .alert-banner p {
+      font-size: 0.83rem;
+      opacity: 0.88;
+      line-height: 1.55;
+    }
+
+    /* STAT BOXES */
+    .stat-box {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .stat-box .big {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--brand);
+      line-height: 1;
+    }
+
+    .stat-box .big.red {
+      color: var(--danger);
+    }
+
+    .stat-box .big.teal {
+      color: var(--teal);
+    }
+
+    .stat-box .desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+      line-height: 1.35;
+    }
+
+    /* TABLE — DUPLICATES */
+    .table-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .listing-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.77rem;
+    }
+
+    .listing-table th {
+      background: var(--brand);
+      color: white;
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.68rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .listing-table th:last-child {
+      text-align: right;
+    }
+
+    .listing-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: middle;
+    }
+
+    .listing-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .listing-table td:last-child {
+      text-align: right;
+      font-weight: 700;
+      color: var(--brand-mid);
+    }
+
+    .listing-table tr:nth-child(even) td {
+      background: var(--bg-section);
+    }
+
+    .listing-table td a {
+      color: var(--brand-mid);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 500;
+    }
+
+    .badge-low {
+      display: inline-block;
+      background: var(--danger-light);
+      color: var(--danger);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 4px;
+      border: 1px solid var(--danger-border);
+    }
+
+    .badge-own {
+      display: inline-block;
+      background: var(--brand-faint);
+      color: var(--brand-mid);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 4px;
+      border: 1px solid #b0c4e8;
+    }
+
+    /* EXPANDABLE */
+    .expand-btn {
+      width: 100%;
+      background: var(--brand-faint);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 10px 16px;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--brand-mid);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .expand-btn:hover {
+      background: var(--border-light);
+    }
+
+    .expand-btn .arrow {
+      transition: transform 0.25s;
+      display: inline-block;
+      font-style: normal;
+    }
+
+    .expand-btn.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .extra-rows {
+      display: none;
+    }
+
+    .extra-rows.visible {
+      display: table-row-group;
+    }
+
+    /* ===== FEATURED COMPETITOR CARDS ===== */
+    .featured-comps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width:699px) {
+      .featured-comps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feat-card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 2px solid var(--danger-border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feat-card-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #0a1228;
+      flex-shrink: 0;
+    }
+
+    .feat-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* CAROUSEL */
+    .feat-card-img img.carousel-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .feat-card-img img.carousel-slide.active {
+      display: block;
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 26px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(10, 18, 40, 0.55);
+      color: white;
+      font-size: 15px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.2s;
+    }
+
+    .carousel-arrow:hover {
+      background: rgba(10, 18, 40, 0.8);
+    }
+
+    .carousel-arrow.prev {
+      left: 6px;
+    }
+
+    .carousel-arrow.next {
+      right: 6px;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 7px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      z-index: 2;
+    }
+
+    .carousel-dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .carousel-dots span.active {
+      background: white;
+    }
+
+    /* flag tag on image */
+    .feat-flag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: var(--teal);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    }
+
+    .feat-flag.beach {
+      background: #1a6b47;
+    }
+
+    .feat-card-body {
+      padding: 0.85rem 0.95rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .feat-card-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--danger);
+      letter-spacing: -0.3px;
+      margin-bottom: 2px;
+    }
+
+    .feat-card-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .feat-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .feat-pill {
+      font-size: 10px;
+      background: var(--bg-section);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .feat-pill.good {
+      background: var(--teal-light);
+      color: var(--teal);
+      border-color: var(--teal-border);
+      font-weight: 600;
+    }
+
+    .feat-total {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .feat-total strong {
+      color: var(--brand);
+    }
+
+    .feat-link {
+      display: block;
+      background: var(--brand);
+      color: white;
+      text-align: center;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: auto;
+    }
+
+    /* COMP RENT TABLE */
+    .comp-rent-table-wrap {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--teal-border);
+    }
+
+    .comp-rent-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.74rem;
+    }
+
+    .comp-rent-table th {
+      background: var(--teal);
+      color: white;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.65rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .comp-rent-table th:last-child,
+    .comp-rent-table td:last-child {
+      text-align: right;
+    }
+
+    .comp-rent-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--teal-border);
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    .comp-rent-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comp-rent-table tr:nth-child(even) td {
+      background: var(--teal-light);
+    }
+
+    .comp-rent-table td a {
+      color: var(--teal);
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    .comp-rent-table .price-cell {
+      font-weight: 700;
+      color: var(--danger);
+    }
+
+    .comp-rent-table .total-cell {
+      font-weight: 700;
+      color: var(--brand-mid);
+      font-size: 0.72rem;
+    }
+
+    /* EXP ITEMS */
+    .exp-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .exp-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .exp-item:first-child {
+      padding-top: 0;
+    }
+
+    .exp-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .exp-icon.red {
+      background: var(--danger-light);
+    }
+
+    .exp-icon.gold {
+      background: var(--accent-faint);
+    }
+
+    .exp-icon.blue {
+      background: var(--brand-faint);
+    }
+
+    .exp-icon.teal {
+      background: var(--teal-light);
+    }
+
+    .exp-item h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 3px;
+    }
+
+    .exp-item p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* TAGS */
+    .tag {
+      display: inline-block;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .tag.red {
+      background: var(--danger-light);
+      color: var(--danger);
+      border: 1px solid var(--danger-border);
+    }
+
+    .tag.gold {
+      background: var(--accent-faint);
+      color: #7a5200;
+      border: 1px solid #e8c878;
+    }
+
+    .tag.green {
+      background: var(--success-light);
+      color: var(--success);
+      border: 1px solid #a3d9c0;
+    }
+
+    .tag.blue {
+      background: var(--brand-faint);
+      color: var(--brand-mid);
+      border: 1px solid #b0c4e8;
+    }
+
+    .tag.teal {
+      background: var(--teal-light);
+      color: var(--teal);
+      border: 1px solid var(--teal-border);
+    }
+
+    /* PRICE STRATEGY */
+    .price-strategy-box {
+      background: var(--brand);
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      color: white;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-strategy-box::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(31, 73, 159, 0.4);
+      pointer-events: none;
+    }
+
+    .psb-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: 0.45;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .psb-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .psb-item {
+      flex: 1;
+      min-width: 100px;
+      padding: 10px 14px;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .psb-item:last-child {
+      border-right: none;
+    }
+
+    .psb-item-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      opacity: 0.45;
+      margin-bottom: 4px;
+    }
+
+    .psb-item-val {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .psb-item-val.gold-v {
+      color: var(--accent-light);
+    }
+
+    .psb-item-val.teal-v {
+      color: #7affd4;
+    }
+
+    .psb-item-sub {
+      font-size: 0.68rem;
+      opacity: 0.55;
+      margin-top: 2px;
+    }
+
+    .psb-divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 10px 0;
+    }
+
+    .psb-note {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* INVEST HIGHLIGHT */
+    .invest-highlight {
+      background: var(--brand);
+      color: white;
+      border-radius: 18px;
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .invest-highlight::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(31, 73, 159, 0.4);
+      pointer-events: none;
+    }
+
+    .invest-highlight .small-label {
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .invest-highlight .amount {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+      position: relative;
+    }
+
+    .invest-highlight .sub {
+      font-size: 0.78rem;
+      opacity: 0.65;
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .invest-divider {
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      margin: 1rem 0;
+    }
+
+    .invest-return {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      position: relative;
+    }
+
+    .invest-return .label {
+      opacity: 0.6;
+    }
+
+    .invest-return .val {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent-light);
+    }
+
+    /* PROPOSAL ITEMS */
+    .proposal-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .proposal-item:last-child {
+      border-bottom: none;
+    }
+
+    .check-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--brand-mid);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .check-circle.gold {
+      background: var(--accent);
+    }
+
+    .check-circle.teal {
+      background: var(--teal);
+    }
+
+    .proposal-item h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 3px;
+    }
+
+    .proposal-item p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* DANGER HIGHLIGHT */
+    .danger-highlight-box {
+      background: #fff5f5;
+      border: 1px solid var(--danger-border);
+      border-left: 5px solid var(--danger);
+      border-radius: 12px;
+      padding: 1.2rem 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .danger-highlight-box .dh-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--danger);
+      margin-bottom: 10px;
+    }
+
+    .danger-highlight-box p {
+      font-size: 0.86rem;
+      color: #5a1010;
+      line-height: 1.7;
+    }
+
+    .danger-highlight-box p+p {
+      margin-top: 10px;
+    }
+
+    .danger-highlight-box strong {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    /* INSIGHT BOX */
+    .insight-box {
+      background: linear-gradient(135deg, #0a1228 0%, #1a2e5a 100%);
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      color: white;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(31, 73, 159, 0.4);
+    }
+
+    .insight-box .ib-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 10px;
+    }
+
+    .insight-box h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .insight-box p {
+      font-size: 0.83rem;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.65;
+    }
+
+    .insight-box p+p {
+      margin-top: 8px;
+    }
+
+    .insight-box strong {
+      color: var(--accent-light);
+    }
+
+    /* HIGHLIGHT ROW */
+    .highlight-row {
+      background: var(--accent-faint);
+      border: 1px solid #e8c878;
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 1rem;
+      font-size: 0.84rem;
+      color: #7a5200;
+      line-height: 1.55;
+    }
+
+    .highlight-row .hr-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* VIDEO CAROUSEL */
+    .video-scroll-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      display: flex;
+      gap: 1rem;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .video-scroll-wrapper::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .video-scroll-wrapper::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    .video-card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      flex: 0 0 260px;
+      scroll-snap-align: start;
+    }
+
+    @media (min-width:700px) {
+      .video-card {
+        flex: 0 0 calc(33.333% - 0.67rem);
+      }
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9/16;
+      background: #111;
+      overflow: hidden;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-card-body {
+      padding: 0.9rem 1rem;
+    }
+
+    .vc-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 5px;
+    }
+
+    .vc-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .vc-price-val {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--teal);
+    }
+
+    .vc-badge {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: var(--teal-light);
+      color: var(--teal);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--teal-border);
+      margin-top: 4px;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, #0e183f 0%, #1a2e5a 60%, #0e6b6b 100%);
+      border-radius: 20px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: white;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+    }
+
+    .cta-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .cta-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .cta-section h2 span {
+      color: var(--accent-light);
+    }
+
+    .cta-section p {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 1.5rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .whatsapp-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
+    }
+
+    .whatsapp-btn svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .cta-note {
+      font-size: 0.72rem;
+      opacity: 0.45;
+      margin-top: 1rem;
+      position: relative;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--brand);
+      color: rgba(255, 255, 255, 0.75);
+      margin-top: 1rem;
+      padding: 2rem 1.5rem;
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    footer .logo-wrap-footer img {
+      height: 80px;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    footer .contact {
+      margin-top: 0.35rem;
+      color: var(--accent-light);
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+
+    @media (max-width:700px) {
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      footer .logo-wrap-footer img {
+        height: 60px;
+      }
+    }
+
+    /* MISC */
+    .section-divider {
+      border: none;
+      border-top: 2px dashed var(--border);
+      margin: 2.25rem 0;
+    }
+
+    .body-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-title-row">
-    <h1>Análise e Plano de Locação <span class="hero-title-accent">Personalizado</span></h1>
-  </div>
-  <div class="hero-prop-strip">
-    <div class="hero-prop-cell">
-      <span class="hpc-label">Imóvel</span>
-      <span class="hpc-value">Cobertura Duplex · 200m² · 3 qts · 5 bths · 2 vagas</span>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-title-row">
+      <h1>Análise e Plano de Locação <span class="hero-title-accent">Personalizado</span></h1>
     </div>
-    <div class="hero-prop-cell">
-      <span class="hpc-label">Aluguel pretendido</span>
-      <span class="hpc-value gold">R$ 11.800/mês</span>
-    </div>
-    <div class="hero-prop-cell">
-      <span class="hpc-label">Anúncios duplicados</span>
-      <span class="hpc-value red">14 imobiliárias</span>
-    </div>
-    <div class="hero-prop-cell">
-      <span class="hpc-label">Concorrentes superiores</span>
-      <span class="hpc-value teal">a partir de R$ 8.300</span>
-    </div>
-  </div>
-  <div class="hero-address-wrap">
-    <p class="hero-address">
-      Avenida Gastão Senges, 125 · Barra da Tijuca, Rio de Janeiro ·
-      <span class="hero-address-highlight">Condomínio Porto Verano</span> · PH0052_MERI · CRECI CJ7700
-    </p>
-  </div>
-</div>
-
-<div class="page-wrap">
-  <div class="report-date">Relatório de Locação — Julho 2026</div>
-
-  <!-- SECTION 1 -->
-  <div class="section-label" style="margin-top:1.75rem;">
-    <div class="num">1</div>
-    <h2>Por que o seu imóvel ainda não foi alugado</h2>
-  </div>
-
-  <div class="alert-banner navy">
-    <div class="alert-icon">🔍</div>
-    <div>
-      <h3>Fizemos uma análise completa do seu imóvel no mercado de locação da Barra da Tijuca</h3>
-      <p>Mapeamos 14 anúncios duplicados do seu imóvel, analisamos 10 concorrentes diretos e avaliamos o seu preço frente ao mercado real. O diagnóstico é claro — e a solução existe.</p>
-    </div>
-  </div>
-
-  <div class="two-col">
-    <div class="stat-box">
-      <div class="big red">14</div>
-      <div class="desc">Imobiliárias anunciando o mesmo imóvel — com preços conflitantes</div>
-    </div>
-    <div class="stat-box">
-      <div class="big teal">10+</div>
-      <div class="desc">Imóveis superiores ou similares disponíveis por menos na Barra</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <span class="tag red">Os 4 motivos que travam a sua locação</span>
-    <div class="exp-item">
-      <div class="exp-icon red">📋</div>
-      <div>
-        <h4>Portal de anúncio não basta — o imóvel some na listagem</h4>
-        <p>O mercado de locação de alto padrão na Barra da Tijuca tem centenas de ofertas. O locatário que entra no ZAP tem dezenas de opções superiores e mais baratas antes de chegar ao seu.</p>
+    <div class="hero-prop-strip">
+      <div class="hero-prop-cell">
+        <span class="hpc-label">Imóvel</span>
+        <span class="hpc-value">Cobertura Duplex · 200m² · 3 qts · 5 bths · 2 vagas</span>
+      </div>
+      <div class="hero-prop-cell">
+        <span class="hpc-label">Aluguel pretendido</span>
+        <span class="hpc-value gold">R$ 11.800/mês</span>
+      </div>
+      <div class="hero-prop-cell">
+        <span class="hpc-label">Anúncios duplicados</span>
+        <span class="hpc-value red">37 imobiliárias</span>
+      </div>
+      <div class="hero-prop-cell">
+        <span class="hpc-label">Concorrentes superiores</span>
+        <span class="hpc-value teal">a partir de R$ 8.300</span>
       </div>
     </div>
-    <div class="exp-item">
-      <div class="exp-icon red">🎯</div>
-      <div>
-        <h4>14 imobiliárias = o locatário faz leilão</h4>
-        <p>Com tantas imobiliárias anunciando preços diferentes — de R$ 9.800 a R$ 11.800 — o interessado entra em contato com todas e força o valor para baixo. Você perde o controle da negociação.</p>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-icon gold">💰</div>
-      <div>
-        <h4>O preço de R$ 11.800 está fora do mercado atual</h4>
-        <p>Identificamos imóveis com 4 quartos, 140–240m² e amenidades superiores sendo alugados entre R$ 8.300 e R$ 10.500 na mesma região. A oferta supera muito a demanda na Barra agora.</p>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-icon red">📷</div>
-      <div>
-        <h4>Material fotográfico precisa ser renovado</h4>
-        <p>Para uma cobertura duplex competir no Instagram e redes sociais, as fotos e o vídeo precisam ser profissionais e recentes. O material atual não valoriza o potencial do imóvel.</p>
-      </div>
+    <div class="hero-address-wrap">
+      <p class="hero-address">
+        Avenida Gastão Senges, 125 · Barra da Tijuca, Rio de Janeiro ·
+        <span class="hero-address-highlight">Condomínio Porto Verano</span> · PH0052_MERI · CRECI CJ7700
+      </p>
     </div>
   </div>
 
-  <div class="insight-box">
-    <div class="ib-eyebrow">💡 A verdade que ninguém te conta</div>
-    <h3>Mais imobiliárias não significa mais locatários — significa mais caos</h3>
-    <p>É um mito muito difundido. O proprietário acredita que, com mais imobiliárias anunciando, o alcance aumenta. Na prática, o efeito é o contrário: <strong>o locatário usa isso para negociar agressivamente o preço</strong>, os corretores competem entre si, e o imóvel perde credibilidade quando aparece com valores diferentes em dezenas de anúncios.</p>
-    <p>O mercado de locação de alto padrão mudou. <strong>Quem aluga imóvel premium hoje é quem aparece no feed do locatário certo</strong> — com um vídeo profissional, no Instagram, direcionado para quem tem perfil real de locação. Concentrar em no máximo 3 imobiliárias com preço único é o único caminho.</p>
-  </div>
+  <div class="page-wrap">
+    <div class="report-date">Relatório de Locação — Julho 2026</div>
 
-  <hr class="section-divider">
+    <!-- SECTION 1: CASOS DE SUCESSO -->
+    <div class="section-label" style="margin-top:1.75rem;">
+      <div class="num teal-num">1</div>
+      <h2>Veja como alugamos imóveis de alto padrão</h2>
+    </div>
 
-  <!-- SECTION 2: ANÚNCIOS DUPLICADOS — dados reais do HTML -->
-  <div class="section-label">
-    <div class="num danger-num">2</div>
-    <h2>Anúncios duplicados do seu imóvel — 14 identificados</h2>
-  </div>
+    <p class="body-text">Estes são os vídeos criativos que produzimos e veiculamos no Instagram para outros
+      proprietários — o mesmo método que aplicaremos para a sua cobertura:</p>
 
-  <p class="body-text">Encontramos <strong>14 anúncios</strong> do seu imóvel publicados por imobiliárias diferentes, com valores de R$&nbsp;9.800 a R$&nbsp;11.800/mês. Esse conflito de preços destrói a percepção de valor e incentiva o locatário a especular.</p>
-
-  <span class="tag red">Anúncios duplicados — Cobertura Porto Verano · Barra da Tijuca</span>
-  <div class="table-wrap">
-    <table class="listing-table">
-      <thead>
-        <tr><th>Imobiliária</th><th>Link</th><th>Aluguel</th></tr>
-      </thead>
-      <tbody id="main-rows">
-        <tr>
-          <td>Rangel Imóveis <span class="badge-low">↓ mais barato</span></td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-198m2-id-2878508773/" target="_blank">↗ abrir</a></td>
-          <td>R$ 9.800/mês</td>
-        </tr>
-        <tr>
-          <td>Sawala Consultoria Imobiliária <span class="badge-low">↓ mais barato</span></td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-210m2-id-2886225645/" target="_blank">↗ abrir</a></td>
-          <td>R$ 9.800/mês</td>
-        </tr>
-        <tr>
-          <td>Enjoy Locação <span class="badge-low">↓ mais barato</span></td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-193m2-id-2883137480/" target="_blank">↗ abrir</a></td>
-          <td>R$ 9.800/mês</td>
-        </tr>
-        <tr>
-          <td>Renato dos Santos Neto <span class="badge-low">↓ mais barato</span></td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-198m2-id-2880566857/" target="_blank">↗ abrir</a></td>
-          <td>R$ 9.800/mês</td>
-        </tr>
-        <tr>
-          <td>Zeal Administradora de Imóveis</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2879639903/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.200/mês</td>
-        </tr>
-        <tr>
-          <td>Ana Paula Fortuna · CRECI 106146</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-193m2-id-2884486199/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.200/mês</td>
-        </tr>
-        <tr>
-          <td>Américas Imóveis <span class="badge-own">nosso anúncio</span></td>
-          <td><a href="#" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.800/mês</td>
-        </tr>
-      </tbody>
-      <tbody id="extra-rows" class="extra-rows">
-        <tr>
-          <td>Apsa Locação RJ</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-199m2-id-2885702373/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.800/mês</td>
-        </tr>
-        <tr>
-          <td>Felix Imóveis</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2879888377/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.800/mês</td>
-        </tr>
-        <tr>
-          <td>Cordeiro Consultoria</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2890592726/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.600/mês</td>
-        </tr>
-        <tr>
-          <td>Renascença Barra</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2891160181/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.600/mês</td>
-        </tr>
-        <tr>
-          <td>Target Imóveis</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2893281528/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.600/mês</td>
-        </tr>
-        <tr>
-          <td>Unita Inteligência Imobiliária</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-lavabo-barra-da-tijuca-rio-de-janeiro-200m2-id-2893324389/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.600/mês</td>
-        </tr>
-        <tr>
-          <td>Imobiliária GI</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2895293679/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.600/mês</td>
-        </tr>
-        <tr>
-          <td>Expansão Rio Imóveis</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-193m2-id-2893967994/" target="_blank">↗ abrir</a></td>
-          <td>R$ 11.600/mês</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <button class="expand-btn" id="expand-btn" onclick="toggleExtra()">
-    <span>Ver mais 7 anúncios identificados</span>
-    <i class="arrow">▼</i>
-  </button>
-
-  <div class="card warn-card" style="margin-top:1rem;">
-    <strong style="font-size:0.84rem;color:#7a5200;">📌 O impacto direto nos preços</strong>
-    <p class="body-text" style="margin-top:0.5rem;margin-bottom:0;">4 imobiliárias anunciam o seu imóvel por R$&nbsp;9.800/mês — R$&nbsp;2.000 abaixo do seu pretendido. Qualquer locatário captado pela Américas vai encontrar esse valor menor em outra imobiliária. Sem preço único e coordenado, é impossível manter o valor.</p>
-  </div>
-
-  <hr class="section-divider">
-
-  <!-- SECTION 3: CONCORRÊNCIA — 3 destacados + tabela -->
-  <div class="section-label">
-    <div class="num teal-num">3</div>
-    <h2>O que o locatário encontra antes do seu imóvel</h2>
-  </div>
-
-  <p class="body-text">Mapeamos os principais concorrentes disponíveis agora na Barra da Tijuca. Os 3 imóveis abaixo são os que mais ameaçam diretamente a locação da sua cobertura:</p>
-
-  <!-- 3 FEATURED COMPETITOR CARDS -->
-  <div class="featured-comps">
-
-    <!-- Comp 1: 177m² 4 qts praia -->
-    <div class="feat-card">
-      <div class="feat-card-img">
-        <!-- Trocar por: comp1-foto.jpg ou comp1-foto.webp -->
-        <img src="comp1-foto.svg" alt="Apartamento 4 Quartos 177m² Barra da Tijuca"
-             onerror="this.style.display='none';this.parentElement.style.background='#0a1228'">
-        <span class="feat-flag beach">🏖 Praia</span>
-      </div>
-      <div class="feat-card-body">
-        <div class="feat-card-price">R$ 9.200/mês</div>
-        <div class="feat-card-label">Apto 4 Quartos · 177m² · Barra da Tijuca</div>
-        <div class="feat-specs">
-          <span class="feat-pill good">4 quartos</span>
-          <span class="feat-pill good">177 m²</span>
-          <span class="feat-pill good">3 vagas</span>
-          <span class="feat-pill good">Piscina</span>
-          <span class="feat-pill good">Praia</span>
+    <div class="video-scroll-wrapper">
+      <div class="video-card">
+        <div class="video-wrapper">
+          <video autoplay muted loop playsinline preload="auto">
+            <source
+              src="https://media.americasimoveis.com.br/Criativos/Criativo%2016%20-%20Casa%20Riviera%20del%20Sol_1.mp4"
+              type="video/mp4">
+          </video>
         </div>
-        <div class="feat-total">Total estimado: <strong>~R$ 13.716/mês</strong></div>
-        <a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-piscina-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-177m2-id-2759990660/" target="_blank" class="feat-link">↗ Ver no ZAP</a>
-      </div>
-    </div>
-
-    <!-- Comp 2: 140m² 4 qts academia -->
-    <div class="feat-card">
-      <div class="feat-card-img">
-        <!-- Trocar por: comp2-foto.jpg ou comp2-foto.webp -->
-        <img src="comp2-foto.svg" alt="Apartamento 4 Quartos 140m² com Academia Barra da Tijuca"
-             onerror="this.style.display='none';this.parentElement.style.background='#0a1228'">
-        <span class="feat-flag">🏋 Academia</span>
-      </div>
-      <div class="feat-card-body">
-        <div class="feat-card-price">R$ 8.800/mês</div>
-        <div class="feat-card-label">Apto 4 Quartos · 140m² · Barra da Tijuca</div>
-        <div class="feat-specs">
-          <span class="feat-pill good">4 quartos</span>
-          <span class="feat-pill good">140 m²</span>
-          <span class="feat-pill good">2 vagas</span>
-          <span class="feat-pill good">Academia</span>
+        <div class="video-card-body">
+          <div class="vc-label">Criativo 16</div>
+          <div class="vc-title">Casa — Condomínio Riviera del Sol</div>
+          <div><span class="vc-price-val">Vendido com sucesso</span></div>
+          <span class="vc-badge">✓ Vendido</span>
         </div>
-        <div class="feat-total">Total estimado: <strong>R$ 12.580/mês</strong> (cond. + IPTU)</div>
-        <a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-academia-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-140m2-id-2889775180/" target="_blank" class="feat-link">↗ Ver no ZAP</a>
       </div>
-    </div>
-
-    <!-- Comp 3: Cobertura 155m² praia -->
-    <div class="feat-card">
-      <div class="feat-card-img">
-        <!-- Trocar por: comp3-foto.jpg ou comp3-foto.webp -->
-        <img src="comp3-foto.svg" alt="Cobertura 3 Quartos 155m² Barra da Tijuca"
-             onerror="this.style.display='none';this.parentElement.style.background='#0a1228'">
-        <span class="feat-flag beach">🏖 Cobertura Praia</span>
-      </div>
-      <div class="feat-card-body">
-        <div class="feat-card-price">R$ 8.300/mês</div>
-        <div class="feat-card-label">Cobertura 3 Quartos · 155m² · Barra da Tijuca</div>
-        <div class="feat-specs">
-          <span class="feat-pill good">3 quartos</span>
-          <span class="feat-pill good">155 m²</span>
-          <span class="feat-pill good">2 vagas</span>
-          <span class="feat-pill good">Praia</span>
-          <span class="feat-pill good">Cobertura</span>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <video autoplay muted loop playsinline preload="auto">
+            <source
+              src="https://media.americasimoveis.com.br/Criativos/Criativo%2027-%20Wings%20UND%20103%20-%204100%20-%20AP0655_MERI%20h2655.mp4"
+              type="video/mp4">
+          </video>
         </div>
-        <div class="feat-total">Total estimado: <strong>R$ 13.100/mês</strong> (cond. + IPTU)</div>
-        <a href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-155m2-id-2873561858/" target="_blank" class="feat-link">↗ Ver no ZAP</a>
+        <div class="video-card-body">
+          <div class="vc-label">Criativo 27</div>
+          <div class="vc-title">Wings — Recreio dos Bandeirantes</div>
+          <div><span class="vc-price-val">R$ 4.100/mês</span></div>
+          <span class="vc-badge">✓ Locado</span>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-wrapper">
+          <video autoplay muted loop playsinline preload="auto">
+            <source
+              src="https://media.americasimoveis.com.br/Criativos/Criativo%2013%20-%20Hermes%20de%20Lima%20Nomad%20Locacao%20Alta_2.mp4"
+              type="video/mp4">
+          </video>
+        </div>
+        <div class="video-card-body">
+          <div class="vc-label">Criativo 13</div>
+          <div class="vc-title">Hermes de Lima — Recreio dos Bandeirantes</div>
+          <div><span class="vc-price-val">R$ 3.000/mês</span></div>
+          <span class="vc-badge">✓ Locado</span>
+        </div>
       </div>
     </div>
 
-  </div><!-- end featured-comps -->
+    <hr class="section-divider">
 
-  <!-- remaining competitors table -->
-  <p class="body-text" style="font-size:0.8rem;color:var(--text-muted);">E mais 7 imóveis concorrentes identificados na região:</p>
-  <div class="comp-rent-table-wrap">
-    <table class="comp-rent-table">
-      <thead>
-        <tr><th>Imóvel</th><th>Metragem / Quartos</th><th>Link</th><th>Aluguel</th><th>Total estim.</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Apto 4 qts com academia</td>
-          <td>170 m² · 4 qts · 2 vagas</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-academia-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-170m2-id-2868519876/" target="_blank">↗ ver</a></td>
-          <td class="price-cell">R$ 9.000</td>
-          <td class="total-cell">R$ 12.817</td>
-        </tr>
-        <tr>
-          <td>Apto 3 qts com elevador</td>
-          <td>150 m² · 3 qts · 2 vagas</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-150m2-id-2894530277/" target="_blank">↗ ver</a></td>
-          <td class="price-cell">R$ 9.000</td>
-          <td class="total-cell">~R$ 12.200</td>
-        </tr>
-        <tr>
-          <td>Cobertura 2 qts · Praia da Barra</td>
-          <td>170 m² · 2 qts · 1 vaga</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-com-piscina-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-170m2-id-2857070761/" target="_blank">↗ ver</a></td>
-          <td class="price-cell">R$ 8.500</td>
-          <td class="total-cell">R$ 13.750</td>
-        </tr>
-        <tr>
-          <td>Apto 2 qts mobiliado · 174m²</td>
-          <td>174 m² · 2 qts · 2 vagas</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-174m2-id-2899418685/" target="_blank">↗ ver</a></td>
-          <td class="price-cell">R$ 9.800</td>
-          <td class="total-cell">R$ 13.040</td>
-        </tr>
-        <tr>
-          <td>Apto 4 qts · 210m²</td>
-          <td>210 m² · 4 qts · 2 vagas</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-210m2-id-2896466990/" target="_blank">↗ ver</a></td>
-          <td class="price-cell">R$ 10.500</td>
-          <td class="total-cell">~R$ 21.500</td>
-        </tr>
-        <tr>
-          <td>Apto 3 qts com piscina · 167m²</td>
-          <td>167 m² · 3 qts · 2 vagas</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-167m2-id-2892370849/" target="_blank">↗ ver</a></td>
-          <td class="price-cell">R$ 10.000</td>
-          <td class="total-cell">R$ 14.439</td>
-        </tr>
-        <tr>
-          <td>Apto 2 qts com piscina · 240m²</td>
-          <td>240 m² · 2 qts · 3 vagas</td>
-          <td><a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-240m2-id-2897558674/" target="_blank">↗ ver</a></td>
-          <td class="price-cell">R$ 10.000</td>
-          <td class="total-cell">R$ 14.000</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <!-- SECTION 2 -->
+    <div class="section-label">
+      <div class="num">2</div>
+      <h2>Por que o seu imóvel ainda não foi alugado</h2>
+    </div>
 
-  <div class="danger-highlight-box" style="margin-top:1rem;">
-    <div class="dh-eyebrow">⛔ O que essa análise mostra</div>
-    <p>O locatário com orçamento de R$&nbsp;11.800/mês encontra <strong>coberturas na praia e apartamentos de 4 quartos com academia e piscina por R$&nbsp;2.000 a R$&nbsp;3.500 menos</strong>. A cobertura duplex do Porto Verano tem diferenciais reais — mas eles precisam ser mostrados profissionalmente e o preço precisa estar dentro do que o mercado atual sustenta.</p>
-    <p>A procura real dos interessados é a melhor avaliação de preço. <strong>O mercado é simples: quanto maior a procura, maior o valor</strong>. Se não há contatos qualificados, o mercado está dizendo que o preço está alto demais.</p>
-  </div>
-
-  <hr class="section-divider">
-
-  <!-- SECTION 4: PREÇO -->
-  <div class="section-label">
-    <div class="num">4</div>
-    <h2>Análise de preço e posicionamento estratégico</h2>
-  </div>
-
-  <div class="card teal-card">
-    <span class="tag teal">📊 Como o mercado avalia o seu imóvel</span>
-    <div class="exp-item">
-      <div class="exp-icon teal">📈</div>
+    <div class="alert-banner navy">
+      <div class="alert-icon">🔍</div>
       <div>
-        <h4>Marketing só funciona quando o preço está dentro do mercado</h4>
-        <p>Tráfego pago, vídeo profissional e Instagram Ads são ferramentas poderosas. Mas elas levam o imóvel para mais pessoas verem — se o preço não for competitivo, mais visualizações apenas confirmam que o valor está alto. <strong>Preço correto + marketing ativo = locação rápida.</strong></p>
+        <h3>Fizemos uma análise completa do seu imóvel no mercado de locação da Barra da Tijuca</h3>
+        <p>Mapeamos 14 anúncios duplicados do seu imóvel, analisamos 10 concorrentes diretos e avaliamos o seu preço
+          frente ao mercado real. O diagnóstico é claro — e a solução existe.</p>
       </div>
     </div>
-    <div class="exp-item">
-      <div class="exp-icon gold">🎯</div>
-      <div>
-        <h4>A melhor avaliação de preço é a procura real do mercado</h4>
-        <p>Não existe tabela definitiva para locação de alto padrão. O que define o valor real é a quantidade de interessados qualificados que o imóvel atrai. Com o preço atual, a procura está baixa — e isso é o mercado falando.</p>
+
+    <div class="two-col">
+      <div class="stat-box">
+        <div class="big red">37</div>
+        <div class="desc">Imobiliárias anunciando o mesmo imóvel — com preços conflitantes</div>
+      </div>
+      <div class="stat-box">
+        <div class="big teal">10+</div>
+        <div class="desc">Imóveis superiores ou similares disponíveis por menos na Barra</div>
       </div>
     </div>
-    <div class="exp-item">
-      <div class="exp-icon blue">💎</div>
-      <div>
-        <h4>Sua cobertura tem diferenciais únicos — que precisam ser vistos</h4>
-        <p>Vista espetacular, terraço, duplex — atributos que justificam um prêmio sobre imóveis convencionais. O desafio é que no preço atual o locatário tem coberturas na praia por menos. Um ajuste estratégico mais vídeo profissional muda completamente a equação.</p>
+
+    <div class="card">
+      <span class="tag red">Os 4 motivos que travam a sua locação</span>
+      <div class="exp-item">
+        <div class="exp-icon red">📋</div>
+        <div>
+          <h4>Portal de anúncio não basta — o imóvel some na listagem</h4>
+          <p>O mercado de locação de alto padrão na Barra da Tijuca tem centenas de ofertas. O locatário que entra no
+            ZAP tem dezenas de opções superiores e mais baratas antes de chegar ao seu.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon red">🎯</div>
+        <div>
+          <h4>37 imobiliárias = o locatário faz leilão</h4>
+          <p>Com 37 imobiliárias anunciando o mesmo imóvel a preços diferentes — de R$&nbsp;9.800 a R$&nbsp;14.000 — o
+            interessado entra em contato com todas e força o valor para o mínimo. Você perde completamente o controle da
+            negociação.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon gold">💰</div>
+        <div>
+          <h4>O preço de R$ 11.800 está fora do mercado atual</h4>
+          <p>Identificamos imóveis com 4 quartos, 140–240m² e amenidades superiores sendo alugados entre R$ 8.300 e R$
+            10.500 na mesma região. A oferta supera muito a demanda na Barra agora.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon red">📷</div>
+        <div>
+          <h4>Material fotográfico precisa ser renovado</h4>
+          <p>Para uma cobertura duplex competir no Instagram e redes sociais, as fotos e o vídeo precisam ser
+            profissionais e recentes. O material atual não valoriza o potencial do imóvel.</p>
+        </div>
       </div>
     </div>
+
+    <div class="insight-box">
+      <div class="ib-eyebrow">💡 A verdade que ninguém te conta</div>
+      <h3>Mais imobiliárias não significa mais locatários — significa mais caos</h3>
+      <p>É um mito muito difundido. O proprietário acredita que, com mais imobiliárias anunciando, o alcance aumenta. Na
+        prática, o efeito é o contrário: <strong>o locatário usa isso para negociar agressivamente o preço</strong>, os
+        corretores competem entre si, e o imóvel perde credibilidade quando aparece com valores diferentes em dezenas de
+        anúncios.</p>
+      <p>O mercado de locação de alto padrão mudou. <strong>Quem aluga imóvel premium hoje é quem aparece no feed do
+          locatário certo</strong> — com um vídeo profissional, no Instagram, direcionado para quem tem perfil real de
+        locação. Retirar de 37 imobiliárias e concentrar em no máximo 3, com preço único e estratégia alinhada, é o
+        único caminho.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- SECTION 3: ANÚNCIOS DUPLICADOS -->
+    <div class="section-label">
+      <div class="num danger-num">3</div>
+      <h2>Anúncios duplicados do seu imóvel — 37 identificados</h2>
+    </div>
+
+    <p class="body-text">Encontramos <strong>37 anúncios</strong> do seu imóvel publicados por imobiliárias diferentes,
+      com valores de R$&nbsp;9.800 a R$&nbsp;14.000/mês. Esse conflito de preços destrói a percepção de valor e
+      incentiva o locatário a especular — ele sabe que pode aguardar o menor preço aparecer.</p>
+
+    <span class="tag red">Anúncios duplicados</span>
+    <div class="table-wrap">
+      <table class="listing-table">
+        <thead>
+          <tr>
+            <th>Imobiliária</th>
+            <th>Link</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <!-- Primeiros 10 sempre visíveis -->
+        <tbody id="main-rows">
+          <tr>
+            <td>Hom3 Imobiliária <span class="badge-low">↓ mais barato</span></td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-4-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2880913014/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 9.800/mês</td>
+          </tr>
+          <tr>
+            <td>Trinitá Le Monde <span class="badge-low">↓ mais barato</span></td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/venda-cobertura-3-quartos-mobiliado-barra-da-tijuca-rio-de-janeiro-200m2-id-2879849065/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 9.800/mês</td>
+          </tr>
+          <tr>
+            <td>Trinità Imobiliária <span class="badge-low">↓ mais barato</span></td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/venda-cobertura-3-quartos-mobiliado-barra-da-tijuca-rio-de-janeiro-200m2-id-2880958174/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 9.800/mês</td>
+          </tr>
+          <tr>
+            <td>Trinità Recreio <span class="badge-low">↓ mais barato</span></td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/venda-cobertura-3-quartos-mobiliado-barra-da-tijuca-rio-de-janeiro-200m2-id-2884455876/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 9.800/mês</td>
+          </tr>
+          <tr>
+            <td>Barpen Negócios Imobiliários <span class="badge-low">↓ mais barato</span></td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/venda-cobertura-3-quartos-barra-da-tijuca-rio-de-janeiro-198m2-id-2883858273/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 9.800/mês</td>
+          </tr>
+          <tr>
+            <td>Lopes Enjoy Imóveis Barra <span class="badge-low">↓ mais barato</span></td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-193m2-id-2892304521/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 9.800/mês</td>
+          </tr>
+          <tr>
+            <td>Bbusiness Imobiliária</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-barra-da-tijuca-rio-de-janeiro-200m2-id-2888065425/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.000/mês</td>
+          </tr>
+          <tr>
+            <td>Inácio Imóveis</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2881463973/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.200/mês</td>
+          </tr>
+          <tr>
+            <td>Sergio Gourlart Imóveis</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2886089785/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.200/mês</td>
+          </tr>
+          <tr>
+            <td>Expansão Rio Imóveis</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-mobiliado-barra-da-tijuca-rio-de-janeiro-193m2-id-2883430102/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.500/mês</td>
+          </tr>
+        </tbody>
+        <!-- Restantes 27 — expandíveis -->
+        <tbody id="extra-rows" class="extra-rows">
+          <tr>
+            <td>Jtavares Administradora Ipanema</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-200m2-id-2879402297/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Rioimob Imobiliária</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-barra-da-tijuca-rio-de-janeiro-200m2-id-2894545992/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Andreata Gestão Imobiliária</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-ar-condicionado-barra-da-tijuca-rio-de-janeiro-193m2-id-2894999340/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Rc Imobiliária</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2893019476/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Hazza Home Boutique</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-barra-da-tijuca-rio-de-janeiro-200m2-id-2891973102/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Casa Parkes Soluções Imobiliárias</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2880234678/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Gc Negócios Imobiliários</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-4-quartos-com-churrasqueira-barra-da-tijuca-rio-de-janeiro-200m2-id-2892388685/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Special Residence Imóveis</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2893805489/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Block Imóveis – Aluguel</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2882054299/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Claudia Kimoveis</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2891537675/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Repasse Imóveis</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-198m2-id-2878593167/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Dayane Melo</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2892620811/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Karioca Imóveis Aluguel</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-acesso-24-horas-barra-da-tijuca-rio-de-janeiro-200m2-id-2891811521/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Podium Consultoria Imobiliária</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/venda-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2895198201/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Cazia (anúncio 1)</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-espaco-gourmet-barra-da-tijuca-rio-de-janeiro-195m2-id-2893124385/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Imobiliária GI</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2895293679/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.600/mês</td>
+          </tr>
+          <tr>
+            <td>Trindadeimoveis.Rj</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2883202184/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.800/mês</td>
+          </tr>
+          <tr>
+            <td>Up Imóveis</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2888747278/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.800/mês</td>
+          </tr>
+          <tr>
+            <td>Re/Max Ocean Eagle</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-barra-da-tijuca-rio-de-janeiro-198m2-id-2883155088/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.800/mês</td>
+          </tr>
+          <tr>
+            <td>Bolsa de Negócios Imobiliários RJ</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-area-de-lazer-barra-da-tijuca-rio-de-janeiro-198m2-id-2896492726/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.800/mês</td>
+          </tr>
+          <tr>
+            <td>Américas Imóveis <span class="badge-own">nosso anúncio</span></td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2879819252/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.800/mês</td>
+          </tr>
+          <tr>
+            <td>Martins Ferreira Imóveis Locação</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2879583010/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.800/mês</td>
+          </tr>
+          <tr>
+            <td>Cazia (anúncio 2)</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-barra-da-tijuca-rio-de-janeiro-193m2-id-2887053174/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.800/mês</td>
+          </tr>
+          <tr>
+            <td>Village Imobiliária</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-barra-da-tijuca-rio-de-janeiro-200m2-id-2888554406/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.800/mês</td>
+          </tr>
+          <tr>
+            <td>Reis Príncipe Administradora</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-198m2-id-2878508773/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 11.800/mês</td>
+          </tr>
+          <tr>
+            <td>Villa Ipanema <span
+                style="font-size:9px;background:#fff3e0;color:#7a4200;padding:2px 6px;border-radius:4px;margin-left:4px;border:1px solid #e8c878;font-weight:700;">venda</span>
+            </td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/venda-apartamento-3-quartos-com-piscina-barra-da-tijuca-rio-de-janeiro-200m2-id-2887793284/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 3.150.000</td>
+          </tr>
+          <tr>
+            <td>Silvério Imóveis <span
+                style="font-size:9px;background:#fdecea;color:#c0392b;padding:2px 6px;border-radius:4px;margin-left:4px;border:1px solid #f5a89f;font-weight:700;">↑
+                acima</span></td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-churrasqueira-barra-da-tijuca-rio-de-janeiro-200m2-id-2892518900/"
+                target="_blank">↗ abrir</a></td>
+            <td>R$ 14.000/mês</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="expand-btn" id="expand-btn" onclick="toggleExtra()">
+      <span>Ver mais 27 anúncios identificados</span>
+      <i class="arrow">▼</i>
+    </button>
+
+    <div class="card warn-card" style="margin-top:1rem;">
+      <strong style="font-size:0.84rem;color:#7a5200;">📌 O impacto direto nos preços</strong>
+      <p class="body-text" style="margin-top:0.5rem;margin-bottom:0;"><strong>6 imobiliárias anunciam o seu imóvel por
+          R$&nbsp;9.800/mês</strong> — R$&nbsp;2.000 abaixo do seu pretendido. Qualquer locatário captado pela Américas
+        vai encontrar esse valor menor em outra imobiliária em segundos. Sem preço único e coordenação entre
+        imobiliárias, é impossível manter o valor e fechar negócio.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- SECTION 4: CONCORRÊNCIA — 3 destacados + tabela -->
+    <div class="section-label">
+      <div class="num teal-num">4</div>
+      <h2>O que o locatário encontra antes do seu imóvel</h2>
+    </div>
+
+    <p class="body-text">Mapeamos os principais concorrentes disponíveis agora na Barra da Tijuca. Os 3 imóveis abaixo
+      são os que mais ameaçam diretamente a locação da sua cobertura:</p>
+
+    <!-- 3 FEATURED COMPETITOR CARDS -->
+    <div class="featured-comps">
+
+      <!-- Comp 1: 177m² 4 qts praia -->
+      <div class="feat-card">
+        <div class="feat-card-img">
+          <img class="carousel-slide active" src="comp1-foto-01.webp"
+            alt="Apartamento 4 Quartos 177m² Barra da Tijuca - foto 1">
+          <img class="carousel-slide" src="comp1-foto-02.webp"
+            alt="Apartamento 4 Quartos 177m² Barra da Tijuca - foto 2">
+          <img class="carousel-slide" src="comp1-foto-03.webp"
+            alt="Apartamento 4 Quartos 177m² Barra da Tijuca - foto 3">
+          <img class="carousel-slide" src="comp1-foto-04.webp"
+            alt="Apartamento 4 Quartos 177m² Barra da Tijuca - foto 4">
+          <button class="carousel-arrow prev" onclick="carouselNav(this,-1)" aria-label="Foto anterior">‹</button>
+          <button class="carousel-arrow next" onclick="carouselNav(this,1)" aria-label="Próxima foto">›</button>
+          <div class="carousel-dots">
+            <span class="active"></span><span></span><span></span><span></span>
+          </div>
+          <span class="feat-flag beach">🏖 Praia</span>
+        </div>
+        <div class="feat-card-body">
+          <div class="feat-card-price">R$ 9.200/mês</div>
+          <div class="feat-card-label">Apto 4 Quartos · 177m² · Barra da Tijuca</div>
+          <div class="feat-specs">
+            <span class="feat-pill good">4 quartos</span>
+            <span class="feat-pill good">177 m²</span>
+            <span class="feat-pill good">3 vagas</span>
+            <span class="feat-pill good">Piscina</span>
+            <span class="feat-pill good">Praia</span>
+          </div>
+          <div class="feat-total">Total estimado: <strong>~R$ 13.716/mês</strong></div>
+          <a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-piscina-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-177m2-id-2759990660/"
+            target="_blank" class="feat-link">↗ Ver no ZAP</a>
+        </div>
+      </div>
+
+      <!-- Comp 2: 140m² 4 qts academia -->
+      <div class="feat-card">
+        <div class="feat-card-img">
+          <img class="carousel-slide active" src="comp2-foto-01.webp"
+            alt="Apartamento 4 Quartos 140m² com Academia Barra da Tijuca - foto 1">
+          <img class="carousel-slide" src="comp2-foto-02.webp"
+            alt="Apartamento 4 Quartos 140m² com Academia Barra da Tijuca - foto 2">
+          <img class="carousel-slide" src="comp2-foto-03.webp"
+            alt="Apartamento 4 Quartos 140m² com Academia Barra da Tijuca - foto 3">
+          <img class="carousel-slide" src="comp2-foto-04.webp"
+            alt="Apartamento 4 Quartos 140m² com Academia Barra da Tijuca - foto 4">
+          <button class="carousel-arrow prev" onclick="carouselNav(this,-1)" aria-label="Foto anterior">‹</button>
+          <button class="carousel-arrow next" onclick="carouselNav(this,1)" aria-label="Próxima foto">›</button>
+          <div class="carousel-dots">
+            <span class="active"></span><span></span><span></span><span></span>
+          </div>
+          <span class="feat-flag">🏋 Academia</span>
+        </div>
+        <div class="feat-card-body">
+          <div class="feat-card-price">R$ 8.800/mês</div>
+          <div class="feat-card-label">Apto 4 Quartos · 140m² · Barra da Tijuca</div>
+          <div class="feat-specs">
+            <span class="feat-pill good">4 quartos</span>
+            <span class="feat-pill good">140 m²</span>
+            <span class="feat-pill good">2 vagas</span>
+            <span class="feat-pill good">Academia</span>
+          </div>
+          <div class="feat-total">Total estimado: <strong>R$ 12.580/mês</strong> (cond. + IPTU)</div>
+          <a href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-academia-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-140m2-id-2889775180/"
+            target="_blank" class="feat-link">↗ Ver no ZAP</a>
+        </div>
+      </div>
+
+      <!-- Comp 3: Cobertura 155m² praia -->
+      <div class="feat-card">
+        <div class="feat-card-img">
+          <img class="carousel-slide active" src="comp3-foto-01.webp"
+            alt="Cobertura 3 Quartos 155m² Barra da Tijuca - foto 1">
+          <img class="carousel-slide" src="comp3-foto-02.webp" alt="Cobertura 3 Quartos 155m² Barra da Tijuca - foto 2">
+          <img class="carousel-slide" src="comp3-foto-03.webp" alt="Cobertura 3 Quartos 155m² Barra da Tijuca - foto 3">
+          <img class="carousel-slide" src="comp3-foto-04.webp" alt="Cobertura 3 Quartos 155m² Barra da Tijuca - foto 4">
+          <button class="carousel-arrow prev" onclick="carouselNav(this,-1)" aria-label="Foto anterior">‹</button>
+          <button class="carousel-arrow next" onclick="carouselNav(this,1)" aria-label="Próxima foto">›</button>
+          <div class="carousel-dots">
+            <span class="active"></span><span></span><span></span><span></span>
+          </div>
+          <span class="feat-flag beach">🏖 Cobertura Praia</span>
+        </div>
+        <div class="feat-card-body">
+          <div class="feat-card-price">R$ 8.300/mês</div>
+          <div class="feat-card-label">Cobertura 3 Quartos · 155m² · Barra da Tijuca</div>
+          <div class="feat-specs">
+            <span class="feat-pill good">3 quartos</span>
+            <span class="feat-pill good">155 m²</span>
+            <span class="feat-pill good">2 vagas</span>
+            <span class="feat-pill good">Praia</span>
+            <span class="feat-pill good">Cobertura</span>
+          </div>
+          <div class="feat-total">Total estimado: <strong>R$ 13.100/mês</strong> (cond. + IPTU)</div>
+          <a href="https://www.zapimoveis.com.br/imovel/aluguel-cobertura-3-quartos-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-155m2-id-2873561858/"
+            target="_blank" class="feat-link">↗ Ver no ZAP</a>
+        </div>
+      </div>
+
+    </div><!-- end featured-comps -->
+
+    <!-- remaining competitors table -->
+    <p class="body-text" style="font-size:0.8rem;color:var(--text-muted);">E mais 7 imóveis concorrentes identificados
+      na região:</p>
+    <div class="comp-rent-table-wrap">
+      <table class="comp-rent-table">
+        <thead>
+          <tr>
+            <th>Imóvel</th>
+            <th>Metragem / Quartos</th>
+            <th>Link</th>
+            <th>Aluguel</th>
+            <th>Total estim.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Apto 4 qts com academia</td>
+            <td>170 m² · 4 qts · 2 vagas</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-com-academia-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-170m2-id-2868519876/"
+                target="_blank">↗ ver</a></td>
+            <td class="price-cell">R$ 9.000</td>
+            <td class="total-cell">R$ 12.817</td>
+          </tr>
+          <tr>
+            <td>Apto 3 qts com elevador</td>
+            <td>150 m² · 3 qts · 2 vagas</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-elevador-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-150m2-id-2894530277/"
+                target="_blank">↗ ver</a></td>
+            <td class="price-cell">R$ 9.000</td>
+            <td class="total-cell">~R$ 12.200</td>
+          </tr>
+          <tr>
+            <td>Cobertura 2 qts · Praia da Barra</td>
+            <td>170 m² · 2 qts · 1 vaga</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/venda-cobertura-2-quartos-com-piscina-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-170m2-id-2857070761/"
+                target="_blank">↗ ver</a></td>
+            <td class="price-cell">R$ 8.500</td>
+            <td class="total-cell">R$ 13.750</td>
+          </tr>
+          <tr>
+            <td>Apto 2 qts mobiliado · 174m²</td>
+            <td>174 m² · 2 qts · 2 vagas</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/venda-apartamento-2-quartos-mobiliado-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-174m2-id-2899418685/"
+                target="_blank">↗ ver</a></td>
+            <td class="price-cell">R$ 9.800</td>
+            <td class="total-cell">R$ 13.040</td>
+          </tr>
+          <tr>
+            <td>Apto 4 qts · 210m²</td>
+            <td>210 m² · 4 qts · 2 vagas</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-4-quartos-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-210m2-id-2896466990/"
+                target="_blank">↗ ver</a></td>
+            <td class="price-cell">R$ 10.500</td>
+            <td class="total-cell">~R$ 21.500</td>
+          </tr>
+          <tr>
+            <td>Apto 3 qts com piscina · 167m²</td>
+            <td>167 m² · 3 qts · 2 vagas</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-3-quartos-com-piscina-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-167m2-id-2892370849/"
+                target="_blank">↗ ver</a></td>
+            <td class="price-cell">R$ 10.000</td>
+            <td class="total-cell">R$ 14.439</td>
+          </tr>
+          <tr>
+            <td>Apto 2 qts com piscina · 240m²</td>
+            <td>240 m² · 2 qts · 3 vagas</td>
+            <td><a
+                href="https://www.zapimoveis.com.br/imovel/aluguel-apartamento-2-quartos-com-piscina-barra-da-tijuca-zona-oeste-rio-de-janeiro-rj-240m2-id-2897558674/"
+                target="_blank">↗ ver</a></td>
+            <td class="price-cell">R$ 10.000</td>
+            <td class="total-cell">R$ 14.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="danger-highlight-box" style="margin-top:1rem;">
+      <div class="dh-eyebrow">⛔ O que essa análise mostra</div>
+      <p>O locatário com orçamento de R$&nbsp;11.800/mês encontra <strong>coberturas na praia e apartamentos de 4
+          quartos com academia e piscina por R$&nbsp;2.000 a R$&nbsp;3.500 menos</strong>. A cobertura duplex do Porto
+        Verano tem diferenciais reais — mas eles precisam ser mostrados profissionalmente e o preço precisa estar dentro
+        do que o mercado atual sustenta.</p>
+      <p>A procura real dos interessados é a melhor avaliação de preço. <strong>O mercado é simples: quanto maior a
+          procura, maior o valor</strong>. Se não há contatos qualificados, o mercado está dizendo que o preço está alto
+        demais.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- SECTION 5: PREÇO -->
+    <div class="section-label">
+      <div class="num">5</div>
+      <h2>Análise de preço e posicionamento estratégico</h2>
+    </div>
+
+    <div class="card teal-card">
+      <span class="tag teal">📊 Como o mercado avalia o seu imóvel</span>
+      <div class="exp-item">
+        <div class="exp-icon teal">📈</div>
+        <div>
+          <h4>Marketing só funciona quando o preço está dentro do mercado</h4>
+          <p>Tráfego pago, vídeo profissional e Instagram Ads são ferramentas poderosas. Mas elas levam o imóvel para
+            mais pessoas verem — se o preço não for competitivo, mais visualizações apenas confirmam que o valor está
+            alto. <strong>Preço correto + marketing ativo = locação rápida.</strong></p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon gold">🎯</div>
+        <div>
+          <h4>A melhor avaliação de preço é a procura real do mercado</h4>
+          <p>Não existe tabela definitiva para locação de alto padrão. O que define o valor real é a quantidade de
+            interessados qualificados que o imóvel atrai. Com o preço atual, a procura está baixa — e isso é o mercado
+            falando.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon blue">💎</div>
+        <div>
+          <h4>Sua cobertura tem diferenciais únicos — que precisam ser vistos</h4>
+          <p>Vista espetacular, terraço, duplex — atributos que justificam um prêmio sobre imóveis convencionais. O
+            desafio é que no preço atual o locatário tem coberturas na praia por menos. Um ajuste estratégico mais vídeo
+            profissional muda completamente a equação.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="price-strategy-box">
+      <div class="psb-label">Estratégia de posicionamento de locação — Américas Imóveis</div>
+      <div class="psb-row">
+        <div class="psb-item">
+          <div class="psb-item-label">Preço atual</div>
+          <div class="psb-item-val" style="text-decoration:line-through;opacity:0.4;">R$ 11.800</div>
+          <div class="psb-item-sub">Sem demanda qualificada</div>
+        </div>
+        <div class="psb-item">
+          <div class="psb-item-label">Campanha tráfego pago</div>
+          <div class="psb-item-val teal-v">R$ 9.500–10.000</div>
+          <div class="psb-item-sub">Posicionamento competitivo</div>
+        </div>
+        <div class="psb-item">
+          <div class="psb-item-label">Faixa de fechamento</div>
+          <div class="psb-item-val gold-v">R$ 9.000–9.500</div>
+          <div class="psb-item-sub">Com margem de negociação</div>
+        </div>
+      </div>
+      <hr class="psb-divider">
+      <p class="psb-note">Reduzindo o preço para a faixa de R$&nbsp;9.500–10.000 e mostrando a cobertura com um vídeo
+        profissional que valorize a vista e os diferenciais reais, posicionamos o imóvel como a melhor opção premium
+        nessa faixa. O portal pode manter o preço original como referência. O tráfego pago trabalha com o preço
+        competitivo — e o locatário certo aparece.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- SECTION 6: PLANO -->
+    <div class="section-label">
+      <div class="num">6</div>
+      <h2>Plano de Ação — Locação em até 30 dias</h2>
+    </div>
+
+    <div class="highlight-row">
+      <span class="hr-icon">🚀</span>
+      <span>A Américas Imóveis não quer ser mais uma das 37 imobiliárias anunciando a sua cobertura. Queremos realmente
+        alugar — com estratégia, vídeo profissional e tráfego pago direcionado para locatários reais no Instagram e
+        Facebook.</span>
+    </div>
+
+    <div class="invest-highlight">
+      <div class="small-label">Plano de Marketing de Locação com Vídeo & Tráfego Pago</div>
+      <div class="amount">R$ 700</div>
+      <div class="sub">Investimento único em campanha de 30 dias no Meta Ads</div>
+      <hr class="invest-divider">
+      <div class="invest-return">
+        <span class="label">Se a Américas Imóveis alugar, você recebe:</span>
+        <span class="val">R$ 1.400 de volta ✦</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="tag green">O que está incluído no plano</span>
+      <div class="proposal-item">
+        <div class="check-circle gold">🎬</div>
+        <div>
+          <h4>Vídeo e ensaio fotográfico profissional — grátis</h4>
+          <p>Produzimos material profissional completo da sua cobertura — vídeo com locução, fotos que valorizem a vista
+            e os diferenciais reais do duplex. Você aprova antes da publicação.</p>
+        </div>
+      </div>
+      <div class="proposal-item">
+        <div class="check-circle">✓</div>
+        <div>
+          <h4>Campanhas segmentadas no Instagram e Facebook</h4>
+          <p>Os R$&nbsp;700 são investidos em Meta Ads — direcionando o vídeo para locatários com renda compatível com
+            R$&nbsp;9.000–R$&nbsp;10.000/mês na Barra da Tijuca. Perfil qualificado, não aleatório.</p>
+        </div>
+      </div>
+      <div class="proposal-item">
+        <div class="check-circle">✓</div>
+        <div>
+          <h4>Concentração em no máximo 3 imobiliárias com preço único</h4>
+          <p>Eliminamos o caos dos 37 anúncios conflitantes. Preço único e estratégia coordenada — o locatário não tem
+            como fazer leilão e você recupera o controle total da negociação.</p>
+        </div>
+      </div>
+      <div class="proposal-item">
+        <div class="check-circle teal">✓</div>
+        <div>
+          <h4>Qualificação rigorosa dos interessados</h4>
+          <p>Filtramos todos os contatos — apresentamos apenas locatários com comprovação de renda compatível. Nenhuma
+            visita de curiosos.</p>
+        </div>
+      </div>
+      <div class="proposal-item">
+        <div class="check-circle gold">✦</div>
+        <div>
+          <h4>Garantia: alugou, R$ 1.400 de volta</h4>
+          <p>Você investe R$&nbsp;700. Se a Américas Imóveis realizar a locação, devolvemos R$&nbsp;1.400 — o dobro. É o
+            nosso compromisso com o resultado.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card brand-card">
+      <span class="tag blue">Por que o Instagram funciona melhor que portal para alto padrão</span>
+      <div class="exp-item">
+        <div class="exp-icon red">📋</div>
+        <div>
+          <h4>No portal, o locatário filtra — e seu imóvel some</h4>
+          <p>Quando o locatário filtra "até R$&nbsp;10.000" no ZAP, seu imóvel desaparece da listagem. No Instagram, o
+            vídeo aparece para ele antes mesmo da pesquisa.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon blue">📱</div>
+        <div>
+          <h4>O locatário de alto padrão está nas redes sociais agora</h4>
+          <p>Executivos e profissionais com orçamento acima de R$&nbsp;9.000/mês consomem conteúdo premium no Instagram.
+            Um vídeo bem produzido da sua cobertura chega até eles diretamente.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-icon teal">🎬</div>
+        <div>
+          <h4>Vídeo de cobertura = decisão emocional antes da visita</h4>
+          <p>Um locatário que assiste ao vídeo — vista, duplex, terraço — já chega à visita praticamente decidido. A
+            locação fecha mais rápido e com menos negociação de preço.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- CTA — TROCAR AQUI SE MUDAR A AÇÃO -->
+    <div class="cta-section" id="cta">
+      <div class="cta-eyebrow">Próximo passo</div>
+      <h2>Pronto para <span>alugar em até 30 dias?</span></h2>
+      <p>Entre em contato com a Américas Imóveis agora. Nossa equipe vai definir o preço certo, produzir o material
+        profissional e iniciar a campanha.</p>
+      <a href="https://wa.me/5521964016363?text=Ol%C3%A1%2C%20vim%20pelo%20relat%C3%B3rio%20da%20Cobertura%20Porto%20Verano%20(PH0052)%20e%20quero%20saber%20mais%20sobre%20o%20Plano%20de%20Loca%C3%A7%C3%A3o%20da%20Am%C3%A9ricas%20Im%C3%B3veis."
+        class="whatsapp-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+        Falar com a Américas Imóveis
+      </a>
+      <p class="cta-note">WhatsApp · +55 21 96401-6363 · Respondemos em até 2 horas</p>
+    </div>
+    <!-- FIM DO CTA -->
+
   </div>
 
-  <div class="price-strategy-box">
-    <div class="psb-label">Estratégia de posicionamento de locação — Américas Imóveis</div>
-    <div class="psb-row">
-      <div class="psb-item">
-        <div class="psb-item-label">Preço atual</div>
-        <div class="psb-item-val" style="text-decoration:line-through;opacity:0.4;">R$ 11.800</div>
-        <div class="psb-item-sub">Sem demanda qualificada</div>
+  <footer>
+    <div class="footer-content">
+      <div class="logo-wrap-footer">
+        <img
+          src="https://static.arboimoveis.com.br/white-label-assets/CJ7700_MERI/02__logo_verticaol_americas_imoveis1639581413015.svg"
+          alt="Américas Imóveis" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span style="display:none;font-size:1.1rem;font-weight:700;color:white;">Américas Imóveis</span>
       </div>
-      <div class="psb-item">
-        <div class="psb-item-label">Campanha tráfego pago</div>
-        <div class="psb-item-val teal-v">R$ 9.500–10.000</div>
-        <div class="psb-item-sub">Posicionamento competitivo</div>
-      </div>
-      <div class="psb-item">
-        <div class="psb-item-label">Faixa de fechamento</div>
-        <div class="psb-item-val gold-v">R$ 9.000–9.500</div>
-        <div class="psb-item-sub">Com margem de negociação</div>
+      <div class="footer-info">
+        <div>Plano de locação exclusivo — Cód. PH0052_MERI</div>
+        <div>Avenida Gastão Senges, 125 · Condomínio Porto Verano · Barra da Tijuca</div>
+        <div>CRECI CJ7700 · Américas Imóveis</div>
+        <div class="contact">Vamos alugar a sua cobertura em até 30 dias</div>
       </div>
     </div>
-    <hr class="psb-divider">
-    <p class="psb-note">Reduzindo o preço para a faixa de R$&nbsp;9.500–10.000 e mostrando a cobertura com um vídeo profissional que valorize a vista e os diferenciais reais, posicionamos o imóvel como a melhor opção premium nessa faixa. O portal pode manter o preço original como referência. O tráfego pago trabalha com o preço competitivo — e o locatário certo aparece.</p>
-  </div>
+  </footer>
 
-  <hr class="section-divider">
+  <script>
+    function toggleExtra() {
+      var r = document.getElementById('extra-rows'), b = document.getElementById('expand-btn'), o = r.classList.contains('visible');
+      if (o) { r.classList.remove('visible'); b.classList.remove('open'); b.querySelector('span').textContent = 'Ver mais 7 anúncios identificados'; }
+      else { r.classList.add('visible'); b.classList.add('open'); b.querySelector('span').textContent = 'Ocultar anúncios'; }
+    }
 
-  <!-- SECTION 5: PLANO -->
-  <div class="section-label">
-    <div class="num">5</div>
-    <h2>Plano de Ação — Locação em até 30 dias</h2>
-  </div>
-
-  <div class="highlight-row">
-    <span class="hr-icon">🚀</span>
-    <span>A Américas Imóveis não quer ser mais uma das 14 imobiliárias anunciando a sua cobertura. Queremos realmente alugar — com estratégia, vídeo profissional e tráfego pago direcionado para locatários reais no Instagram e Facebook.</span>
-  </div>
-
-  <div class="invest-highlight">
-    <div class="small-label">Plano de Marketing de Locação com Vídeo & Tráfego Pago</div>
-    <div class="amount">R$ 700</div>
-    <div class="sub">Investimento único em campanha de 30 dias no Meta Ads</div>
-    <hr class="invest-divider">
-    <div class="invest-return">
-      <span class="label">Se a Américas Imóveis alugar, você recebe:</span>
-      <span class="val">R$ 1.400 de volta ✦</span>
-    </div>
-  </div>
-
-  <div class="card">
-    <span class="tag green">O que está incluído no plano</span>
-    <div class="proposal-item">
-      <div class="check-circle gold">🎬</div>
-      <div>
-        <h4>Vídeo e ensaio fotográfico profissional — grátis</h4>
-        <p>Produzimos material profissional completo da sua cobertura — vídeo com locução, fotos que valorizem a vista e os diferenciais reais do duplex. Você aprova antes da publicação.</p>
-      </div>
-    </div>
-    <div class="proposal-item">
-      <div class="check-circle">✓</div>
-      <div>
-        <h4>Campanhas segmentadas no Instagram e Facebook</h4>
-        <p>Os R$&nbsp;700 são investidos em Meta Ads — direcionando o vídeo para locatários com renda compatível com R$&nbsp;9.000–R$&nbsp;10.000/mês na Barra da Tijuca. Perfil qualificado, não aleatório.</p>
-      </div>
-    </div>
-    <div class="proposal-item">
-      <div class="check-circle">✓</div>
-      <div>
-        <h4>Concentração em no máximo 3 imobiliárias com preço único</h4>
-        <p>Eliminamos o caos dos 14 anúncios conflitantes. Preço único e estratégia coordenada — o locatário não tem como fazer leilão e você recupera o controle da negociação.</p>
-      </div>
-    </div>
-    <div class="proposal-item">
-      <div class="check-circle teal">✓</div>
-      <div>
-        <h4>Qualificação rigorosa dos interessados</h4>
-        <p>Filtramos todos os contatos — apresentamos apenas locatários com comprovação de renda compatível. Nenhuma visita de curiosos.</p>
-      </div>
-    </div>
-    <div class="proposal-item">
-      <div class="check-circle gold">✦</div>
-      <div>
-        <h4>Garantia: alugou, R$ 1.400 de volta</h4>
-        <p>Você investe R$&nbsp;700. Se a Américas Imóveis realizar a locação, devolvemos R$&nbsp;1.400 — o dobro. É o nosso compromisso com o resultado.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="card brand-card">
-    <span class="tag blue">Por que o Instagram funciona melhor que portal para alto padrão</span>
-    <div class="exp-item">
-      <div class="exp-icon red">📋</div>
-      <div>
-        <h4>No portal, o locatário filtra — e seu imóvel some</h4>
-        <p>Quando o locatário filtra "até R$&nbsp;10.000" no ZAP, seu imóvel desaparece da listagem. No Instagram, o vídeo aparece para ele antes mesmo da pesquisa.</p>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-icon blue">📱</div>
-      <div>
-        <h4>O locatário de alto padrão está nas redes sociais agora</h4>
-        <p>Executivos e profissionais com orçamento acima de R$&nbsp;9.000/mês consomem conteúdo premium no Instagram. Um vídeo bem produzido da sua cobertura chega até eles diretamente.</p>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-icon teal">🎬</div>
-      <div>
-        <h4>Vídeo de cobertura = decisão emocional antes da visita</h4>
-        <p>Um locatário que assiste ao vídeo — vista, duplex, terraço — já chega à visita praticamente decidido. A locação fecha mais rápido e com menos negociação de preço.</p>
-      </div>
-    </div>
-  </div>
-
-  <hr class="section-divider">
-
-  <!-- SECTION 6: CASOS DE SUCESSO -->
-  <div class="section-label">
-    <div class="num teal-num">6</div>
-    <h2>Veja como alugamos imóveis de alto padrão</h2>
-  </div>
-
-  <p class="body-text">Estes são os vídeos criativos que produzimos e veiculamos no Instagram para outros proprietários — o mesmo método que aplicaremos para a sua cobertura:</p>
-
-  <div class="video-scroll-wrapper">
-    <div class="video-card">
-      <div class="video-wrapper">
-        <video autoplay muted loop playsinline preload="auto">
-          <source src="https://media.americasimoveis.com.br/Criativos/Criativo%2016%20-%20Casa%20Riviera%20del%20Sol_1.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-card-body">
-        <div class="vc-label">Criativo 16</div>
-        <div class="vc-title">Casa — Condomínio Riviera del Sol</div>
-        <div><span class="vc-price-val">Locado com sucesso</span></div>
-        <span class="vc-badge">✓ Locado</span>
-      </div>
-    </div>
-    <div class="video-card">
-      <div class="video-wrapper">
-        <video autoplay muted loop playsinline preload="auto">
-          <source src="https://media.americasimoveis.com.br/Criativos/Criativo%2027-%20Wings%20UND%20103%20-%204100%20-%20AP0655_MERI%20h2655.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-card-body">
-        <div class="vc-label">Criativo 27</div>
-        <div class="vc-title">Wings — Recreio dos Bandeirantes</div>
-        <div><span class="vc-price-val">R$ 4.100/mês</span></div>
-        <span class="vc-badge">✓ Locado</span>
-      </div>
-    </div>
-    <div class="video-card">
-      <div class="video-wrapper">
-        <video autoplay muted loop playsinline preload="auto">
-          <source src="https://media.americasimoveis.com.br/Criativos/Criativo%2013%20-%20Hermes%20de%20Lima%20Nomad%20Locacao%20Alta_2.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-card-body">
-        <div class="vc-label">Criativo 13</div>
-        <div class="vc-title">Hermes de Lima — Recreio dos Bandeirantes</div>
-        <div><span class="vc-price-val">R$ 3.000/mês</span></div>
-        <span class="vc-badge">✓ Locado</span>
-      </div>
-    </div>
-  </div>
-
-  <hr class="section-divider">
-
-  <!-- CTA — TROCAR AQUI SE MUDAR A AÇÃO -->
-  <div class="cta-section" id="cta">
-    <div class="cta-eyebrow">Próximo passo</div>
-    <h2>Pronto para <span>alugar em até 30 dias?</span></h2>
-    <p>Entre em contato com a Américas Imóveis agora. Nossa equipe vai definir o preço certo, produzir o material profissional e iniciar a campanha.</p>
-    <a href="https://wa.me/5521964016363?text=Ol%C3%A1%2C%20vim%20pelo%20relat%C3%B3rio%20da%20Cobertura%20Porto%20Verano%20(PH0052)%20e%20quero%20saber%20mais%20sobre%20o%20Plano%20de%20Loca%C3%A7%C3%A3o%20da%20Am%C3%A9ricas%20Im%C3%B3veis."
-       class="whatsapp-btn" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-      Falar com a Américas Imóveis
-    </a>
-    <p class="cta-note">WhatsApp · +55 21 96401-6363 · Respondemos em até 2 horas</p>
-  </div>
-  <!-- FIM DO CTA -->
-
-</div>
-
-<footer>
-  <div class="footer-content">
-    <div class="logo-wrap-footer">
-      <img src="https://static.arboimoveis.com.br/white-label-assets/CJ7700_MERI/02__logo_verticaol_americas_imoveis1639581413015.svg" alt="Américas Imóveis" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <span style="display:none;font-size:1.1rem;font-weight:700;color:white;">Américas Imóveis</span>
-    </div>
-    <div class="footer-info">
-      <div>Plano de locação exclusivo — Cód. PH0052_MERI</div>
-      <div>Avenida Gastão Senges, 125 · Condomínio Porto Verano · Barra da Tijuca</div>
-      <div>CRECI CJ7700 · Américas Imóveis</div>
-      <div class="contact">Vamos alugar a sua cobertura em até 30 dias</div>
-    </div>
-  </div>
-</footer>
-
-<script>
-function toggleExtra(){
-  var r=document.getElementById('extra-rows'),b=document.getElementById('expand-btn'),o=r.classList.contains('visible');
-  if(o){r.classList.remove('visible');b.classList.remove('open');b.querySelector('span').textContent='Ver mais 7 anúncios identificados';}
-  else{r.classList.add('visible');b.classList.add('open');b.querySelector('span').textContent='Ocultar anúncios';}
-}
-</script>
+    function carouselNav(btn, dir) {
+      var wrap = btn.closest('.feat-card-img');
+      var slides = wrap.querySelectorAll('.carousel-slide');
+      var dots = wrap.querySelectorAll('.carousel-dots span');
+      var idx = Array.prototype.findIndex.call(slides, function (s) { return s.classList.contains('active'); });
+      slides[idx].classList.remove('active');
+      dots[idx].classList.remove('active');
+      idx = (idx + dir + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+      dots[idx].classList.add('active');
+    }
+  </script>
 </body>
+
 </html>
