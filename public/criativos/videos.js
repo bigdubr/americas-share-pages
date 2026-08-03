@@ -204,4 +204,22 @@ const VIDEOS = [
         instagram: "https://media.americasimoveis.com.br/Criativos/Criativo%2027-%20Wings%20UND%20103%20-%204100%20-%20AP0655_MERI%20h2655.mp4",
         thumb: true,
     },
+    {
+        referencia: "Criativo 29",
+        titulo: "Liberty Green 2 Quartos",
+        codigo: "AP0790",
+        bairro: "Barra Olímpica",
+        valor: "490 mil",
+        instagram: "https://media.americasimoveis.com.br/Criativos/Criativo%2029%20-%20Liberty%20Green%20-%20%202%20Qts%20-%20490%20Mil%20-%20AP0790_MERI_H265.mp4",
+        thumb: true,
+    },
+    {
+        referencia: "Criativo 30",
+        titulo: "Atlântico Golf",
+        codigo: "AP0791",
+        bairro: "Barra da Tijuca",
+        valor: "2.699 mi",
+        instagram: "https://media.americasimoveis.com.br/Criativos/Criativo%2030%20-%20Atlantico%20Golf%20-%202.699%20mi%20-%20AP0791_MERI%20h265.mp4",
+        thumb: true,
+    },
 ];

@@ -29,6 +29,8 @@ $videos = @(
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2025%20-%20Jose%20Americo%20UND%20204%20-%20930%20mil%20-AP0144_MERI_h265.mp4",
     #"https://media.americasimoveis.com.br/Criativos/Criativo%2026%20-%20Le%20Jour%20BL%202%20UND%20108%20-%20620%20mil%20-%20AP0756_MERI_h265.mp4",
     "https://media.americasimoveis.com.br/Criativos/Criativo%2027-%20Wings%20UND%20103%20-%204100%20-%20AP0655_MERI%20h2655.mp4"
+    #"https://media.americasimoveis.com.br/Criativos/Criativo%2029%20-%20Liberty%20Green%20-%20%202%20Qts%20-%20490%20Mil%20-%20AP0790_MERI_H265.mp4",
+    #"https://media.americasimoveis.com.br/Criativos/Criativo%2030%20-%20Atlantico%20Golf%20-%202.699%20mi%20-%20AP0791_MERI%20h265.mp4"
 
 )
 
