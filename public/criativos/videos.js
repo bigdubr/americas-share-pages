@@ -222,4 +222,13 @@ const VIDEOS = [
         instagram: "https://media.americasimoveis.com.br/Criativos/Criativo%2030%20-%20Atlantico%20Golf%20-%202.699%20mi%20-%20AP0791_MERI%20h265.mp4",
         thumb: true,
     },
+    {
+        referencia: "Criativo 31",
+        titulo: "Ocean BL 1 UND 507 2 Quartos",
+        codigo: "AP0097",
+        bairro: "Recreio",
+        valor: "490 mil",
+        instagram: "https://media.americasimoveis.com.br/Criativos/Criativo%2031%20-%20Ocean%20BL%201%20UND%20507%202%20Qts%20-%20490%20mil%20-%20AP0097_MERI_h265.mp4",
+        thumb: true,
+    },
 ];
