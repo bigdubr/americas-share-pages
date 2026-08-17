@@ -205,6 +205,15 @@ const VIDEOS = [
         thumb: true,
     },
     {
+        referencia: "Criativo 28",
+        titulo: "Ary Rongel 370 UND 203",
+        codigo: "AP0760_MERI",
+        bairro: "Recreio",
+        valor: "590 mil",
+        instagram: "https://media.americasimoveis.com.br/Criativos/Criativo%2028%20-%20Ary%20Rongel%20370%20UND%20203%20-%20590%20mil%20-AP0760_MERI_h265.mp4",
+        thumb: true,
+    },
+    {
         referencia: "Criativo 29",
         titulo: "Liberty Green 2 Quartos",
         codigo: "AP0790",
